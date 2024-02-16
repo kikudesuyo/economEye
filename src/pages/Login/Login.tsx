@@ -6,15 +6,20 @@ type Props = {
   setPageName: React.Dispatch<React.SetStateAction<PageName>>;
 };
 
-export const Top = ({ setPageName }: Props) => {
+export const Login = ({ setPageName }: Props) => {
   return (
     <Container
       setPageName={setPageName}
       child={
         <div className="flex flex-col items-center gap-8 pt-3 ">
-          <h1 className="text-3xl">economEye👀</h1>
-          <h2 className="text-lg">あなたの生活を豊かに</h2>
-          <div>商品の買い時がわかります</div>
+          <div>
+            <p>メールアドレス</p>
+            <input type="text" placeholder="メールアドレスを入力してください" />
+          </div>
+          <div>
+            <p>パスワード</p>
+            <input type="text" placeholder="パスワードを入力してください" />
+          </div>
         </div>
       }
     />
