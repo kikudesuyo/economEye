@@ -31,8 +31,11 @@ export const Top = ({ setPageName }: Props) => {
               </div>
             </div>
           </div>
-          <button className="bg-slate-300 px-4 py-3 text-center  w-full mx-auto rounded-xl">
-            商品登録ページへ
+          <button
+            className="bg-slate-300 px-4 py-3 text-center  w-full mx-auto rounded-xl"
+            onClick={() => setPageName("RegisterItem")}
+          >
+            商品登録ページ
           </button>
         </div>
       }

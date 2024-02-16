@@ -1,1 +1,1 @@
-export type PageName = "Home" | "Login" | "Top";
+export type PageName = "Home" | "Login" | "Top" | "RegisterItem";
