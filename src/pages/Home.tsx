@@ -1,4 +1,4 @@
-export const Home = () => {
+const Home = () => {
   return (
     <div className="flex flex-col items-center gap-8 pt-3 ">
       <h1 className="text-3xl">economEye👀</h1>
@@ -7,3 +7,4 @@ export const Home = () => {
     </div>
   );
 };
+export default Home;

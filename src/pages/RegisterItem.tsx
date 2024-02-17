@@ -1,4 +1,4 @@
-export const RegisterItem = () => {
+const RegisterItem = () => {
   return (
     <div className="items-center w-80 mx-auto">
       <div className="flex flex-col pt-8 gap-4">
@@ -14,3 +14,5 @@ export const RegisterItem = () => {
     </div>
   );
 };
+
+export default RegisterItem;

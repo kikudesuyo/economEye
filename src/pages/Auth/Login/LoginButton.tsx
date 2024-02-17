@@ -1,13 +1,13 @@
 import React from "react";
 import { PageName } from "@/util/helper/type";
-import { authenticate } from "@/util/helper/login";
+import { authenticate } from "@/pages/Auth/helper";
 
 type Props = {
   email: string;
   setPageName: React.Dispatch<React.SetStateAction<PageName>>;
 };
 
-export const LoginButton = ({ email, setPageName }: Props) => {
+const LoginButton = ({ email, setPageName }: Props) => {
   const handleClick = () => {
     if (authenticate(email)) {
       setPageName("Top");
@@ -24,3 +24,4 @@ export const LoginButton = ({ email, setPageName }: Props) => {
     </button>
   );
 };
+export default LoginButton;

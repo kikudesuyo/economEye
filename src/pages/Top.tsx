@@ -5,7 +5,7 @@ type Props = {
   setPageName: React.Dispatch<React.SetStateAction<PageName>>;
 };
 
-export const Top = ({ setPageName }: Props) => {
+const Top = ({ setPageName }: Props) => {
   return (
     <div className="flex flex-col w-80 mx-auto pt-3 gap-8">
       <div>
@@ -36,3 +36,5 @@ export const Top = ({ setPageName }: Props) => {
     </div>
   );
 };
+
+export default Top;

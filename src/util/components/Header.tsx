@@ -1,13 +1,12 @@
 import React from "react";
-import { Button } from "@/util/components/Button";
 import { PageName } from "@/util/helper/type";
-import { SwitchPageButton } from "./SwitchPageButton";
+import SwitchPageButton from "@/util/components/SwitchPageButton";
 
 type Props = {
   setPageName: React.Dispatch<React.SetStateAction<PageName>>;
 };
 
-export const Header = ({ setPageName }: Props) => {
+const Header = ({ setPageName }: Props) => {
   return (
     <header className="flex justify-between p-3 border-b border-black">
       <a
@@ -22,8 +21,14 @@ export const Header = ({ setPageName }: Props) => {
           pageName="Login"
           setPageName={setPageName}
         />
-        <Button label="新規登録" />
+        <SwitchPageButton
+          label="新規登録"
+          pageName="Signup"
+          setPageName={setPageName}
+        />
       </div>
     </header>
   );
 };
+
+export default Header;

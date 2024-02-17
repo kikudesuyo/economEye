@@ -7,7 +7,7 @@ type Props = {
   setPageName: React.Dispatch<React.SetStateAction<PageName>>;
 };
 
-export const SwitchPageButton = ({ label, pageName, setPageName }: Props) => {
+const SwitchPageButton = ({ label, pageName, setPageName }: Props) => {
   return (
     <button
       onClick={() => setPageName(pageName)}
@@ -17,3 +17,5 @@ export const SwitchPageButton = ({ label, pageName, setPageName }: Props) => {
     </button>
   );
 };
+
+export default SwitchPageButton;
