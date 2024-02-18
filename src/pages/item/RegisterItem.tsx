@@ -1,5 +1,5 @@
-import SwitchPageButton from "@/util/components/SwitchPageButton";
-import { PageName } from "@/util/helper/type";
+import SwitchPageButton from "@/utils/components/SwitchPageButton";
+import { PageName } from "@/utils/helper/type";
 import React from "react";
 
 type Props = {

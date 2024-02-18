@@ -1,5 +1,5 @@
 import React from "react";
-import { PageName } from "@/util/helper/type";
+import { PageName } from "@/utils/helper/type";
 import Top from "@/pages/Top";
 import Home from "@/pages/Home";
 import Login from "@/pages/auth/login/Login";
@@ -7,11 +7,11 @@ import Signup from "@/pages/auth/signup/Signup";
 import "@/assets/styles/destyle.css";
 import RegisterItem from "@/pages/item/RegisterItem";
 import ItemList from "@/pages/item/ItemList";
-import Header from "@/util/components/Header";
-import Footer from "@/util/components/Footer";
+import Header from "@/utils/components/Header";
+import Footer from "@/utils/components/Footer";
 
 function App() {
-  const [pageName, setPageName] = React.useState<PageName>("Home");
+  const [pageName, setPageName] = React.useState<PageName>("ItemList");
 
   const pageMap = {
     Home: <Home />,

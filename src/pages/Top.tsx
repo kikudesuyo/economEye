@@ -1,5 +1,5 @@
 import React from "react";
-import { PageName } from "@/util/helper/type";
+import { PageName } from "@/utils/helper/type";
 
 type Props = {
   setPageName: React.Dispatch<React.SetStateAction<PageName>>;

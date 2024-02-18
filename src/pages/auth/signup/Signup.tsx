@@ -1,6 +1,6 @@
-import SwitchPageButton from "@/util/components/SwitchPageButton";
+import SwitchPageButton from "@/utils/components/SwitchPageButton";
 import React from "react";
-import { PageName } from "@/util/helper/type";
+import { PageName } from "@/utils/helper/type";
 
 type Props = {
   setPageName: React.Dispatch<React.SetStateAction<PageName>>;

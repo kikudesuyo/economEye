@@ -1,5 +1,5 @@
 import React from "react";
-import { PageName } from "@/util/helper/type";
+import { PageName } from "@/utils/helper/type";
 import LoginButton from "@/pages/auth/login/LoginButton";
 
 type Props = {
