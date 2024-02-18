@@ -21,7 +21,7 @@ const Signup = ({ setPageName }: Props) => {
         <input type="text" placeholder="パスワード入れて" />
       </div>
       <SwitchPageButton
-        label="新規登録"
+        label="登録"
         pageName="Login"
         setPageName={setPageName}
       />

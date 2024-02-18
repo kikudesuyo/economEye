@@ -1,6 +1,6 @@
 import React from "react";
 import { PageName } from "@/util/helper/type";
-import LoginButton from "@/pages/Auth/Login/LoginButton";
+import LoginButton from "@/pages/auth/login/LoginButton";
 
 type Props = {
   setPageName: React.Dispatch<React.SetStateAction<PageName>>;

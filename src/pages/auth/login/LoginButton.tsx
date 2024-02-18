@@ -1,6 +1,6 @@
 import React from "react";
 import { PageName } from "@/util/helper/type";
-import { authenticate } from "@/pages/Auth/helper";
+import { authenticate } from "@/pages/auth/helper";
 
 type Props = {
   email: string;

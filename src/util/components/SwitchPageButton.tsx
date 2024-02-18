@@ -11,7 +11,7 @@ const SwitchPageButton = ({ label, pageName, setPageName }: Props) => {
   return (
     <button
       onClick={() => setPageName(pageName)}
-      className="bg-slate-300 px-4 py-3 rounded-xl"
+      className="bg-slate-300 px-4 py-3 rounded-xl text-center"
     >
       {label}
     </button>
