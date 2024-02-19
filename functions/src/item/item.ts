@@ -4,7 +4,7 @@ configDotenv();
 
 export const fetchData = async (
   endpoint: string,
-  params: { [key: string]: string }
+  params: { [key: string]: string | number }
 ) => {
   const res = await axios.get(endpoint, { params: params, timeout: 3000 });
   return res.data;

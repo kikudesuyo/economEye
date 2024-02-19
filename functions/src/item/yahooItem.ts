@@ -14,6 +14,7 @@ type AssignedParams = {
 type ReqParams = {
   appid: string;
   sort: Sort;
+  results: number;
   jan_code: string;
   condition?: Condition;
 };
@@ -33,19 +34,16 @@ class YahooItem {
     const formattedParams: ReqParams = {
       appid: appId,
       sort: "+price",
+      results: 1,
       jan_code: assignedParams.janCode,
       condition: assignedParams.condition,
     };
     return formattedParams;
   }
-  async fetchPrice() {
+  async fetchPrice(): Promise<string> {
     const itemData = await fetchData(this.endpoint, this.reqParams);
-    return itemData;
+    return itemData.hits[0].price;
   }
 }
 
-const item = new YahooItem({ janCode: "9784873115658", condition: "new" });
-
-(async () => {
-  console.log(await item.fetchPrice());
-})();
+export default YahooItem;

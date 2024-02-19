@@ -9,17 +9,12 @@
 
 import { onRequest } from "firebase-functions/v2/https";
 import * as logger from "firebase-functions/logger";
-import { Item } from "./item/item";
+import YahooItem from "./item/yahooItem";
 // Start writing functions
 // https://firebase.google.com/docs/functions/typescript
 
-// export const helloWorld = onRequest((request, response) => {
-//   logger.info("Hello logs!", { structuredData: true });
-//   response.send("Hello from Firebase!");
-// });
-
-export const itemList = onRequest((request, response) => {
-  const item = new Item();
-  item.fetchCode();
-  logger.info("success");
+export const itemPrice = onRequest(async (request, response) => {
+  const item = new YahooItem({ janCode: "9784873115658", condition: "new" });
+  logger.info("Fetching price for item", { structuredData: true });
+  response.status(200).send(await item.fetchPrice());
 });
