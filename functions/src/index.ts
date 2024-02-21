@@ -15,6 +15,7 @@ import YahooItem from "./item/yahooItem";
 
 export const itemPrice = onRequest(async (request, response) => {
   const item = new YahooItem({ janCode: "9784873115658", condition: "new" });
-  logger.info("Fetching price for item", { structuredData: true });
-  response.status(200).send(await item.fetchPrice());
+  const price = await item.fetchPrice();
+  logger.info("Fetching price for item", +price);
+  response.status(200).json({ price });
 });
