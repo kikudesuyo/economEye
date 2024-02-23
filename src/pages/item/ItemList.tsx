@@ -1,4 +1,4 @@
-const ItemList = () => {
+const ItemList = () => {  
   return (
     <div className="items-center w-80 mx-auto flex flex-col gap-4">
       <div className="border-2 border-black flex flex-row justify-between">

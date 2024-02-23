@@ -4,4 +4,4 @@ export type PageName =
   | "Login"
   | "Top"
   | "RegisterItem"
-  | "ItemList";
+  | "ItemList"
