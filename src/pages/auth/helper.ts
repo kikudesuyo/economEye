@@ -1,5 +1,5 @@
 export const authenticate = (email: string) => {
-  if (email === "koya@koya.com") {
+  if (email === "economEye@gmail.com") {
     return true;
   } else {
     return false;

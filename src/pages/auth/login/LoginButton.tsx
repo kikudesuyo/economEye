@@ -12,12 +12,12 @@ const LoginButton = ({ email, setPageName }: Props) => {
     if (authenticate(email)) {
       setPageName("Top");
     } else {
-      alert("メールアドレスををkoya@koya.comにして");
+      alert("メールアドレスををeconomEye@gmail.comにして");
     }
   };
   return (
     <button
-      className="bg-slate-300 px-4 py-3 rounded-xl"
+      className="bg-slate-300 px-4 py-3 rounded-xl text-center"
       onClick={() => handleClick()}
     >
       ログイン

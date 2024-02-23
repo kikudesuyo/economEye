@@ -7,21 +7,30 @@ type Props = {
 };
 
 const Login = ({ setPageName }: Props) => {
-  const [email, setEmail] = React.useState<string>("koya@koya.com");
+  const [email, setEmail] = React.useState<string>("economEye@gmail.com");
   return (
-    <div className="flex flex-col items-center gap-8 py-8">
-      <div>
+    <div className="flex flex-col items-left w-80 mx-auto gap-8 py-8 text-left">
+      <div className="flex flex-row items-center">
+        <img className="w-14 h-14" src="src/imgs/padlock.jpg" alt="" />
+        <h1 className="text-3xl">ログイン</h1>
+      </div>
+      <div className="flex flex-col gap-4">
         <p>メールアドレス</p>
         <input
+          className="border-b-2 border-slate-300 outline-none"
           type="email"
-          placeholder="メールアドレスを入力してください"
+          placeholder="例) economEye@gmail.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
       </div>
-      <div>
-        <p>パスワード</p>
-        <input type="password" placeholder="パスワードを入力してください" />
+      <div className="flex flex-col gap-4">
+        <p>パスワード(8文字以上)</p>
+        <input
+          className="border-b-2 border-slate-300 outline-none"
+          type="password"
+          placeholder="パスワードを入力してください"
+        />
       </div>
       <LoginButton setPageName={setPageName} email={email} />
     </div>
