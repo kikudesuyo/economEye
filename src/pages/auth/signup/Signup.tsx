@@ -7,19 +7,20 @@ type Props = {
 };
 const Signup = ({ setPageName }: Props) => {
   return (
-    <div className="flex flex-col w-80 gap-8 py-8 text-center mx-auto">
+    <div className="flex flex-col items-left w-80 mx-auto gap-8 py-8 text-left">
+      <h1 className="text-3xl">サインアップ</h1>
       <div className="flex flex-col gap-4">
         <a>メールアドレス</a>
         <input
-          className="border-2 border-slate-300"
+          className="border-b-2 border-slate-300 outline-none"
           type="email"
-          placeholder="メールアドレスを入力してください"
+          placeholder="例) economEye@gmail.com"
         />
       </div>
       <div className="flex flex-col gap-4">
-        <a>パスワード</a>
+        <a>パスワード(8文字以上)</a>
         <input
-          className="border-2 border-slate-300"
+          className="border-b-2 border-slate-300 outline-none"
           type="password"
           placeholder="パスワードをを入力してください"
         />
@@ -27,7 +28,7 @@ const Signup = ({ setPageName }: Props) => {
       <div className="flex flex-col gap-4">
         <a>パスワード確認用</a>
         <input
-          className="border-2 border-slate-300"
+          className="border-b-2 border-slate-300 outline-none"
           type="password"
           placeholder="もう一度パスワードを入力してください"
         />
