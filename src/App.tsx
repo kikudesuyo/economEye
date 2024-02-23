@@ -12,7 +12,7 @@ import Header from "@/utils/components/Header";
 import Footer from "@/utils/components/Footer";
 
 function App() {
-  const [pageName, setPageName] = React.useState<PageName>("Signup");
+  const [pageName, setPageName] = React.useState<PageName>("Top");
 
   const pageMap = {
     Home: <Home />,
