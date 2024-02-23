@@ -1,6 +1,6 @@
 const ItemList = () => {  
   return (
-    <div className="items-center w-80 mx-auto flex flex-col gap-4">
+    <div className="items-center w-80 mx-auto flex flex-col gap-4 py-8">
       <div className="border-2 border-black flex flex-row justify-between">
         <div>
           <p>商品A</p>
