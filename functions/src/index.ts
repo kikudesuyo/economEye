@@ -21,7 +21,12 @@ admin.initializeApp();
 const db = admin.firestore();
 
 // CORS Settings
-const cors = require("cors")({ origin: true });
+const cors = require("cors")({
+  origin: [
+    "https://economeye-d5146.web.app",
+    "https://economeye-d5146.firebaseapp.com",
+  ],
+});
 
 export const addItemPrice = functions.https.onRequest(async (req, res) => {
   try {
@@ -40,10 +45,10 @@ export const addItemPrice = functions.https.onRequest(async (req, res) => {
           value: price,
         },
       });
-      // res.status(200).send("Success!");
+      res.status(200).json({ data: { message: "Success!" } });
     });
   } catch (error) {
     console.error("Error adding document: ", error);
-    // res.status(500).send("Error adding document");
+    res.status(500).json({ data: { massage: "Error adding document" } });
   }
 });
