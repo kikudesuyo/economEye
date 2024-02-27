@@ -23,7 +23,7 @@ const db = admin.firestore();
 // CORS Settings
 const cors = require("cors")({ origin: true });
 
-export const itemPrice = functions.https.onRequest(async (req, res) => {
+export const addItemPrice = functions.https.onRequest(async (req, res) => {
   try {
     cors(req, res, async () => {
       const item = new YahooItem({

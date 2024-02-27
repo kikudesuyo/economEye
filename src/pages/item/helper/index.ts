@@ -10,6 +10,6 @@ const app = initializeApp({
 
 const functions = getFunctions(app);
 
-const itemPrice = httpsCallable(functions, "itemPrice");
+const itemPrice = httpsCallable(functions, "addItemPrice");
 
 export default itemPrice;
