@@ -1,4 +1,6 @@
-const ItemList = () => {  
+import itemPrice from "@/pages/item/helper";
+
+const ItemList = () => {
   return (
     <div className="items-center w-80 mx-auto flex flex-col gap-4 py-8">
       <div className="border-2 border-black flex flex-row justify-between">
@@ -30,6 +32,12 @@ const ItemList = () => {
           <p>普段より500円得</p>
         </div>
       </div>
+      <button
+        className="border-2 border-black p-2 hover: "
+        onClick={() => itemPrice()}
+      >
+        テスト用
+      </button>
     </div>
   );
 };

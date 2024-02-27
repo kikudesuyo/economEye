@@ -20,22 +20,30 @@ import * as admin from "firebase-admin";
 admin.initializeApp();
 const db = admin.firestore();
 
+// CORS Settings
+const cors = require("cors")({ origin: true });
+
 export const itemPrice = functions.https.onRequest(async (req, res) => {
   try {
-    const item = new YahooItem({ janCode: "9784873115658", condition: "new" });
-    const price = await item.fetchPrice();
-    logger.info("Fetching price for item", +price);
-    await db.collection("prices").add({
-      janCode: "9784873115658",
-      itemName: "test",
-      price: {
-        data: "2024/02/22",
-        price: price,
-      }
+    cors(req, res, async () => {
+      const item = new YahooItem({
+        janCode: "9784873115658",
+        condition: "new",
+      });
+      const price = await item.fetchPrice();
+      logger.info("Fetching price for item", +price);
+      await db.collection("items").add({
+        janCode: "9784873115658",
+        itemName: "HOGEHOGE",
+        price: {
+          data: "2024/02/29",
+          value: price,
+        },
+      });
+      // res.status(200).send("Success!");
     });
-    res.status(200).send("Data added successfully");
   } catch (error) {
     console.error("Error adding document: ", error);
-    res.status(500).send("Error adding document");
+    // res.status(500).send("Error adding document");
   }
 });
