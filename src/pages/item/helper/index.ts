@@ -21,7 +21,4 @@ const itemPrice = (janCode: string) => {
     console.log(result.data);
   });
 };
-
-// const itemPrice = httpsCallable(functions, "addItemPrice");
-
 export default itemPrice;

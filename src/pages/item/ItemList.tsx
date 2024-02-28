@@ -1,4 +1,5 @@
-import itemPrice from "@/pages/item/helper";
+import fetchData from "@/pages/item/helper/dbFetcher";
+import Button from "@/utils/components/Button";
 
 const ItemList = () => {
   return (
@@ -32,6 +33,12 @@ const ItemList = () => {
           <p>普段より500円得</p>
         </div>
       </div>
+      <Button
+        label="ボタン"
+        func={() => {
+          fetchData();
+        }}
+      />
     </div>
   );
 };
