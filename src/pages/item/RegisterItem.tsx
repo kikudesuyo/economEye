@@ -1,11 +1,13 @@
-import SwitchPageButton from "@/utils/components/SwitchPageButton";
+import Button from "@/utils/components/Button";
 import { PageName } from "@/utils/helper/type";
 import React from "react";
+import itemPrice from "@/pages/item/helper";
 
 type Props = {
   setPageName: React.Dispatch<React.SetStateAction<PageName>>;
 };
 const RegisterItem = ({ setPageName }: Props) => {
+  const [janCode, setJanCode] = React.useState<string>("");
   return (
     <div className="items-center w-80 mx-auto">
       <div className="flex flex-col pt-8 gap-4">
@@ -13,11 +15,15 @@ const RegisterItem = ({ setPageName }: Props) => {
           className="border-2  px-4 py-3 text-center"
           type="text"
           placeholder="商品のJANコードを入力してください"
+          value={janCode}
+          onChange={(e) => setJanCode(e.target.value)}
         />
-        <SwitchPageButton
+        <Button
           label="登録"
-          pageName="ItemList"
-          setPageName={setPageName}
+          func={() => {
+            itemPrice(janCode);
+            setPageName("ItemList");
+          }}
         />
       </div>
       <div className="flex flex-col pt-8">

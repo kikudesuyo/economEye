@@ -4,4 +4,11 @@ export type PageName =
   | "Login"
   | "Top"
   | "RegisterItem"
-  | "ItemList"
+  | "ItemList";
+
+type Condition = "used" | "new" | "both";
+
+export type ItemParams = {
+  janCode: string;
+  condition?: Condition;
+};

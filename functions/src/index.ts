@@ -1,47 +1,34 @@
-/**
- * Import function triggers from their respective submodules:
- *
- * import {onCall} from "firebase-functions/v2/https";
- * import {onDocumentWritten} from "firebase-functions/v2/firestore";
- *
- * See a full list of supported triggers at https://firebase.google.com/docs/functions
- */
-
-// import { onRequest } from "firebase-functions/v2/https";
-import * as logger from "firebase-functions/logger";
 import YahooItem from "./item/yahooItem";
-// Start writing functions
-// https://firebase.google.com/docs/functions/typescript
-
-// import * as functions from "firebase-functions";
 import * as functions from "firebase-functions/v2";
 import * as admin from "firebase-admin";
+import { AssignedParams } from "./item/yahooItem";
 
 admin.initializeApp();
 const db = admin.firestore();
 
-// CORS Settings
 const cors = require("cors")({
   origin: [
     "https://economeye-d5146.web.app",
     "https://economeye-d5146.firebaseapp.com",
+    "http://127.0.0.1:5173",
   ],
 });
 
 export const addItemPrice = functions.https.onRequest(async (req, res) => {
   try {
     cors(req, res, async () => {
+      const data: AssignedParams = req.body.data;
       const item = new YahooItem({
-        janCode: "9784873115658",
-        condition: "new",
+        janCode: data.janCode,
+        condition: data.condition,
       });
       const price = await item.fetchPrice();
-      logger.info("Fetching price for item", +price);
+      console.log("item data:", price);
       await db.collection("items").add({
-        janCode: "9784873115658",
-        itemName: "HOGEHOGE",
+        janCode: data.janCode,
+        itemName: "エリエール",
         price: {
-          data: "2024/02/29",
+          date: "2024/02/28",
           value: price,
         },
       });

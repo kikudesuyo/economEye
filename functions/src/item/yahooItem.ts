@@ -6,7 +6,7 @@ type Condition = "used" | "new" | "both";
 
 type Sort = "+price";
 
-type AssignedParams = {
+export type AssignedParams = {
   janCode: string;
   condition?: Condition;
 };

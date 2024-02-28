@@ -32,12 +32,6 @@ const ItemList = () => {
           <p>普段より500円得</p>
         </div>
       </div>
-      <button
-        className="border-2 border-black p-2 hover: "
-        onClick={() => itemPrice()}
-      >
-        テスト用
-      </button>
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import React from "react";
 import { PageName } from "@/utils/helper/type";
+import Button from "@/utils/components/Button";
 
 type Props = {
   label: string;
@@ -8,14 +9,7 @@ type Props = {
 };
 
 const SwitchPageButton = ({ label, pageName, setPageName }: Props) => {
-  return (
-    <button
-      onClick={() => setPageName(pageName)}
-      className="bg-slate-300 px-4 py-3 rounded-xl text-center"
-    >
-      {label}
-    </button>
-  );
+  return <Button label={label} func={() => setPageName(pageName)} />;
 };
 
 export default SwitchPageButton;
