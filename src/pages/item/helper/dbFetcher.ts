@@ -15,9 +15,10 @@ const db = getFirestore(app);
 const fetchData = async () => {
   try {
     const querySnapshot = await getDocs(collection(db, "items"));
-    querySnapshot.forEach((doc) => {
-      console.log(`${doc.id} => ${JSON.stringify(doc.data())}`);
-    });
+    const data = querySnapshot.docs.map((doc) => doc.data());
+    console.log(data);
+
+    return data;
   } catch (error) {
     console.error("Error getting documents: ", error);
   }
