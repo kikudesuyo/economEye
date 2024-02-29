@@ -1,27 +1,38 @@
 import Button from "@/utils/components/Button";
 import { PageName } from "@/utils/helper/type";
 import React from "react";
-import itemPrice from "@/pages/item/helper";
-
+import addItemPrice from "@/pages/item/helper";
 type Props = {
   setPageName: React.Dispatch<React.SetStateAction<PageName>>;
 };
 const RegisterItem = ({ setPageName }: Props) => {
   const [janCode, setJanCode] = React.useState<string>("");
+  const [itemName, setItemName] = React.useState<string>("");
   return (
     <div className="items-center w-80 mx-auto">
-      <div className="flex flex-col pt-8 gap-4">
+      <div className="flex flex-col mt-20 gap-8">
         <input
-          className="border-2  px-4 py-3 text-center"
+          className="border-b-2 border-slate-300 outline-none"
           type="text"
           placeholder="商品のJANコードを入力してください"
           value={janCode}
           onChange={(e) => setJanCode(e.target.value)}
         />
+        <input
+          className="border-b-2 border-slate-300 outline-none"
+          type="text"
+          placeholder="商品名を入力してください"
+          value={itemName}
+          onChange={(e) => setItemName(e.target.value)}
+        />
         <Button
           label="登録"
           func={() => {
-            itemPrice(janCode);
+            addItemPrice({
+              janCode: janCode,
+              itemName: itemName,
+              condition: "new",
+            });
             setPageName("ItemList");
           }}
         />

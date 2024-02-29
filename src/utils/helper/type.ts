@@ -10,5 +10,6 @@ type Condition = "used" | "new" | "both";
 
 export type ItemParams = {
   janCode: string;
+  itemName?: string;
   condition?: Condition;
 };

@@ -1,7 +1,7 @@
 import YahooItem from "./item/yahooItem";
 import * as functions from "firebase-functions/v2";
 import * as admin from "firebase-admin";
-import { AssignedParams } from "./item/yahooItem";
+import { Condition } from "./item/yahooItem";
 
 admin.initializeApp();
 const db = admin.firestore();
@@ -14,19 +14,27 @@ const cors = require("cors")({
   ],
 });
 
+type ClientParams = {
+  janCode: string;
+  itemName: string;
+  condition: Condition;
+};
+
 export const addItemPrice = functions.https.onRequest(async (req, res) => {
   try {
     cors(req, res, async () => {
-      const data: AssignedParams = req.body.data;
+      const data: ClientParams = req.body.data;
       const item = new YahooItem({
         janCode: data.janCode,
         condition: data.condition,
       });
       const price = await item.fetchPrice();
+      const imageId = await item.fetchImageId();
       console.log("item data:", price);
       await db.collection("items").add({
         janCode: data.janCode,
-        itemName: "エリエール",
+        itemName: data.itemName,
+        imageId: imageId,
         price: {
           date: "2024/02/28",
           value: price,

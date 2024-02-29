@@ -2,11 +2,11 @@ import { fetchData } from "./item";
 import { configDotenv } from "dotenv";
 configDotenv();
 
-type Condition = "used" | "new" | "both";
+export type Condition = "used" | "new" | "both";
 
 type Sort = "+price";
 
-export type AssignedParams = {
+type AssignedParams = {
   janCode: string;
   condition?: Condition;
 };
@@ -40,9 +40,14 @@ class YahooItem {
     };
     return formattedParams;
   }
+
   async fetchPrice(): Promise<string> {
     const itemData = await fetchData(this.endpoint, this.reqParams);
     return itemData.hits[0].price;
+  }
+  async fetchImageId(): Promise<string> {
+    const itemData = await fetchData(this.endpoint, this.reqParams);
+    return itemData.hits[0].image.small;
   }
 }
 

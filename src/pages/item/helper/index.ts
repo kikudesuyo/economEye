@@ -11,14 +11,10 @@ const app = initializeApp({
 
 const functions = getFunctions(app);
 
-const itemPrice = (janCode: string) => {
+const addItemPrice = (params: ItemParams) => {
   const addItemPrice = httpsCallable(functions, "addItemPrice");
-  const params: ItemParams = {
-    janCode: janCode,
-    condition: "new",
-  };
   addItemPrice(params).then((result) => {
     console.log(result.data);
   });
 };
-export default itemPrice;
+export default addItemPrice;

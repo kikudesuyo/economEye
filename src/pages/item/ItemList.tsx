@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Button from "@/utils/components/Button";
 import fetchData from "@/pages/item/helper/dbFetcher";
-import itemPrice from "@/pages/item/helper/index";
 
 const ItemList: React.FC = () => {
   const [dbData, setDbData] = useState<any>(null);
@@ -17,15 +15,19 @@ const ItemList: React.FC = () => {
     fetchAsyncData();
   }, []);
   return (
-    <div className="w-80 mx-auto flex flex-col pt-4 items-center">
+    <div className="w-80 mx-auto flex flex-row mt-4 items-center">
       {dbData &&
         dbData.map((item: any, index: number) => (
-          <div key={index} className="flex p-3 border-2 mb-4">
+          <div
+            key={index}
+            className="flex flex-col items-center p-3 border-4 m-2 gap-2"
+            style={{ width: "200px", height: "200px" }}
+          >
+            <img src={item.imageId} alt="" />
             <p>{item.itemName}</p>
-            <p>{item.price.value}</p>
+            <p>{item.price.value}円</p>
           </div>
         ))}
-      <Button label="商品の追加" func={() => itemPrice("4902102072618")} />
     </div>
   );
 };
