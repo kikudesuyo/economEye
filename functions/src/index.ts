@@ -2,6 +2,7 @@ import YahooItem from "./item/yahooItem";
 import * as functions from "firebase-functions/v2";
 import * as admin from "firebase-admin";
 import { Condition } from "./item/yahooItem";
+import { today } from "./helper/timeUtils";
 
 admin.initializeApp();
 const db = admin.firestore();
@@ -36,8 +37,7 @@ export const addItemPrice = functions.https.onRequest(async (req, res) => {
         itemName: data.itemName,
         imageId: imageId,
         price: {
-          date: "2024/02/28",
-          value: price,
+          [today()]: price,
         },
       });
       res.status(200).json({ data: { message: "Success!" } });
