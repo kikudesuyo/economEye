@@ -21,7 +21,14 @@ type ClientParams = {
   condition: Condition;
 };
 
-export const addItemPrice = functions.https.onRequest(async (req, res) => {
+type ItemDb = {
+  janCode: string;
+  itemName: string;
+  imageId: string;
+  prices: { [key: string]: string };
+};
+
+export const registerNewItem = functions.https.onRequest(async (req, res) => {
   try {
     cors(req, res, async () => {
       const data: ClientParams = req.body.data;
@@ -31,15 +38,15 @@ export const addItemPrice = functions.https.onRequest(async (req, res) => {
       });
       const price = await item.fetchPrice();
       const imageId = await item.fetchImageId();
-      console.log("item data:", price);
-      await db.collection("items").add({
+      const itemData: ItemDb = {
         janCode: data.janCode,
         itemName: data.itemName,
         imageId: imageId,
-        price: {
+        prices: {
           [today()]: price,
         },
-      });
+      };
+      await db.collection("items").add(itemData);
       res.status(200).json({ data: { message: "Success!" } });
     });
   } catch (error) {

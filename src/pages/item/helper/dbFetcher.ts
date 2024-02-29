@@ -17,7 +17,6 @@ const fetchData = async () => {
     const querySnapshot = await getDocs(collection(db, "items"));
     const data = querySnapshot.docs.map((doc) => doc.data());
     console.log(data);
-
     return data;
   } catch (error) {
     console.error("Error getting documents: ", error);

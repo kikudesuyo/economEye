@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from "react";
 import fetchData from "@/pages/item/helper/dbFetcher";
 
+type ItemDb = {
+  janCode: string;
+  itemName: string;
+  imageId: string;
+  prices: { [key: string]: string };
+};
+
 const ItemList: React.FC = () => {
   const [dbData, setDbData] = useState<any>(null);
   useEffect(() => {
@@ -18,7 +25,7 @@ const ItemList: React.FC = () => {
     <div className="">
       <div className="w-9/12 mx-auto flex flex-wrap mt-4justify-start">
         {dbData &&
-          dbData.map((item: any, index: number) => (
+          dbData.map((item: ItemDb, index: number) => (
             <div
               key={index}
               className="flex flex-col flex-shrink-0 items-center p-3 border-2 border-slate-300 m-2 gap-2 "
@@ -26,7 +33,7 @@ const ItemList: React.FC = () => {
             >
               <img src={item.imageId} alt="" />
               <p>{item.itemName}</p>
-              <p>{item.price["2024/02/29"]}円</p>
+              <p>{item.prices["2024/02/29"]}円</p>
             </div>
           ))}
       </div>

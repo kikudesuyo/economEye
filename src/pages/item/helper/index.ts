@@ -12,7 +12,7 @@ const app = initializeApp({
 const functions = getFunctions(app);
 
 const addItemPrice = (params: ItemParams) => {
-  const addItemPrice = httpsCallable(functions, "addItemPrice");
+  const addItemPrice = httpsCallable(functions, "registerNewItem");
   addItemPrice(params).then((result) => {
     console.log(result.data);
   });
