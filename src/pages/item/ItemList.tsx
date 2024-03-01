@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
+import Button from "@/utils/components/Button";
 import fetchData from "@/pages/item/helper/dbFetcher";
-
+import { updateItem } from "@/pages/item/helper";
 type ItemDb = {
   janCode: string;
   itemName: string;
@@ -22,7 +23,7 @@ const ItemList: React.FC = () => {
     fetchAsyncData();
   }, []);
   return (
-    <div className="">
+    <div>
       <div className="w-9/12 mx-auto flex flex-wrap mt-4justify-start">
         {dbData &&
           dbData.map((item: ItemDb, index: number) => (
@@ -33,10 +34,16 @@ const ItemList: React.FC = () => {
             >
               <img src={item.imageId} alt="" />
               <p>{item.itemName}</p>
-              <p>{item.prices["2024/02/29"]}円</p>
+              <p>{item.prices["2024/03/01"]}円</p>
             </div>
           ))}
       </div>
+      <Button
+        label="商品データの更新"
+        func={() => {
+          updateItem();
+        }}
+      />
     </div>
   );
 };

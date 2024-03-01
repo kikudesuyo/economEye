@@ -12,7 +12,7 @@ const app = initializeApp({
 
 const functions = getFunctions(app);
 
-const addItemPrice = (params: ItemParams) => {
+export const addNewItem = (params: ItemParams) => {
   if (!isValidJanCode(params.janCode)) {
     alert("JANコードが不正です。\n13桁の数字を入力してください。");
     throw new Error("JANコードが不正です。");
@@ -32,4 +32,15 @@ const addItemPrice = (params: ItemParams) => {
       alert("登録に失敗しました。");
     });
 };
-export default addItemPrice;
+
+export const updateItem = async () => {
+  const updateItemPriceFunction = httpsCallable(functions, "updateItem");
+  updateItemPriceFunction()
+    .then((result) => {
+      console.log(result.data);
+    })
+    .catch((error) => {
+      console.error(error);
+      alert("更新に失敗しました。");
+    });
+};

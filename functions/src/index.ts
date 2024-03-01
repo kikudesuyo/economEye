@@ -55,28 +55,52 @@ export const registerNewItem = functions.https.onRequest(async (req, res) => {
   }
 });
 
+export const fetchDb = async (collection: string) => {
+  try {
+    const itemRef = db.collection(collection);
+    return itemRef;
+  } catch (error) {
+    console.error("Error getting documents: ", error);
+    throw new Error("Error getting documents: " + error);
+  }
+};
+
 export const updateItem = functions.https.onRequest(async (req, res) => {
   try {
     cors(req, res, async () => {
-      const data: ClientParams = req.body.data;
-      const item = new YahooItem({
-        janCode: data.janCode,
-        condition: data.condition,
-      });
-      const price = await item.fetchPrice();
-      const isExistItem = db
-        .collection("items")
-        .where("janCode", "==", data.janCode)
-        .where("itemName", "==", data.itemName);
-      if (isExistItem) {
-        await db.collection("items").add({ prices: { [today()]: price } });
-        res.status(200).json({ data: { message: "Success!" } });
-      } else {
-        res.status(400).json({ data: { message: "Item not found" } });
-      }
+      res.status(200).json({ data: { message: "Success!" } });
     });
   } catch (error) {
-    console.error("Error adding document: ", error);
-    res.status(500).json({ data: { massage: "Error adding document" } });
+    console.error("Error updating document: ", error);
+    res.status(500).json({ data: { massage: "Error updating document" } });
   }
 });
+
+// export const updateItem = functions.https.onRequest(async (req, res) => {
+//   try {
+//     cors(req, res, async () => {
+//       const itemDb = await fetchDb("items");
+//       const batch = db.batch();
+//       for (const item of itemDb) {
+//         console.log("fuga");
+//         console.log(item);
+
+//         if (item.prices.hasOwnProperty(today())) {
+//           continue;
+//         }
+//         const yahooItem = new YahooItem({
+//           janCode: item.janCode,
+//           condition: item.condition,
+//         });
+//         const price = await yahooItem.fetchPrice();
+//         const itemRef = db.collection("items").doc();
+//         batch.update(itemRef, { prices: { [today()]: price } });
+//       }
+//       await batch.commit();
+//       res.status(200).json({ data: { message: "Success!" } });
+//     });
+//   } catch (error) {
+//     console.error("Error updating document: ", error);
+//     res.status(500).json({ data: { massage: "Error updating document" } });
+//   }
+// });

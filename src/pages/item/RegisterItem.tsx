@@ -1,7 +1,7 @@
 import Button from "@/utils/components/Button";
 import { PageName } from "@/utils/helper/type";
 import React from "react";
-import addItemPrice from "@/pages/item/helper";
+import { addNewItem } from "@/pages/item/helper";
 type Props = {
   setPageName: React.Dispatch<React.SetStateAction<PageName>>;
 };
@@ -28,7 +28,7 @@ const RegisterItem = ({ setPageName }: Props) => {
         <Button
           label="登録"
           func={() => {
-            addItemPrice({
+            addNewItem({
               janCode: janCode,
               itemName: itemName,
               condition: "new",
