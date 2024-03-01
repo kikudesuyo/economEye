@@ -54,3 +54,29 @@ export const registerNewItem = functions.https.onRequest(async (req, res) => {
     res.status(500).json({ data: { massage: "Error adding document" } });
   }
 });
+
+export const updateItem = functions.https.onRequest(async (req, res) => {
+  try {
+    cors(req, res, async () => {
+      const data: ClientParams = req.body.data;
+      const item = new YahooItem({
+        janCode: data.janCode,
+        condition: data.condition,
+      });
+      const price = await item.fetchPrice();
+      const isExistItem = db
+        .collection("items")
+        .where("janCode", "==", data.janCode)
+        .where("itemName", "==", data.itemName);
+      if (isExistItem) {
+        await db.collection("items").add({ prices: { [today()]: price } });
+        res.status(200).json({ data: { message: "Success!" } });
+      } else {
+        res.status(400).json({ data: { message: "Item not found" } });
+      }
+    });
+  } catch (error) {
+    console.error("Error adding document: ", error);
+    res.status(500).json({ data: { massage: "Error adding document" } });
+  }
+});
