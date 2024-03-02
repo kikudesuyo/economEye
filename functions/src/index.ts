@@ -26,6 +26,7 @@ type ItemDb = {
   itemName: string;
   imageId: string;
   prices: { [key: string]: string };
+  condition?: Condition;
 };
 
 export const registerNewItem = functions.https.onRequest(async (req, res) => {
@@ -45,6 +46,7 @@ export const registerNewItem = functions.https.onRequest(async (req, res) => {
         prices: {
           [today()]: price,
         },
+        condition: data.condition,
       };
       await db.collection("items").add(itemData);
       res.status(200).json({ data: { message: "Success!" } });
@@ -55,10 +57,14 @@ export const registerNewItem = functions.https.onRequest(async (req, res) => {
   }
 });
 
-export const fetchDb = async (collection: string) => {
+const fetchDb = async (collection: string) => {
   try {
-    const itemRef = db.collection(collection);
-    return itemRef;
+    const snapshot = await db.collection(collection).get();
+    const data: Record<string, any> = {};
+    snapshot.forEach((doc) => {
+      data[doc.id] = doc.data();
+    });
+    return data;
   } catch (error) {
     console.error("Error getting documents: ", error);
     throw new Error("Error getting documents: " + error);
@@ -68,39 +74,24 @@ export const fetchDb = async (collection: string) => {
 export const updateItem = functions.https.onRequest(async (req, res) => {
   try {
     cors(req, res, async () => {
-      res.status(200).json({ data: { message: "Success!" } });
+      const itemDb = await fetchDb("items");
+      for (const documentId in itemDb) {
+        const prices = itemDb[documentId].prices;
+        if (prices.hasOwnProperty(today())) {
+          continue;
+        }
+        const yahooItem = new YahooItem({
+          janCode: itemDb[documentId].janCode,
+          condition: itemDb[documentId].condition,
+        });
+        const price = await yahooItem.fetchPrice();
+        prices[today()] = price;
+        await db.collection("items").doc(documentId).update({ prices: prices });
+      }
+      res.status(200).json({ data: today() });
     });
   } catch (error) {
     console.error("Error updating document: ", error);
     res.status(500).json({ data: { massage: "Error updating document" } });
   }
 });
-
-// export const updateItem = functions.https.onRequest(async (req, res) => {
-//   try {
-//     cors(req, res, async () => {
-//       const itemDb = await fetchDb("items");
-//       const batch = db.batch();
-//       for (const item of itemDb) {
-//         console.log("fuga");
-//         console.log(item);
-
-//         if (item.prices.hasOwnProperty(today())) {
-//           continue;
-//         }
-//         const yahooItem = new YahooItem({
-//           janCode: item.janCode,
-//           condition: item.condition,
-//         });
-//         const price = await yahooItem.fetchPrice();
-//         const itemRef = db.collection("items").doc();
-//         batch.update(itemRef, { prices: { [today()]: price } });
-//       }
-//       await batch.commit();
-//       res.status(200).json({ data: { message: "Success!" } });
-//     });
-//   } catch (error) {
-//     console.error("Error updating document: ", error);
-//     res.status(500).json({ data: { massage: "Error updating document" } });
-//   }
-// });
