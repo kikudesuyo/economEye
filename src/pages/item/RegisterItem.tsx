@@ -6,7 +6,7 @@ type Props = {
   setPageName: React.Dispatch<React.SetStateAction<PageName>>;
 };
 const RegisterItem = ({ setPageName }: Props) => {
-  const [janCode, setJanCode] = React.useState<string>("");
+  const [janCode, setJanCode] = React.useState<string>("9784297127831");
   const [itemName, setItemName] = React.useState<string>("");
   return (
     <div className="items-center w-80 mx-auto">
@@ -27,13 +27,14 @@ const RegisterItem = ({ setPageName }: Props) => {
         />
         <Button
           label="登録"
-          func={() => {
+          func={async () => {
             addNewItem({
               janCode: janCode,
               itemName: itemName,
               condition: "new",
+            }).then(() => {
+              setPageName("ItemList");
             });
-            setPageName("ItemList");
           }}
         />
       </div>

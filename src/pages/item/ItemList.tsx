@@ -13,15 +13,14 @@ type ItemDb = {
 const ItemList: React.FC = () => {
   const [dbData, setDbData] = useState<any>(null);
   useEffect(() => {
-    const fetchAsyncData = async () => {
+    (async () => {
       try {
         const data = await fetchData();
         setDbData(data);
       } catch (error) {
         console.log(error);
       }
-    };
-    fetchAsyncData();
+    })();
   }, []);
   return (
     <div>

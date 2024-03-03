@@ -23,14 +23,12 @@ export const addNewItem = (params: ItemParams) => {
   }
 
   const addItemPriceFunction = httpsCallable(functions, "registerNewItem");
-  addItemPriceFunction(params)
-    .then((result) => {
-      console.log(result.data);
-    })
-    .catch((error) => {
-      console.error(error);
-      alert("登録に失敗しました。");
-    });
+  try {
+    return addItemPriceFunction(params);
+  } catch (error) {
+    alert("登録に失敗しました。");
+    throw new Error("登録に失敗しました。");
+  }
 };
 
 export const updateItem = async () => {
