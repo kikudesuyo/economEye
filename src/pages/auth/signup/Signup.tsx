@@ -1,11 +1,15 @@
-import SwitchPageButton from "@/utils/components/SwitchPageButton";
-import React from "react";
+import { useState } from "react";
 import { PageName } from "@/utils/helper/type";
+import { authenticate } from "@/pages/auth/helper";
+import Button from "@/utils/components/Button";
 
 type Props = {
   setPageName: React.Dispatch<React.SetStateAction<PageName>>;
 };
 const Signup = ({ setPageName }: Props) => {
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [confirmPassword, setConfirmPassword] = useState<string>("");
   return (
     <div className="flex flex-col items-left w-80 mx-auto gap-8 py-8 text-left">
       <h1 className="text-3xl">サインアップ</h1>
@@ -15,14 +19,18 @@ const Signup = ({ setPageName }: Props) => {
           className="border-b-2 border-slate-300 outline-none"
           type="email"
           placeholder="例) economEye@gmail.com"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
       </div>
       <div className="flex flex-col gap-4">
-        <a>パスワード(8文字以上)</a>
+        <a>パスワード(6文字以上)</a>
         <input
           className="border-b-2 border-slate-300 outline-none"
           type="password"
           placeholder="パスワードをを入力してください"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
         />
       </div>
       <div className="flex flex-col gap-4">
@@ -31,12 +39,24 @@ const Signup = ({ setPageName }: Props) => {
           className="border-b-2 border-slate-300 outline-none"
           type="password"
           placeholder="もう一度パスワードを入力してください"
+          value={confirmPassword}
+          onChange={(e) => setConfirmPassword(e.target.value)}
         />
       </div>
-      <SwitchPageButton
+      <Button
         label="登録"
-        pageName="Login"
-        setPageName={setPageName}
+        func={async () => {
+          try {
+            if (password !== confirmPassword) {
+              alert("パスワードが一致しません。もう一度入力してください。");
+              throw new Error("password does not match");
+            }
+            await authenticate(email, password);
+            setPageName("Top");
+          } catch (error) {
+            throw new Error("signup failed");
+          }
+        }}
       />
     </div>
   );

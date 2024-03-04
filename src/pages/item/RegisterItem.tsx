@@ -1,13 +1,13 @@
 import Button from "@/utils/components/Button";
 import { PageName } from "@/utils/helper/type";
-import React from "react";
+import { useState } from "react";
 import { addNewItem } from "@/pages/item/helper";
 type Props = {
   setPageName: React.Dispatch<React.SetStateAction<PageName>>;
 };
 const RegisterItem = ({ setPageName }: Props) => {
-  const [janCode, setJanCode] = React.useState<string>("9784297127831");
-  const [itemName, setItemName] = React.useState<string>("");
+  const [janCode, setJanCode] = useState<string>("9784297127831");
+  const [itemName, setItemName] = useState<string>("");
   return (
     <div className="items-center w-80 mx-auto">
       <div className="flex flex-col mt-20 gap-8">
