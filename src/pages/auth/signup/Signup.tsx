@@ -1,6 +1,10 @@
 import { useState } from "react";
 import { PageName } from "@/utils/helper/type";
-import { authenticate } from "@/pages/auth/helper";
+import {
+  authenticate,
+  isValidEmail,
+  isValidPassword,
+} from "@/pages/auth/helper";
 import Button from "@/utils/components/Button";
 
 type Props = {
@@ -46,14 +50,23 @@ const Signup = ({ setPageName }: Props) => {
       <Button
         label="登録"
         func={async () => {
+          if (!isValidEmail(email)) {
+            alert("正しいメールアドレスを入力してください。");
+            throw new Error("invalid email");
+          }
+          if (!isValidPassword(password)) {
+            alert("パスワードは6文字以上で入力してください。");
+            throw new Error("invalid password");
+          }
+          if (password !== confirmPassword) {
+            alert("パスワードが一致しません。もう一度入力してください。");
+            throw new Error("password does not match");
+          }
           try {
-            if (password !== confirmPassword) {
-              alert("パスワードが一致しません。もう一度入力してください。");
-              throw new Error("password does not match");
-            }
             await authenticate(email, password);
             setPageName("Top");
           } catch (error) {
+            alert("サインアップに失敗しました。もう一度お試しください。");
             throw new Error("signup failed");
           }
         }}

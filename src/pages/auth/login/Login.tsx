@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Button from "@/utils/components/Button";
 import { PageName } from "@/utils/helper/type";
-import { login } from "@/pages/auth/helper";
+import { login, isValidEmail, isValidPassword } from "@/pages/auth/helper";
 import padlock from "@/imgs/padlock.jpg";
 
 type Props = {
@@ -40,10 +40,19 @@ const Login = ({ setPageName }: Props) => {
       <Button
         label="ログイン"
         func={async () => {
+          if (!isValidEmail(email)) {
+            alert("正しいメールアドレスを入力してください。");
+            throw new Error("invalid email");
+          }
+          if (!isValidPassword(password)) {
+            alert("パスワードは6文字以上で入力してください。");
+            throw new Error("invalid password");
+          }
           try {
             await login(email, password);
             setPageName("Top");
           } catch (error) {
+            alert("ログインに失敗しました。もう一度お試しください。");
             throw new Error("login failed");
           }
         }}
