@@ -22,5 +22,29 @@ const fetchData = async () => {
   }
 };
 
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+
+export const fetchUserId = () => {
+  const auth = getAuth();
+  return new Promise<string>((resolve, reject) => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        resolve(user.uid);
+      } else {
+        reject("No user is signed in");
+      }
+    });
+  });
+};
+
+export const fetchUserItemId = async (userId: string) => {
+  try {
+    const querySnapshot = await getDocs(collection(db, "users", userId));
+    const data = querySnapshot.docs.map((doc) => doc.data());
+    return data;
+  } catch (error) {
+    console.error("Error getting documents: ", error);
+  }
+};
 // fetchDataを呼び出し
 export default fetchData;

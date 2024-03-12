@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "@/utils/components/Button";
 import fetchData from "@/pages/item/helper/dbFetcher";
 import { updateItem } from "@/pages/item/helper";
+import { PageName } from "@/utils/helper/type";
 
 type ItemDb = {
   janCode: string;
@@ -10,7 +11,11 @@ type ItemDb = {
   prices: { [key: string]: string };
 };
 
-const ItemList: React.FC = () => {
+type Props = {
+  setPageName: React.Dispatch<React.SetStateAction<PageName>>;
+};
+
+const ItemList = ({ setPageName }: Props) => {
   const [dbData, setDbData] = useState<any>(null);
   useEffect(() => {
     (async () => {
@@ -42,6 +47,12 @@ const ItemList: React.FC = () => {
         label="商品データの更新"
         func={() => {
           updateItem();
+        }}
+      />
+      <Button
+        label="トップページに戻る"
+        func={() => {
+          setPageName("Top");
         }}
       />
     </div>

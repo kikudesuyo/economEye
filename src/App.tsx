@@ -20,7 +20,7 @@ function App() {
     Login: <Login setPageName={setPageName} />,
     Top: <Top setPageName={setPageName} />,
     RegisterItem: <RegisterItem setPageName={setPageName} />,
-    ItemList: <ItemList />,
+    ItemList: <ItemList setPageName={setPageName} />,
   };
   return (
     <>

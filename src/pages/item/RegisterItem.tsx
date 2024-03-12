@@ -7,7 +7,7 @@ type Props = {
 };
 const RegisterItem = ({ setPageName }: Props) => {
   const [janCode, setJanCode] = useState<string>("9784297127831");
-  const [itemName, setItemName] = useState<string>("");
+  const [itemName, setItemName] = useState<string>("koyakoya");
   return (
     <div className="items-center w-80 mx-auto">
       <div className="flex flex-col mt-20 gap-8">
