@@ -1,5 +1,16 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs } from "firebase/firestore";
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  doc,
+  getDoc,
+  where,
+  query,
+} from "firebase/firestore";
+
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+
 import { API_KEY, AUTH_DOMAIN, PROJECT_ID } from "@/env";
 
 const firebaseConfig = {
@@ -12,7 +23,7 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 // データを取得する例
-const fetchData = async () => {
+export const fetchData = async () => {
   try {
     const querySnapshot = await getDocs(collection(db, "items"));
     const data = querySnapshot.docs.map((doc) => doc.data());
@@ -22,9 +33,7 @@ const fetchData = async () => {
   }
 };
 
-import { getAuth, onAuthStateChanged } from "firebase/auth";
-
-export const fetchUserId = () => {
+const fetchUserId = () => {
   const auth = getAuth();
   return new Promise<string>((resolve, reject) => {
     onAuthStateChanged(auth, (user) => {
@@ -37,14 +46,23 @@ export const fetchUserId = () => {
   });
 };
 
-export const fetchUserItemId = async (userId: string) => {
+export const fetchUserItemIds = async () => {
   try {
-    const querySnapshot = await getDocs(collection(db, "users", userId));
-    const data = querySnapshot.docs.map((doc) => doc.data());
-    return data;
+    const userId = await fetchUserId();
+    const itemsSnap = await getDoc(doc(db, "users", userId));
+    if (itemsSnap.exists()) {
+      return itemsSnap.data().itemIds;
+    }
   } catch (error) {
-    console.error("Error getting documents: ", error);
+    console.error("Error getting documents", error);
+    throw new Error("cannot fetch userItemIds");
   }
 };
-// fetchDataを呼び出し
-export default fetchData;
+export const fetchUserItems = async () => {
+  const userItemIds = await fetchUserItemIds();
+  const itemsRef = collection(db, "items");
+  const itemQuery = query(itemsRef, where("__name__", "in", userItemIds));
+  const itemSnashot = await getDocs(itemQuery);
+  const userItems = itemSnashot.docs.map((doc) => doc.data());
+  console.log(userItems);
+};

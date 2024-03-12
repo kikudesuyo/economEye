@@ -1,5 +1,6 @@
 import Button from "@/utils/components/Button";
 import { PageName } from "@/utils/helper/type";
+import { fetchUserItems } from "@/pages/item/helper/dbFetcher";
 
 type Props = {
   setPageName: React.Dispatch<React.SetStateAction<PageName>>;
@@ -42,6 +43,13 @@ const Top = ({ setPageName }: Props) => {
             label="商品一覧ページ"
             func={() => {
               setPageName("ItemList");
+            }}
+          />
+          <Button
+            label="ユーザーの商品情報取得ボタン"
+            func={async () => {
+              const items = await fetchUserItems();
+              console.log(items);
             }}
           />
         </div>

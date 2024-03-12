@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Button from "@/utils/components/Button";
-import fetchData from "@/pages/item/helper/dbFetcher";
+import { fetchData } from "@/pages/item/helper/dbFetcher";
 import { updateItem } from "@/pages/item/helper";
 import { PageName } from "@/utils/helper/type";
 
