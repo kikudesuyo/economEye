@@ -22,17 +22,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// データを取得する例
-export const fetchData = async () => {
-  try {
-    const querySnapshot = await getDocs(collection(db, "items"));
-    const data = querySnapshot.docs.map((doc) => doc.data());
-    return data;
-  } catch (error) {
-    console.error("Error getting documents: ", error);
-  }
-};
-
 const fetchUserId = () => {
   const auth = getAuth();
   return new Promise<string>((resolve, reject) => {
@@ -59,10 +48,14 @@ export const fetchUserItemIds = async () => {
   }
 };
 export const fetchUserItems = async () => {
-  const userItemIds = await fetchUserItemIds();
-  const itemsRef = collection(db, "items");
-  const itemQuery = query(itemsRef, where("__name__", "in", userItemIds));
-  const itemSnashot = await getDocs(itemQuery);
-  const userItems = itemSnashot.docs.map((doc) => doc.data());
-  console.log(userItems);
+  try {
+    const userItemIds = await fetchUserItemIds();
+    const itemsRef = collection(db, "items");
+    const itemQuery = query(itemsRef, where("__name__", "in", userItemIds));
+    const itemSnashot = await getDocs(itemQuery);
+    const userItems = itemSnashot.docs.map((doc) => doc.data());
+    return userItems;
+  } catch (error) {
+    console.error("Error getting items", error);
+  }
 };

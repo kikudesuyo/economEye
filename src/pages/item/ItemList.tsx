@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Button from "@/utils/components/Button";
-import { fetchData } from "@/pages/item/helper/dbFetcher";
+import { fetchUserItems } from "@/pages/item/helper/dbFetcher";
 import { updateItem } from "@/pages/item/helper";
 import { PageName } from "@/utils/helper/type";
 
@@ -20,7 +20,8 @@ const ItemList = ({ setPageName }: Props) => {
   useEffect(() => {
     (async () => {
       try {
-        const data = await fetchData();
+        // const data = await fetchData();
+        const data = await fetchUserItems();
         setDbData(data);
       } catch (error) {
         console.log(error);
