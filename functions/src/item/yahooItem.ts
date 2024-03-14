@@ -43,10 +43,17 @@ class YahooItem {
 
   async fetchPrice(): Promise<string> {
     const itemData = await fetchData(this.endpoint, this.reqParams);
+    if (itemData.hits.length === 0) {
+      throw new Error("item does not found");
+    }
     return itemData.hits[0].price;
   }
+
   async fetchImageId(): Promise<string> {
     const itemData = await fetchData(this.endpoint, this.reqParams);
+    if (itemData.hits.length === 0) {
+      throw new Error("item does not found");
+    }
     return itemData.hits[0].image.small;
   }
 }

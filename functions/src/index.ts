@@ -3,7 +3,7 @@ import * as admin from "firebase-admin";
 import { Condition } from "./item/yahooItem";
 import { today } from "./helper/timeUtils";
 
-import { onCall } from "firebase-functions/v2/https";
+import { onCall, HttpsError } from "firebase-functions/v2/https";
 
 admin.initializeApp();
 const db = admin.firestore();
@@ -64,11 +64,11 @@ exports.registerNewItem = onCall(async (request: any) => {
     return { succuess: "success!" };
   } catch (error) {
     if (error instanceof Error) {
-      return { error: error.message };
+      throw new HttpsError("not-found", "failed fetching item");
     } else if (typeof error === "string") {
-      return { error: error };
+      throw new HttpsError("internal", error);
     } else {
-      return { error: "unexpected error" };
+      throw new HttpsError("internal", "Unexpected error occurred");
     }
   }
 });

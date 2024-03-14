@@ -14,7 +14,7 @@ const app = initializeApp({
 const functions = getFunctions(app);
 const db = getFirestore(app);
 
-export const addNewItem = (params: ItemParams) => {
+export const addNewItem = async (params: ItemParams) => {
   if (!isValidJanCode(params.janCode)) {
     alert("JANコードが不正です。\n13桁の数字を入力してください。");
     throw new Error("JANコードが不正です。");
@@ -25,11 +25,16 @@ export const addNewItem = (params: ItemParams) => {
   }
   const addItemPriceFunction = httpsCallable(functions, "registerNewItem");
   try {
-    return addItemPriceFunction(params);
+    return await addItemPriceFunction(params);
   } catch (error) {
-    alert("登録に失敗しました。");
-    throw new Error("登録に失敗しました。");
+    if (error instanceof Error) {
+      console.log(error);
+      alert("入力したJANコードの商品は取り扱っていません。");
+      throw new Error("登録に失敗しました。");
+    }
   }
+  alert("登録に失敗しました。");
+  throw new Error("登録に失敗しました。");
 };
 
 export const updateUserField = async (userId: string, itemId: string) => {

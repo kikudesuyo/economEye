@@ -9,8 +9,8 @@ type Props = {
 };
 
 const Login = ({ setPageName }: Props) => {
-  const [email, setEmail] = useState<string>("hogehoge@gmail.com");
-  const [password, setPassword] = useState<string>("hogehoge");
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
   return (
     <div className="flex flex-col items-left w-80 mx-auto gap-8 py-8 text-left">
       <div className="flex flex-row items-center">
