@@ -3,6 +3,7 @@ import Button from "@/utils/components/Button";
 import { fetchUserItems } from "@/pages/item/helper/dbFetcher";
 import { updateItem } from "@/pages/item/helper";
 import { PageName } from "@/utils/helper/type";
+import { today } from "@/pages/item/helper/timeUtils";
 
 type ItemDb = {
   janCode: string;
@@ -40,7 +41,7 @@ const ItemList = ({ setPageName }: Props) => {
             >
               <img src={item.imageId} alt="" />
               <p>{item.itemName}</p>
-              <p>{item.prices["2024/03/01"]}円</p>
+              <p>{item.prices[today()]}円</p>
             </div>
           ))}
       </div>
