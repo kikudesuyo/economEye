@@ -3,7 +3,6 @@ import { getFunctions, httpsCallable } from "firebase/functions";
 import { API_KEY, AUTH_DOMAIN, PROJECT_ID } from "@/env";
 import { ItemParams } from "@/utils/helper/type";
 import { isValidName, isValidJanCode } from "./itemValidation";
-import { getFirestore, setDoc, doc } from "firebase/firestore";
 
 const app = initializeApp({
   projectId: PROJECT_ID,
@@ -12,7 +11,6 @@ const app = initializeApp({
 });
 
 const functions = getFunctions(app);
-const db = getFirestore(app);
 
 export const addNewItem = async (params: ItemParams) => {
   if (!isValidJanCode(params.janCode)) {
@@ -35,16 +33,6 @@ export const addNewItem = async (params: ItemParams) => {
   }
   alert("登録に失敗しました。");
   throw new Error("登録に失敗しました。");
-};
-
-export const updateUserField = async (userId: string, itemId: string) => {
-  try {
-    const userDocRef = doc(db, "users", userId);
-    await setDoc(userDocRef, { itemId: itemId });
-    return Promise.resolve();
-  } catch (error) {
-    throw new Error("登録に失敗しました。");
-  }
 };
 
 export const updateItem = async () => {

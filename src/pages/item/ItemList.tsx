@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Button from "@/utils/components/Button";
 import { fetchUserItems } from "@/pages/item/helper/dbFetcher";
-import { updateItem } from "@/pages/item/helper";
+import { updateItem } from "@/pages/item/helper/functionsHandler";
 import { PageName } from "@/utils/helper/type";
 import { today } from "@/pages/item/helper/timeUtils";
 

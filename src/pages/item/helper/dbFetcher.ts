@@ -35,7 +35,7 @@ const fetchUserId = () => {
   });
 };
 
-export const fetchUserItemIds = async () => {
+const fetchUserItemIds = async () => {
   try {
     const userId = await fetchUserId();
     const itemsSnap = await getDoc(doc(db, "users", userId));
