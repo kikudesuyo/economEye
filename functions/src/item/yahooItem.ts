@@ -1,4 +1,5 @@
 import { fetchData } from "./item";
+import { InventryError } from "../helper/errorUtils";
 import { configDotenv } from "dotenv";
 configDotenv();
 
@@ -44,7 +45,7 @@ class YahooItem {
   async fetchPrice(): Promise<string> {
     const itemData = await fetchData(this.endpoint, this.reqParams);
     if (itemData.hits.length === 0) {
-      throw new Error("item does not found");
+      throw new InventryError("item does not found on Yahoo.");
     }
     return itemData.hits[0].price;
   }
@@ -52,7 +53,7 @@ class YahooItem {
   async fetchImageId(): Promise<string> {
     const itemData = await fetchData(this.endpoint, this.reqParams);
     if (itemData.hits.length === 0) {
-      throw new Error("item does not found");
+      throw new InventryError("item does not found on Yahoo.");
     }
     return itemData.hits[0].image.small;
   }

@@ -62,11 +62,6 @@ exports.registerNewItem = onCall(async (request: any) => {
   } catch (error) {
     if (error instanceof InventryError) {
       throw new HttpsError("not-found", error.message);
-    }
-    if (error instanceof Error) {
-      throw new HttpsError("aborted", error.message);
-    } else if (typeof error === "string") {
-      throw new HttpsError("internal", error);
     } else {
       throw new HttpsError("internal", "Unexpected error occurred");
     }
