@@ -22,7 +22,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-const fetchUserId = () => {
+export const fetchUserId = () => {
   const auth = getAuth();
   return new Promise<string>((resolve, reject) => {
     onAuthStateChanged(auth, (user) => {

@@ -6,8 +6,8 @@ type Props = {
   setPageName: React.Dispatch<React.SetStateAction<PageName>>;
 };
 const RegisterItem = ({ setPageName }: Props) => {
-  const [janCode, setJanCode] = useState<string>("");
-  const [itemName, setItemName] = useState<string>("");
+  const [janCode, setJanCode] = useState<string>("4901777216884");
+  const [itemName, setItemName] = useState<string>("重複テスト");
   return (
     <div className="items-center w-80 mx-auto">
       <div className="flex flex-col mt-20 gap-8">

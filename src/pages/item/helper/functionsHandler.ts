@@ -1,8 +1,14 @@
 import { initializeApp } from "firebase/app";
 import { getFunctions, httpsCallable } from "firebase/functions";
+import { FirebaseError } from "firebase/app";
 import { API_KEY, AUTH_DOMAIN, PROJECT_ID } from "@/env";
 import { ItemParams } from "@/utils/helper/type";
-import { isValidName, isValidJanCode } from "./itemValidation";
+import {
+  isValidName,
+  isValidJanCode,
+} from "@/pages/item/helper/itemValidation";
+import { checkItemDuplicated } from "@/pages/item/helper/checkDuplication";
+import { DuplicateItemError } from "@/pages/item/helper/errorUtils";
 
 const app = initializeApp({
   projectId: PROJECT_ID,
@@ -23,16 +29,22 @@ export const addNewItem = async (params: ItemParams) => {
   }
   const addItemPriceFunction = httpsCallable(functions, "registerNewItem");
   try {
+    await checkItemDuplicated(params);
     return await addItemPriceFunction(params);
   } catch (error) {
-    if (error instanceof Error) {
-      console.log(error);
-      alert("入力したJANコードの商品は取り扱っていません。");
-      throw new Error("登録に失敗しました。");
+    if (error instanceof FirebaseError) {
+      if (error.code === "functions/not-found") {
+        alert("入力した条件の商品は見つかりませんでした。");
+      } else if (error.message.includes("functions/internal")) {
+        alert("登録に失敗しました。もう一度入力してください");
+      }
+    } else if (error instanceof DuplicateItemError) {
+      alert("入力した条件の商品は既に登録されています。");
+    } else {
+      alert("予期せぬエラーが発生しました。もう一度入力してください。");
     }
+    throw new Error("Failed registering new item.");
   }
-  alert("登録に失敗しました。");
-  throw new Error("登録に失敗しました。");
 };
 
 export const updateItem = async () => {
