@@ -1,9 +1,9 @@
-import YahooItem from "./item/yahooItem";
 import * as admin from "firebase-admin";
+import { onCall, HttpsError } from "firebase-functions/v2/https";
+import YahooItem from "./item/yahooItem";
 import { Condition } from "./item/yahooItem";
 import { today } from "./helper/timeUtils";
-
-import { onCall, HttpsError } from "firebase-functions/v2/https";
+import { InventryError } from "./helper/errorUtils";
 
 admin.initializeApp();
 const db = admin.firestore();
@@ -56,15 +56,15 @@ exports.registerNewItem = onCall(async (request: any) => {
       throw new Error(`The following uid does not exist${uid}`);
     }
     const currentItemIds: { [itemId: string]: string[] } = docRef.data() || {};
-    if (!currentItemIds["itemIds"]) {
-      currentItemIds["itemIds"] = [];
-    }
     currentItemIds["itemIds"].push(itemId);
     await db.collection("users").doc(uid).set(currentItemIds);
     return { succuess: "success!" };
   } catch (error) {
+    if (error instanceof InventryError) {
+      throw new HttpsError("not-found", error.message);
+    }
     if (error instanceof Error) {
-      throw new HttpsError("not-found", "failed fetching item");
+      throw new HttpsError("aborted", error.message);
     } else if (typeof error === "string") {
       throw new HttpsError("internal", error);
     } else {
