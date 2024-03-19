@@ -26,7 +26,7 @@ type ItemDb = {
   janCode: string;
   itemName: string;
   imageId: string;
-  prices: { [key: string]: string };
+  prices: { date: string; value: number }[];
   condition?: Condition;
 };
 
@@ -43,11 +43,9 @@ exports.registerNewItem = onCall(async (request: any) => {
     const itemData: ItemDb = {
       janCode: data.janCode,
       itemName: data.itemName,
-      condition: data.condition,
       imageId: imageId,
-      prices: {
-        [today()]: price,
-      },
+      prices: [{ date: today(), value: price }],
+      condition: data.condition,
     };
     const itemRef = await db.collection("items").add(itemData);
     const itemId = itemRef.id;
@@ -65,5 +63,47 @@ exports.registerNewItem = onCall(async (request: any) => {
     } else {
       throw new HttpsError("internal", "Unexpected error occurred");
     }
+  }
+});
+
+const updateItemPrice = async (
+  itemDb: ItemDb
+): Promise<{ date: string; value: number }[]> => {
+  const dbPrices = itemDb.prices;
+  for (let i = 0; i < dbPrices.length; i++) {
+    const price = dbPrices[i];
+    if (price.date === today()) {
+      break;
+    }
+    if (i === dbPrices.length - 1) {
+      const item = new YahooItem({
+        janCode: itemDb.janCode,
+        condition: itemDb.condition,
+      });
+      const newPrice = await item.fetchPrice();
+      dbPrices.push({ date: today(), value: newPrice });
+    }
+  }
+  return dbPrices;
+};
+
+exports.updateItemPrice = onCall(async () => {
+  try {
+    const batch = db.batch();
+    const itemSnapshot = await db.collection("items").get();
+    await Promise.all(
+      itemSnapshot.docs.map(async (doc) => {
+        const docId = doc.id;
+        const itemDb = doc.data() as ItemDb;
+        const latestItemPrices = await updateItemPrice(itemDb);
+        const docRef = db.collection("items").doc(docId);
+        batch.update(docRef, { prices: latestItemPrices });
+        return { success: "hogehoge" };
+      })
+    );
+    await batch.commit();
+    return { success: "items colletion is updated." };
+  } catch (error) {
+    throw new HttpsError("internal", "Failed to update item prices");
   }
 });

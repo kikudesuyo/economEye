@@ -27,10 +27,10 @@ export const addNewItem = async (params: ItemParams) => {
     alert("商品名を入力してください");
     throw new Error("商品名が不正です。");
   }
-  const addItemPriceFunction = httpsCallable(functions, "registerNewItem");
+  const registerNewItemFunction = httpsCallable(functions, "registerNewItem");
   try {
     await checkItemDuplicated(params);
-    return await addItemPriceFunction(params);
+    return await registerNewItemFunction(params);
   } catch (error) {
     if (error instanceof FirebaseError) {
       if (error.code === "functions/not-found") {
@@ -48,7 +48,7 @@ export const addNewItem = async (params: ItemParams) => {
 };
 
 export const updateItem = async () => {
-  const updateItemPriceFunction = httpsCallable(functions, "updateItem");
+  const updateItemPriceFunction = httpsCallable(functions, "updateItemPrice");
   updateItemPriceFunction()
     .then((result) => {
       console.log(result.data);

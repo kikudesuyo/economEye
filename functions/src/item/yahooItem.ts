@@ -42,7 +42,7 @@ class YahooItem {
     return formattedParams;
   }
 
-  async fetchPrice(): Promise<string> {
+  async fetchPrice(): Promise<number> {
     const itemData = await fetchData(this.endpoint, this.reqParams);
     if (itemData.hits.length === 0) {
       throw new InventryError("item does not found on Yahoo.");
