@@ -4,17 +4,10 @@ import YahooItem from "./item/yahooItem";
 import { today } from "./helper/timeUtils";
 import { InventryError } from "./helper/errorUtils";
 import { ClientParams, ItemDb } from "./utils/type";
+import { logger } from "firebase-functions";
 
 admin.initializeApp();
 const db = admin.firestore();
-
-// const cors = require("cors")({
-//   origin: [
-//     "https://economeye-d5146.web.app",
-//     "https://economeye-d5146.firebaseapp.com",
-//     "http://127.0.0.1:5173",
-//   ],
-// });
 
 exports.registerNewItem = onCall(async (request: any) => {
   try {
@@ -42,6 +35,7 @@ exports.registerNewItem = onCall(async (request: any) => {
     const currentItemIds: { [itemId: string]: string[] } = docRef.data() || {};
     currentItemIds["itemIds"].push(itemId);
     await db.collection("users").doc(uid).set(currentItemIds);
+    logger.info(`${data.itemName} is successfully registered: on ${today()}`);
     return { succuess: "success!" };
   } catch (error) {
     if (error instanceof InventryError) {
@@ -88,6 +82,7 @@ exports.updateItemPrice = onCall(async () => {
       })
     );
     await batch.commit();
+    logger.info(`items colletion is updated on ${today()}`);
     return { success: "items colletion is updated." };
   } catch (error) {
     throw new HttpsError("internal", "Failed to update item prices");
