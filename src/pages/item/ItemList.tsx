@@ -4,13 +4,8 @@ import { fetchUserItems } from "@/pages/item/helper/dbFetcher";
 import { updateItem } from "@/pages/item/helper/functionsHandler";
 import { PageName } from "@/utils/helper/type";
 import { today } from "@/pages/item/helper/timeUtils";
-
-type ItemDb = {
-  janCode: string;
-  itemName: string;
-  imageId: string;
-  prices: { [key: string]: string };
-};
+import { ItemDb } from "@/utils/helper/type";
+import { getValueForDate } from "@/pages/item/helper/dbFetcher";
 
 type Props = {
   setPageName: React.Dispatch<React.SetStateAction<PageName>>;
@@ -41,7 +36,7 @@ const ItemList = ({ setPageName }: Props) => {
             >
               <img src={item.imageId} alt="" />
               <p>{item.itemName}</p>
-              <p>{item.prices[today()]}円</p>
+              <p>{getValueForDate(item, today())}円</p>
             </div>
           ))}
       </div>
