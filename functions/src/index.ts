@@ -1,9 +1,9 @@
 import * as admin from "firebase-admin";
 import { onCall, HttpsError } from "firebase-functions/v2/https";
 import YahooItem from "./item/yahooItem";
-import { Condition } from "./item/yahooItem";
 import { today } from "./helper/timeUtils";
 import { InventryError } from "./helper/errorUtils";
+import { ClientParams, ItemDb } from "./utils/type";
 
 admin.initializeApp();
 const db = admin.firestore();
@@ -15,20 +15,6 @@ const db = admin.firestore();
 //     "http://127.0.0.1:5173",
 //   ],
 // });
-
-type ClientParams = {
-  janCode: string;
-  itemName: string;
-  condition: Condition;
-};
-
-type ItemDb = {
-  janCode: string;
-  itemName: string;
-  imageId: string;
-  prices: { date: string; value: number }[];
-  condition?: Condition;
-};
 
 exports.registerNewItem = onCall(async (request: any) => {
   try {

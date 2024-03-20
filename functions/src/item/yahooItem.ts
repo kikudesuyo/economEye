@@ -1,24 +1,8 @@
 import { fetchData } from "./item";
 import { InventryError } from "../helper/errorUtils";
 import { configDotenv } from "dotenv";
+import { AssignedParams, ReqParams } from "../utils/type";
 configDotenv();
-
-export type Condition = "used" | "new" | "both";
-
-type Sort = "+price";
-
-type AssignedParams = {
-  janCode: string;
-  condition?: Condition;
-};
-
-type ReqParams = {
-  appid: string;
-  sort: Sort;
-  results: number;
-  jan_code: string;
-  condition?: Condition;
-};
 
 class YahooItem {
   endpoint: string;
