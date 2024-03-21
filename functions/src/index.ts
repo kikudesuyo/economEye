@@ -17,13 +17,13 @@ exports.registerNewItem = onCall(async (request: any) => {
     condition: data.condition,
   });
   const price = await item.fetchPrice().catch((error) => {
-    throw new HttpsError(error.name, "Failed to fetch price");
+    throw new HttpsError(error.name, "Failed to fetch price.");
   });
   const imageId = await item.fetchImageId().catch(() => {
-    throw new HttpsError("internal", "Failed to fetch image id");
+    throw new HttpsError("internal", "Failed to fetch image id.");
   });
   const url = await item.fetchUrl().catch(() => {
-    throw new HttpsError("internal", "Failed to fetch Url");
+    throw new HttpsError("internal", "Failed to fetch Url.");
   });
   const itemData: ItemDb = {
     janCode: data.janCode,
@@ -37,12 +37,12 @@ exports.registerNewItem = onCall(async (request: any) => {
   const itemId = itemRef.id;
   const docRef = await db.collection("users").doc(uid).get();
   if (!docRef.exists) {
-    throw new Error(`The following uid does not exist${uid}`);
+    throw new Error(`The following uid does not exist${uid}.`);
   }
   const currentItemIds: { [itemId: string]: string[] } = docRef.data() || {};
   currentItemIds["itemIds"].push(itemId);
   await db.collection("users").doc(uid).set(currentItemIds);
-  logger.info(`${data.itemName} is successfully registered: on ${today()}`);
+  logger.info(`${data.itemName} is successfully registered: on ${today()}.`);
   return { succuess: "success!" };
 });
 
@@ -91,6 +91,6 @@ exports.updateItemPrice = onCall(async () => {
   await batch.commit().catch(() => {
     throw new HttpsError("internal", "Failed to update item price.");
   });
-  logger.info(`items colletion is updated on ${today()}`);
+  logger.info(`items colletion is updated on ${today()}.`);
   return { success: "items colletion is updated." };
 });

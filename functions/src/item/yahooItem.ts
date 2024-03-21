@@ -21,7 +21,7 @@ class YahooItem {
     if (!this.itemData) {
       this.itemData = await fetchData(this.endpoint, this.reqParams).catch(
         () => {
-          const error = new Error("Failed to access YahooAPI");
+          const error = new Error("Failed to access YahooAPI.");
           error.name = "internal";
           throw error;
         }
