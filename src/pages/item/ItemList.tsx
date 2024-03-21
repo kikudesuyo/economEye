@@ -5,7 +5,8 @@ import { updateItem } from "@/pages/item/helper/functionsHandler";
 import { PageName } from "@/utils/helper/type";
 import { today } from "@/pages/item/helper/timeUtils";
 import { ItemDb } from "@/utils/helper/type";
-import { getValueForDate } from "@/pages/item/helper/dbFetcher";
+import { getValueForDate, getPriceArray } from "@/pages/item/helper/dbFetcher";
+import { displayPriceDiffFromAverage } from "@/analysis/isOptimalValue";
 
 type Props = {
   setPageName: React.Dispatch<React.SetStateAction<PageName>>;
@@ -37,6 +38,7 @@ const ItemList = ({ setPageName }: Props) => {
               <img src={item.imageId} alt="" />
               <p>{item.itemName}</p>
               <p>{getValueForDate(item, today())}円</p>
+              <p>{displayPriceDiffFromAverage(getPriceArray(item),getValueForDate(item,today()))}</p>
             </div>
           ))}
       </div>

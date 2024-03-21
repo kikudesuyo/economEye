@@ -14,10 +14,12 @@ export type ItemParams = {
   condition?: Condition;
 };
 
+export type NumberOrNull = number | null;
+
 export type ItemDb = {
   janCode: string;
   itemName: string;
   imageId: string;
-  prices: { date: string; value: number }[];
+  prices: { date: string; value: NumberOrNull }[];
   condition?: Condition;
 };
