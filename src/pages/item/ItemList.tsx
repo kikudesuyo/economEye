@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import Button from "@/utils/components/Button";
 import { fetchUserItems } from "@/pages/item/helper/dbFetcher";
 import { updateItem } from "@/pages/item/helper/functionsHandler";
-import { PageName } from "@/utils/helper/type";
+import { NumberOrNull, PageName } from "@/utils/helper/type";
 import { today } from "@/pages/item/helper/timeUtils";
 import { ItemDb } from "@/utils/helper/type";
 import { getValueForDate, getPriceArray } from "@/pages/item/helper/dbFetcher";
-import { displayPriceDiffFromAverage } from "@/analysis/isOptimalValue";
+import { calcAverage, displayPriceDiffFromAverage } from "@/analysis/isOptimalValue";
 
 type Props = {
   setPageName: React.Dispatch<React.SetStateAction<PageName>>;
@@ -46,6 +46,18 @@ const ItemList = ({ setPageName }: Props) => {
         label="商品データの更新"
         func={() => {
           updateItem();
+        }}
+      />
+      <Button
+        label="データ参照"
+        func={() => {
+          const prices = getPriceArray(dbData[0]);
+          const todayPrice: NumberOrNull = getValueForDate(dbData[0], today());
+          console.log("今までの価格"+prices);
+          console.log("今日の価格"+todayPrice);
+          console.log("平均価格"+calcAverage(prices));
+          const result = displayPriceDiffFromAverage(prices, todayPrice);
+          console.log(result);
         }}
       />
       <Button
