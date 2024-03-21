@@ -26,6 +26,7 @@ export type ItemDb = {
   janCode: string;
   itemName: string;
   imageId: string;
-  prices: { date: string; value: number }[];
+  url: string;
+  prices: { date: string; value: number | null }[];
   condition?: Condition;
 };
