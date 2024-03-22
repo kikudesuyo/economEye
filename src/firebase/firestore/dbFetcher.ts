@@ -8,7 +8,7 @@ import {
 } from "firebase/firestore";
 
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { ItemDb, NumberOrNull } from "@/utils/helper/type";
+import { ClientItemDb, ItemDb, NumberOrNull } from "@/utils/helper/type";
 import {db} from "@/firebase/init";
 
 export const fetchUserId = () => {
@@ -36,18 +36,26 @@ const fetchUserItemIds = async () => {
     throw new Error("cannot fetch userItemIds");
   }
 };
-export const fetchUserItems = async () => {
+
+export const fetchUserItems = async (): Promise<ClientItemDb[]> => {
   try {
     const userItemIds = await fetchUserItemIds();
     const itemsRef = collection(db, "items");
     const itemQuery = query(itemsRef, where("__name__", "in", userItemIds));
-    const itemSnashot = await getDocs(itemQuery);
-    const userItems = itemSnashot.docs.map((doc) => doc.data());
+    const itemSnapshot = await getDocs(itemQuery);
+    const userItems: ClientItemDb[] = itemSnapshot.docs.map((doc) => {
+      const data = doc.data() as ItemDb;
+      return {
+        itemId: doc.id, ...data,
+      };
+    });
     return userItems;
   } catch (error) {
     console.error("Error getting items", error);
+    throw error;
   }
 };
+
 
 export const getValueForDate = (itemDb: ItemDb, targetDate: string) => {
   const prices = itemDb.prices;

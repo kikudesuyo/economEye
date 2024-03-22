@@ -16,10 +16,14 @@ export type ItemParams = {
 
 export type NumberOrNull = number | null;
 
-export type ItemDb = {
+export interface ItemDb {
   janCode: string;
   itemName: string;
   imageId: string;
   prices: { date: string; value: NumberOrNull }[];
   condition?: Condition;
-};
+}
+
+export interface ClientItemDb extends ItemDb {
+  itemId: string;
+}
