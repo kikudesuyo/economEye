@@ -5,7 +5,7 @@ import { ItemParams } from "@/utils/helper/type";
 import {
   isValidName,
   isValidJanCode,
-} from "@/pages/item/helper/itemValidation";
+} from "@/firebase/functions/itemValidation";
 import { checkItemDuplicated } from "@/firebase/firestore/checkDuplication";
 
 export const addNewItem = async (params: ItemParams) => {
