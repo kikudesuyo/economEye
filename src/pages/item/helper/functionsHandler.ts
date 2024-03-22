@@ -6,7 +6,7 @@ import {
   isValidName,
   isValidJanCode,
 } from "@/pages/item/helper/itemValidation";
-import { checkItemDuplicated } from "@/pages/item/helper/checkDuplication";
+import { checkItemDuplicated } from "@/firestore/checkDuplication";
 
 export const addNewItem = async (params: ItemParams) => {
   if (!isValidJanCode(params.janCode)) {
