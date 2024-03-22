@@ -9,7 +9,7 @@ import {
 
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { ItemDb, NumberOrNull } from "@/utils/helper/type";
-import {db} from "@/firestore/init";
+import {db} from "@/firebase/init";
 
 export const fetchUserId = () => {
   const auth = getAuth();

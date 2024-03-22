@@ -4,7 +4,7 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { setDoc, doc } from "firebase/firestore";
-import {db} from "@/firestore/init";
+import {db} from "@/firebase/init";
 
 export const authenticate = async (email: string, password: string) => {
   try {

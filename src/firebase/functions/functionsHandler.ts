@@ -1,12 +1,12 @@
 import { FirebaseError } from "firebase/app";
 import { httpsCallable } from "firebase/functions";
-import {functions} from "@/firestore/init";
+import {functions} from "@/firebase/init";
 import { ItemParams } from "@/utils/helper/type";
 import {
   isValidName,
   isValidJanCode,
 } from "@/pages/item/helper/itemValidation";
-import { checkItemDuplicated } from "@/firestore/checkDuplication";
+import { checkItemDuplicated } from "@/firebase/firestore/checkDuplication";
 
 export const addNewItem = async (params: ItemParams) => {
   if (!isValidJanCode(params.janCode)) {

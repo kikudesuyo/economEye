@@ -1,7 +1,7 @@
 import Button from "@/utils/components/Button";
 import { PageName } from "@/utils/helper/type";
 import { useState } from "react";
-import { addNewItem } from "@/pages/item/helper/functionsHandler";
+import { addNewItem } from "@/firebase/functions/functionsHandler";
 type Props = {
   setPageName: React.Dispatch<React.SetStateAction<PageName>>;
 };

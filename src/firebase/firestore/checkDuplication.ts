@@ -13,9 +13,9 @@ import {
   DbNotFoundError,
 } from "@/pages/item/helper/errorUtils";
 
-import { fetchUserId } from "@/firestore/dbFetcher";
+import { fetchUserId } from "@/firebase/firestore/dbFetcher";
 import { ItemParams } from "@/utils/helper/type";
-import { db } from "@/firestore/init";
+import { db } from "@/firebase/init";
 
 const isItemDuplicated = (valifiedData: ItemParams, items: DocumentData[]) => {
   for (const item of items) {

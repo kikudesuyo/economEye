@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import Button from "@/utils/components/Button";
-import { fetchUserItems, getValueForDate, getPriceArray } from "@/firestore/dbFetcher";
-import { updateItem } from "@/pages/item/helper/functionsHandler";
+import { fetchUserItems, getValueForDate, getPriceArray } from "@/firebase/firestore/dbFetcher";
+import { updateItem } from "@/firebase/functions/functionsHandler";
 import { NumberOrNull, PageName } from "@/utils/helper/type";
 import { today } from "@/pages/item/helper/timeUtils";
 import { ItemDb } from "@/utils/helper/type";
 import { calcAverage, displayPriceDiffFromAverage } from "@/analysis/isOptimalValue";
-import { deleteItem } from "@/firestore/dbDeletion";
+import { deleteItem } from "@/firebase/firestore/dbDeletion";
 
 type Props = {
   setPageName: React.Dispatch<React.SetStateAction<PageName>>;
