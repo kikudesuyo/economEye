@@ -1,5 +1,4 @@
 import {
-  getFirestore,
   getDoc,
   doc,
   collection,
@@ -14,10 +13,9 @@ import {
   DataNotFoundError,
 } from "@/pages/item/helper/errorUtils";
 
-import { fetchUserId } from "@/pages/item/helper/dbFetcher";
+import { fetchUserId } from "@/firestore/dbFetcher";
 import { ItemParams } from "@/utils/helper/type";
-
-const db = getFirestore();
+import { db } from "@/firestore/init";
 
 const isItemDuplicated = (valifiedData: ItemParams, items: DocumentData[]) => {
   for (const item of items) {

@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import Button from "@/utils/components/Button";
-import { fetchUserItems } from "@/pages/item/helper/dbFetcher";
+import { fetchUserItems, getValueForDate, getPriceArray } from "@/firestore/dbFetcher";
 import { updateItem } from "@/pages/item/helper/functionsHandler";
 import { NumberOrNull, PageName } from "@/utils/helper/type";
 import { today } from "@/pages/item/helper/timeUtils";
 import { ItemDb } from "@/utils/helper/type";
-import { getValueForDate, getPriceArray } from "@/pages/item/helper/dbFetcher";
 import { calcAverage, displayPriceDiffFromAverage } from "@/analysis/isOptimalValue";
+import { deleteItem } from "@/firestore/dbDeletion";
 
 type Props = {
   setPageName: React.Dispatch<React.SetStateAction<PageName>>;
@@ -17,7 +17,6 @@ const ItemList = ({ setPageName }: Props) => {
   useEffect(() => {
     (async () => {
       try {
-        // const data = await fetchData();
         const data = await fetchUserItems();
         setDbData(data);
       } catch (error) {
@@ -64,6 +63,12 @@ const ItemList = ({ setPageName }: Props) => {
         label="トップページに戻る"
         func={() => {
           setPageName("Top");
+        }}
+      />
+      <Button
+        label="商品削除"
+        func={() => {
+          deleteItem("23YxXbC7AW5BLgPEiOCO");
         }}
       />
     </div>

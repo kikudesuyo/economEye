@@ -27,7 +27,7 @@ export const calcAverage = (prices: NumberOrNull[]) => {
 export const displayPriceDiffFromAverage = (prices: NumberOrNull[], price:NumberOrNull) => {
   const average = calcAverage(prices);
   if (price === null) {
-    return "価格が取得できませんでした";
+    return "価格を取得できませんでした";
   }
   const priceDiff = price - average;
   if (priceDiff > 0) {

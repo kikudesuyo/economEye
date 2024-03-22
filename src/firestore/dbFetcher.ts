@@ -1,6 +1,4 @@
-import { initializeApp } from "firebase/app";
 import {
-  getFirestore,
   collection,
   getDocs,
   doc,
@@ -10,18 +8,8 @@ import {
 } from "firebase/firestore";
 
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-
-import { API_KEY, AUTH_DOMAIN, PROJECT_ID } from "@/env";
 import { ItemDb, NumberOrNull } from "@/utils/helper/type";
-
-const firebaseConfig = {
-  apiKey: API_KEY,
-  authDomain: AUTH_DOMAIN,
-  projectId: PROJECT_ID,
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+import {db} from "@/firestore/init";
 
 export const fetchUserId = () => {
   const auth = getAuth();
@@ -68,7 +56,7 @@ export const getValueForDate = (itemDb: ItemDb, targetDate: string) => {
       return price.value
     }
   }
-  throw new Error("No price data for the date.");
+  return null;
 };
 
 interface PriceEntry {

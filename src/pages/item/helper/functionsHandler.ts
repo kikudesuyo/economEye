@@ -1,6 +1,5 @@
-import { initializeApp } from "firebase/app";
+import { initializeApp, FirebaseError } from "firebase/app";
 import { getFunctions, httpsCallable } from "firebase/functions";
-import { FirebaseError } from "firebase/app";
 import { API_KEY, AUTH_DOMAIN, PROJECT_ID } from "@/env";
 import { ItemParams } from "@/utils/helper/type";
 import {
