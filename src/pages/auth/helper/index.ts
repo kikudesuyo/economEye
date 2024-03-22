@@ -3,19 +3,8 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-
-import { initializeApp } from "firebase/app";
-import { getFirestore, setDoc, doc } from "firebase/firestore";
-import { API_KEY, AUTH_DOMAIN, PROJECT_ID } from "@/env";
-
-const firebaseConfig = {
-  apiKey: API_KEY,
-  authDomain: AUTH_DOMAIN,
-  projectId: PROJECT_ID,
-};
-
-const app = initializeApp(firebaseConfig);
-export const db = getFirestore(app);
+import { setDoc, doc } from "firebase/firestore";
+import {db} from "@/firestore/init";
 
 export const authenticate = async (email: string, password: string) => {
   try {

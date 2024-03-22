@@ -10,7 +10,7 @@ import {
 import { DocumentData } from "firebase-admin/firestore";
 import {
   DuplicateItemError,
-  DataNotFoundError,
+  DbNotFoundError,
 } from "@/pages/item/helper/errorUtils";
 
 import { fetchUserId } from "@/firestore/dbFetcher";
@@ -33,7 +33,7 @@ export const checkItemDuplicated = async (inputData: ItemParams) => {
   const uid = await fetchUserId();
   const itemSnap = await getDoc(doc(db, "users", uid));
   if (!itemSnap.exists()) {
-    throw new DataNotFoundError("User ItemIds not found.");
+    throw new DbNotFoundError("予期せぬエラーが起きています。");
   }
   const userItemIds = itemSnap.data().itemIds;
   const itemsRef = collection(db, "items");
@@ -41,6 +41,6 @@ export const checkItemDuplicated = async (inputData: ItemParams) => {
   const itemSnashot = await getDocs(itemQuery);
   const userItems = itemSnashot.docs.map((doc) => doc.data());
   if (isItemDuplicated(inputData, userItems)) {
-    throw new DuplicateItemError("Input item already exsits.");
+    throw new DuplicateItemError("入力した条件の商品は既に登録されています。");
   }
 };

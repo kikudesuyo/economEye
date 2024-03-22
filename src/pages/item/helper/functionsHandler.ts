@@ -1,21 +1,12 @@
-import { initializeApp, FirebaseError } from "firebase/app";
-import { getFunctions, httpsCallable } from "firebase/functions";
-import { API_KEY, AUTH_DOMAIN, PROJECT_ID } from "@/env";
+import { FirebaseError } from "firebase/app";
+import { httpsCallable } from "firebase/functions";
+import {functions} from "@/firestore/init";
 import { ItemParams } from "@/utils/helper/type";
 import {
   isValidName,
   isValidJanCode,
 } from "@/pages/item/helper/itemValidation";
 import { checkItemDuplicated } from "@/pages/item/helper/checkDuplication";
-import { DuplicateItemError } from "@/pages/item/helper/errorUtils";
-
-const app = initializeApp({
-  projectId: PROJECT_ID,
-  apiKey: API_KEY,
-  authDomain: AUTH_DOMAIN,
-});
-
-const functions = getFunctions(app);
 
 export const addNewItem = async (params: ItemParams) => {
   if (!isValidJanCode(params.janCode)) {
@@ -27,23 +18,22 @@ export const addNewItem = async (params: ItemParams) => {
     throw new Error("商品名が不正です。");
   }
   const registerNewItemFunction = httpsCallable(functions, "registerNewItem");
-  try {
-    await checkItemDuplicated(params);
-    return await registerNewItemFunction(params);
-  } catch (error) {
-    if (error instanceof FirebaseError) {
-      if (error.code === "functions/not-found") {
-        alert("入力した条件の商品は見つかりませんでした。");
-      } else if (error.message.includes("functions/internal")) {
-        alert("登録に失敗しました。もう一度入力してください");
+    await checkItemDuplicated(params).catch((error) => {
+      alert(error.message)
+      throw new Error(`${error.name}: ${error.message}`)
+    })
+    return await registerNewItemFunction(params).catch((error) => {
+      if (error instanceof FirebaseError) {
+        if (error.code === "functions/not-found") {
+          alert("入力した条件の商品は見つかりませんでした。");
+        } else if (error.message.includes("functions/internal")) {
+          alert("登録に失敗しました。もう一度入力してください");
+        }
+      } else {
+        alert("予期せぬエラーが発生しました。もう一度入力してください。");
       }
-    } else if (error instanceof DuplicateItemError) {
-      alert("入力した条件の商品は既に登録されています。");
-    } else {
-      alert("予期せぬエラーが発生しました。もう一度入力してください。");
     }
-    throw new Error("Failed registering new item.");
-  }
+  );
 };
 
 export const updateItem = async () => {

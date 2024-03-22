@@ -5,7 +5,7 @@ export class DuplicateItemError extends Error {
   }
 }
 
-export class DataNotFoundError extends Error {
+export class DbNotFoundError extends Error {
   constructor(message: string) {
     super(message);
     this.name = "DataNotFoundError";
