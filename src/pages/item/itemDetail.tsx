@@ -1,3 +1,6 @@
+import { useState } from "react";
+import { ref, getDownloadURL } from "firebase/storage";
+import { storage } from "@/firebase/init";
 import { ClientItemDb } from "@/utils/helper/type";
 import Button from "@/utils/components/Button";
 import { calcAverage } from "@/analysis/isOptimalValue";
@@ -10,12 +13,19 @@ type ItemDetailProps = {
 };
 
 const ItemDetail = ({ item, onClose }: ItemDetailProps) => {
+  const [img, setImg] = useState<string>("");
   if (!item) {
     return null;
   }
   const todayPrice = getValueForDate(item, today());
   const averageValue = calcAverage(getPriceArray(item));
-
+  const storageRef = ref(
+    storage,
+    "gs://economeye-d5146.appspot.com/tags/red.svg"
+  );
+  getDownloadURL(storageRef).then((url) => {
+    setImg(url);
+  });
   const diffPrice = () => {
     if (todayPrice === null) {
       return "価格を取得できませんでした";
@@ -46,15 +56,18 @@ const ItemDetail = ({ item, onClose }: ItemDetailProps) => {
           <p>価格差:</p>
           <p>{diffPrice()}円</p>
         </div>
-        <div className="flex flex-ro justify-between">
-          <p>カテゴリー</p>
-          <p>飲み物</p>
-        </div>
         <div className="flex flex-row justify-between">
           <p>URL:</p>
           <a href={item.url} className="underline">
             商品URLはこちら
           </a>
+        </div>
+        <div className="flex flex-row justify-between">
+          <p>カテゴリ名</p>
+          <div className="flex flex-row items-center">
+            <img className="w-6 h-6 mr-2" src={img} alt="" />
+            <p className="text-right max-w-28">飲み物</p>{" "}
+          </div>
         </div>
       </div>
       <div className="flex flex-row justify-between absolute bottom-10 left-2 right-2">
