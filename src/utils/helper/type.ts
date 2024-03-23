@@ -18,11 +18,12 @@ export type ItemParams = {
 export type NumberOrNull = number | null;
 
 export interface ItemDb {
-  janCode: string;
-  itemName: string;
-  imageId: string;
-  prices: { date: string; value: NumberOrNull }[];
   condition?: Condition;
+  imageId: string;
+  itemName: string;
+  janCode: string;
+  prices: { date: string; value: NumberOrNull }[];
+  url: string;
 }
 
 export interface ClientItemDb extends ItemDb {

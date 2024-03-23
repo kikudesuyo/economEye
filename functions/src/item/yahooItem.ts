@@ -2,6 +2,7 @@ import { fetchData } from "./item";
 import { InventryError } from "../helper/errorUtils";
 import { configDotenv } from "dotenv";
 import { AssignedParams, ReqParams } from "../utils/type";
+
 configDotenv();
 
 class YahooItem {
@@ -51,7 +52,7 @@ class YahooItem {
 
   async fetchImageId(): Promise<string> {
     const itemData = await this.fetchCheapestItem();
-    return itemData.image.small;
+    return itemData.image.medium;
   }
   async fetchUrl(): Promise<string> {
     const itemData = await this.fetchCheapestItem();
