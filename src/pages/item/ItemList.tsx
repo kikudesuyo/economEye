@@ -74,12 +74,6 @@ const ItemList = ({ setPageName }: Props) => {
           setPageName("Top");
         }}
       />
-      <Button
-        label="モーダル表示"
-        func={() => {
-          setPageName("ItemDetail");
-        }}
-      />
       <Modal
         style={{
           overlay: { backgroundColor: "rgga(0,0,0,100)" },

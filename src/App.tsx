@@ -10,7 +10,6 @@ import RegisterItem from "@/pages/item/RegisterItem";
 import ItemList from "@/pages/item/ItemList";
 import Header from "@/utils/components/Header";
 import Footer from "@/utils/components/Footer";
-import ItemDetail from "@/pages/item/itemDetail";
 
 function App() {
   const [pageName, setPageName] = React.useState<PageName>("Home");
@@ -22,7 +21,6 @@ function App() {
     Top: <Top setPageName={setPageName} />,
     RegisterItem: <RegisterItem setPageName={setPageName} />,
     ItemList: <ItemList setPageName={setPageName} />,
-    ItemDetail: <ItemDetail />,
   };
   return (
     <>

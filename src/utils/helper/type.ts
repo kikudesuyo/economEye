@@ -4,8 +4,7 @@ export type PageName =
   | "Login"
   | "Top"
   | "RegisterItem"
-  | "ItemList"
-  | "ItemDetail";
+  | "ItemList";
 
 export type Condition = "used" | "new" | "both";
 
