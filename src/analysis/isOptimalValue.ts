@@ -18,13 +18,16 @@ import { NumberOrNull } from "@/utils/helper/type";
 // }
 
 export const calcAverage = (prices: NumberOrNull[]) => {
-  const validPrices = prices.filter(price => price !== null) as number[];
+  const validPrices = prices.filter((price) => price !== null) as number[];
   const sum = validPrices.reduce((acc, cur) => acc + cur, 0);
   const average = sum / validPrices.length;
   return average;
-}
+};
 
-export const displayPriceDiffFromAverage = (prices: NumberOrNull[], price:NumberOrNull) => {
+export const displayPriceDiffFromAverage = (
+  prices: NumberOrNull[],
+  price: NumberOrNull
+) => {
   const average = calcAverage(prices);
   if (price === null) {
     return "価格を取得できませんでした";
@@ -35,4 +38,4 @@ export const displayPriceDiffFromAverage = (prices: NumberOrNull[], price:Number
   } else {
     return `${-priceDiff}円安い`;
   }
-}
+};
