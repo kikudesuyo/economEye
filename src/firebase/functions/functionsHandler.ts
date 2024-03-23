@@ -1,6 +1,6 @@
 import { FirebaseError } from "firebase/app";
 import { httpsCallable } from "firebase/functions";
-import {functions} from "@/firebase/init";
+import { functions } from "@/firebase/init";
 import { ItemParams } from "@/utils/helper/type";
 import {
   isValidName,
@@ -18,27 +18,26 @@ export const addNewItem = async (params: ItemParams) => {
     throw new Error("商品名が不正です。");
   }
   const registerNewItemFunction = httpsCallable(functions, "registerNewItem");
-    await checkItemDuplicated(params).catch((error) => {
-      alert(error.message)
-      throw new Error(`${error.name}: ${error.message}`)
-    })
-    return await registerNewItemFunction(params).catch((error) => {
-      if (error instanceof FirebaseError) {
-        if (error.code === "functions/not-found") {
-          alert("入力した条件の商品は見つかりませんでした。");
-        } else if (error.message.includes("functions/internal")) {
-          alert("登録に失敗しました。もう一度入力してください");
-        }
-      } else {
-        alert("予期せぬエラーが発生しました。もう一度入力してください。");
+  await checkItemDuplicated(params).catch((error) => {
+    alert(error.message);
+    throw new Error(`${error.name}: ${error.message}`);
+  });
+  return await registerNewItemFunction(params).catch((error) => {
+    if (error instanceof FirebaseError) {
+      if (error.code === "functions/not-found") {
+        alert("入力した条件の商品は見つかりませんでした。");
+      } else if (error.message.includes("functions/internal")) {
+        alert("登録に失敗しました。もう一度入力してください");
       }
+    } else {
+      alert("予期せぬエラーが発生しました。もう一度入力してください。");
     }
-  );
+  });
 };
 
 export const updateItem = async () => {
-  const updateItemPriceFunction = httpsCallable(functions, "updateItemPrice");
-  updateItemPriceFunction()
+  const updateItemFunction = httpsCallable(functions, "updateItem");
+  updateItemFunction()
     .then((result) => {
       console.log(result.data);
     })

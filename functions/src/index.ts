@@ -46,9 +46,7 @@ exports.registerNewItem = onCall(async (request: any) => {
   return { succuess: "success!" };
 });
 
-const updateItemPrice = async (
-  itemDb: ItemDb
-): Promise<{ date: string; value: number | null }[]> => {
+const updateItem = async (itemDb: ItemDb): Promise<ItemDb> => {
   const dbPrices = itemDb.prices;
   for (let i = 0; i < dbPrices.length; i++) {
     const price = dbPrices[i];
@@ -63,29 +61,32 @@ const updateItemPrice = async (
       let newPrice: number | null;
       try {
         newPrice = await item.fetchPrice();
+        const url = await item.fetchUrl();
+        itemDb["url"] = url;
       } catch (error) {
         if (error instanceof InventryError) {
           newPrice = null;
+          itemDb["url"] = "";
         } else {
           throw new HttpsError("internal", "Failed to fetch Price.");
         }
       }
-      dbPrices.push({ date: today(), value: newPrice });
+      itemDb.prices.push({ date: today(), value: newPrice });
     }
   }
-  return dbPrices;
+  return itemDb;
 };
 
-exports.updateItemPrice = onCall(async () => {
+exports.updateItem = onCall(async () => {
   const batch = db.batch();
   const itemSnapshot = await db.collection("items").get();
   await Promise.all(
     itemSnapshot.docs.map(async (doc) => {
       const docId = doc.id;
       const itemDb = doc.data() as ItemDb;
-      const latestItemPrices = await updateItemPrice(itemDb);
+      const latestItem = await updateItem(itemDb);
       const docRef = db.collection("items").doc(docId);
-      batch.update(docRef, { prices: latestItemPrices });
+      batch.update(docRef, latestItem);
     })
   );
   await batch.commit().catch(() => {

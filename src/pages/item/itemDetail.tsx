@@ -25,7 +25,7 @@ const ItemDetail = ({ item, onClose }: ItemDetailProps) => {
 
   return (
     <div className="flex flex-col border">
-      <div className="flex flex-row justify-start items-end mb-4">
+      <div className="flex flex-row justify-start items-end mb-8">
         <img src={item.imageId} className="w-20 h-20" alt="itemImage" />
         <div className="flex flex-col ml-6 mb-2">
           <div className="border-b">
