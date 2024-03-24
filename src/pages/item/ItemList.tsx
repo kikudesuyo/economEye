@@ -21,6 +21,7 @@ const ItemList = ({ setPageName }: Props) => {
   const [IsOpen, setIsOpen] = useState<boolean>(false);
   const [SelectedItem, setSelectedItem] = useState<ClientItemDb | null>(null);
   Modal.setAppElement("#root");
+
   useEffect(() => {
     (async () => {
       try {
@@ -31,10 +32,27 @@ const ItemList = ({ setPageName }: Props) => {
       }
     })();
   }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      document.body.style.overflow = "auto";
+    };
+    if (!IsOpen) {
+      document.body.style.overflow = "auto";
+    } else {
+      document.body.style.overflow = "hidden";
+      window.addEventListener("scroll", handleScroll);
+    }
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [IsOpen]);
+
   const OpenModal = (item: ClientItemDb) => {
     setSelectedItem(item);
     setIsOpen(true);
   };
+
   const CloseModal = () => {
     setSelectedItem(null);
     setIsOpen(false);
@@ -76,9 +94,9 @@ const ItemList = ({ setPageName }: Props) => {
       />
       <Modal
         style={{
-          overlay: { backgroundColor: "rgga(0,0,0,100)" },
-          content: { width: "80%", height: "80%" },
+          overlay: { backgroundColor: "rgba(0,0,0,0.5)" },
         }}
+        className="ounded-lg bg-white w-11/12 h-3/5 mx-auto mt-20 p-4 rounded-3xl"
         isOpen={IsOpen}
         onRequestClose={CloseModal}
       >

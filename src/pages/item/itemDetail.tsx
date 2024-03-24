@@ -34,7 +34,7 @@ const ItemDetail = ({ item, onClose }: ItemDetailProps) => {
   };
 
   return (
-    <div className="flex flex-col border">
+    <div className="flex flex-col">
       <div className="flex flex-row justify-start items-end mb-8">
         <img src={item.imageId} className="w-20 h-20" alt="itemImage" />
         <div className="flex flex-col ml-6 mb-2">
@@ -70,10 +70,10 @@ const ItemDetail = ({ item, onClose }: ItemDetailProps) => {
           </div>
         </div>
       </div>
-      <div className="flex flex-row justify-between absolute bottom-10 left-2 right-2">
-        <Button className="w-2/5" label="キャンセル" func={() => onClose()} />
+      <div className="flex flex-row justify-between absolute bottom-48 left-2 right-2">
+        <Button className="w-1/4" label="キャンセル" func={() => onClose()} />
         <Button
-          className="w-2/5"
+          className="w-1/4"
           label="更新"
           func={() => {
             console.log("更新ボタンが押されました");
