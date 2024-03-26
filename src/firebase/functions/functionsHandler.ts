@@ -26,12 +26,15 @@ export const addNewItem = async (params: ItemParams) => {
     if (error instanceof FirebaseError) {
       if (error.code === "functions/not-found") {
         alert("入力した条件の商品は見つかりませんでした。");
-      } else if (error.message.includes("functions/internal")) {
+      } else if (error.code === "functions/internal") {
         alert("登録に失敗しました。もう一度入力してください");
+      } else if (error.code === "functions/resource-exhausted") {
+        alert("登録できる商品数の上限に達しました。 これ以上登録できません。");
       }
     } else {
       alert("予期せぬエラーが発生しました。もう一度入力してください。");
     }
+    throw new Error("登録に失敗しました。");
   });
 };
 

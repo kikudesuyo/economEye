@@ -28,13 +28,12 @@ const RegisterItem = ({ setPageName }: Props) => {
         <Button
           label="登録"
           func={async () => {
-            addNewItem({
+            await addNewItem({
               janCode: janCode,
               itemName: itemName,
               condition: "new",
-            }).then(() => {
-              setPageName("ItemList");
             });
+            setPageName("ItemList");
           }}
         />
       </div>
