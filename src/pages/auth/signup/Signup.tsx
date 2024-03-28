@@ -1,19 +1,17 @@
 import { useState } from "react";
-import { PageName } from "@/utils/helper/type";
 import {
   authenticate,
   isValidEmail,
   isValidPassword,
 } from "@/pages/auth/helper";
 import Button from "@/utils/components/Button";
+import { useNavigate } from "react-router-dom";
 
-type Props = {
-  setPageName: React.Dispatch<React.SetStateAction<PageName>>;
-};
-const Signup = ({ setPageName }: Props) => {
+const Signup = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
+  const navigate = useNavigate();
   return (
     <div className="flex flex-col items-left w-80 mx-auto gap-8 py-8 text-left">
       <h1 className="text-3xl">サインアップ</h1>
@@ -64,7 +62,7 @@ const Signup = ({ setPageName }: Props) => {
           }
           try {
             await authenticate(email, password);
-            setPageName("Top");
+            navigate("/top");
           } catch (error) {
             alert("サインアップに失敗しました。もう一度お試しください。");
             throw new Error("signup failed");

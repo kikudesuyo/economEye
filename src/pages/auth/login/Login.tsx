@@ -1,16 +1,13 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Button from "@/utils/components/Button";
-import { PageName } from "@/utils/helper/type";
 import { login, isValidEmail, isValidPassword } from "@/pages/auth/helper";
 import padlock from "@/imgs/padlock.jpg";
 
-type Props = {
-  setPageName: React.Dispatch<React.SetStateAction<PageName>>;
-};
-
-const Login = ({ setPageName }: Props) => {
+const Login = () => {
   const [email, setEmail] = useState<string>("hogehoge@gmail.com");
   const [password, setPassword] = useState<string>("hogehoge");
+  const navigate = useNavigate();
   return (
     <div className="flex flex-col items-left w-80 mx-auto gap-8 py-8 text-left">
       <div className="flex flex-row items-center">
@@ -50,7 +47,7 @@ const Login = ({ setPageName }: Props) => {
           }
           try {
             await login(email, password);
-            setPageName("Top");
+            navigate("/top");
           } catch (error) {
             alert("ログインに失敗しました。もう一度お試しください。");
             throw new Error("login failed");

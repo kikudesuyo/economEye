@@ -1,11 +1,8 @@
 import Button from "@/utils/components/Button";
-import { PageName } from "@/utils/helper/type";
+import { useNavigate } from "react-router-dom";
 
-type Props = {
-  setPageName: React.Dispatch<React.SetStateAction<PageName>>;
-};
-
-const Top = ({ setPageName }: Props) => {
+const Top = () => {
+  const navigate = useNavigate();
   return (
     <div className="flex flex-col w-80 mx-auto mt-3">
       <div className="flex flex-col gap-6">
@@ -35,13 +32,13 @@ const Top = ({ setPageName }: Props) => {
           <Button
             label="商品登録ページ"
             func={() => {
-              setPageName("RegisterItem");
+              navigate("/registerItem");
             }}
           />
           <Button
             label="商品一覧ページ"
             func={() => {
-              setPageName("ItemList");
+              navigate("/itemList");
             }}
           />
         </div>

@@ -1,30 +1,25 @@
-import React from "react";
-import { PageName } from "@/utils/helper/type";
-import SwitchPageButton from "@/utils/components/SwitchPageButton";
+import { Link, useNavigate } from "react-router-dom";
+import Button from "@/utils/components/Button";
 
-type Props = {
-  setPageName: React.Dispatch<React.SetStateAction<PageName>>;
-};
-
-const Header = ({ setPageName }: Props) => {
+const Header = () => {
+  const navigate = useNavigate();
   return (
     <header className="flex justify-between p-3 border-b border-black">
-      <a
-        className="flex flex-col justify-center text-xl"
-        onClick={() => setPageName("Home")}
-      >
+      <Link to="/" className="flex flex-col justify-center text-xl">
         economEye👀
-      </a>
+      </Link>
       <div className="flex gap-2">
-        <SwitchPageButton
+        <Button
           label="ログイン"
-          pageName="Login"
-          setPageName={setPageName}
+          func={() => {
+            navigate("login");
+          }}
         />
-        <SwitchPageButton
+        <Button
           label="新規登録"
-          pageName="Signup"
-          setPageName={setPageName}
+          func={() => {
+            navigate("signup");
+          }}
         />
       </div>
     </header>

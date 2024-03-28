@@ -1,13 +1,13 @@
-import Button from "@/utils/components/Button";
-import { PageName } from "@/utils/helper/type";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { addNewItem } from "@/firebase/functions/functionsHandler";
-type Props = {
-  setPageName: React.Dispatch<React.SetStateAction<PageName>>;
-};
-const RegisterItem = ({ setPageName }: Props) => {
+
+import Button from "@/utils/components/Button";
+
+const RegisterItem = () => {
   const [janCode, setJanCode] = useState<string>("4901777216884");
   const [itemName, setItemName] = useState<string>("重複テスト");
+  const navigate = useNavigate();
   return (
     <div className="items-center w-80 mx-auto">
       <div className="flex flex-col mt-20 gap-8">
@@ -33,7 +33,7 @@ const RegisterItem = ({ setPageName }: Props) => {
               itemName: itemName,
               condition: "new",
             });
-            setPageName("ItemList");
+            navigate("/itemList");
           }}
         />
       </div>

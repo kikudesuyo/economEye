@@ -1,25 +1,24 @@
 import { useEffect, useState } from "react";
 import Modal from "react-modal";
-import Button from "@/utils/components/Button";
+import { useNavigate } from "react-router-dom";
 import {
   fetchUserItems,
   getValueForDate,
   getPriceArray,
 } from "@/firebase/firestore/dbFetcher";
 import { updateItem } from "@/firebase/functions/functionsHandler";
-import { ClientItemDb, PageName } from "@/utils/helper/type";
+import Button from "@/utils/components/Button";
+import { ClientItemDb } from "@/utils/helper/type";
 import { today } from "@/pages/item/helper/timeUtils";
 import { displayPriceDiffFromAverage } from "@/analysis/isOptimalValue";
 import ItemDetail from "./itemDetail";
 
-type Props = {
-  setPageName: React.Dispatch<React.SetStateAction<PageName>>;
-};
-
-const ItemList = ({ setPageName }: Props) => {
+const ItemList = () => {
   const [dbData, setDbData] = useState<any>(null);
   const [IsOpen, setIsOpen] = useState<boolean>(false);
   const [SelectedItem, setSelectedItem] = useState<ClientItemDb | null>(null);
+  const navigate = useNavigate();
+
   Modal.setAppElement("#root");
 
   useEffect(() => {
@@ -89,7 +88,7 @@ const ItemList = ({ setPageName }: Props) => {
       <Button
         label="トップページに戻る"
         func={() => {
-          setPageName("Top");
+          navigate("/top");
         }}
       />
       <Modal
