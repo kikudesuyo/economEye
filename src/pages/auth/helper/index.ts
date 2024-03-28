@@ -16,7 +16,7 @@ export const authenticate = async (email: string, password: string) => {
     );
     const userId = userCredential.user.uid;
     const userDocRef = doc(db, "users", userId);
-    await setDoc(userDocRef, { itemId: [] });
+    await setDoc(userDocRef, { itemIds: [] });
     await login(email, password);
     return await Promise.resolve();
   } catch (error: any) {

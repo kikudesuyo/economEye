@@ -9,10 +9,6 @@ import { InventryError } from "./helper/errorUtils";
 admin.initializeApp();
 const db = admin.firestore();
 
-const areUserItemIdsUnderLimit = (ids: string[]) => {
-  return ids.length < 30;
-};
-
 exports.registerNewItem = onCall(async (request: any) => {
   const uid = request.auth.uid;
   const data: ClientParams = request.data;
@@ -44,12 +40,6 @@ exports.registerNewItem = onCall(async (request: any) => {
     throw new HttpsError("internal", `The following uid does not exist${uid}.`);
   }
   const currentItemIds: { [itemId: string]: string[] } = docRef.data() || {};
-  if (!areUserItemIdsUnderLimit(currentItemIds["itemIds"])) {
-    throw new HttpsError(
-      "resource-exhausted",
-      "The number of items is over the limit."
-    );
-  }
   currentItemIds["itemIds"].push(itemId);
   await db.collection("users").doc(uid).set(currentItemIds);
   logger.info(`${data.itemName} is successfully registered: on ${today()}.`);
