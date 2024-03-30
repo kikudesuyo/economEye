@@ -59,16 +59,16 @@ const ItemList = () => {
 
   return (
     <div>
-      <div className="w-9/12 mx-auto flex flex-wrap mt-4justify-start">
+      <div className="grid grid-cols-4 gap-4 mt-4 mx-4">
         {dbData &&
           dbData.map((item: ClientItemDb, index: number) => (
             <div
               key={index}
-              className="flex flex-col flex-shrink-0 items-center p-3 border-2 border-slate-300 m-2 gap-2 "
+              className="flex flex-col items-center p-3 border-2 border-slate-300 gap-2"
               onClick={() => OpenModal(item)}
             >
               <img src={item.imageId} alt="" />
-              <p>{item.itemName}</p>
+              <p className="max-w-full truncate">{item.itemName}</p>
               <p>{getValueForDate(item, today())}円</p>
               <p>
                 {displayPriceDiffFromAverage(
