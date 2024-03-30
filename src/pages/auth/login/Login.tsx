@@ -10,6 +10,23 @@ const Login = () => {
   const [email, setEmail] = useState<string>("hogehoge@gmail.com");
   const [password, setPassword] = useState<string>("hogehoge");
   const navigate = useNavigate();
+  const handleLogin = async () => {
+    if (!isValidEmail(email)) {
+      alert("正しいメールアドレスを入力してください。");
+      throw new Error("invalid email");
+    }
+    if (!isValidPassword(password)) {
+      alert("パスワードは6文字以上で入力してください。");
+      throw new Error("invalid password");
+    }
+    try {
+      await login(email, password);
+      navigate(PATHS.TOP);
+    } catch (error) {
+      alert("ログインに失敗しました。もう一度お試しください。");
+      throw new Error("login failed");
+    }
+  };
   return (
     <Main style="gap-8 mt-8">
       <div className="flex flex-row items-center">
@@ -40,21 +57,7 @@ const Login = () => {
         label="ログイン"
         className="w-3/5 mx-auto"
         func={async () => {
-          if (!isValidEmail(email)) {
-            alert("正しいメールアドレスを入力してください。");
-            throw new Error("invalid email");
-          }
-          if (!isValidPassword(password)) {
-            alert("パスワードは6文字以上で入力してください。");
-            throw new Error("invalid password");
-          }
-          try {
-            await login(email, password);
-            navigate(PATHS.TOP);
-          } catch (error) {
-            alert("ログインに失敗しました。もう一度お試しください。");
-            throw new Error("login failed");
-          }
+          await handleLogin();
         }}
       />
     </Main>
