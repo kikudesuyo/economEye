@@ -14,6 +14,27 @@ const Signup = () => {
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
   const navigate = useNavigate();
+  const handleSignup = async () => {
+    if (!isValidEmail(email)) {
+      alert("正しいメールアドレスを入力してください。");
+      throw new Error("invalid email");
+    }
+    if (!isValidPassword(password)) {
+      alert("パスワードは6文字以上で入力してください。");
+      throw new Error("invalid password");
+    }
+    if (password !== confirmPassword) {
+      alert("パスワードが一致しません。もう一度入力してください。");
+      throw new Error("password does not match");
+    }
+    try {
+      await authenticate(email, password);
+      navigate(PATHS.TOP);
+    } catch (error) {
+      alert("サインアップに失敗しました。もう一度お試しください。");
+      throw new Error("signup failed");
+    }
+  };
   return (
     <Main style="items-left gap-8 text-left mt-8">
       <h1 className="text-3xl">サインアップ</h1>
@@ -51,25 +72,7 @@ const Signup = () => {
         label="登録"
         className="w-3/5 mx-auto"
         func={async () => {
-          if (!isValidEmail(email)) {
-            alert("正しいメールアドレスを入力してください。");
-            throw new Error("invalid email");
-          }
-          if (!isValidPassword(password)) {
-            alert("パスワードは6文字以上で入力してください。");
-            throw new Error("invalid password");
-          }
-          if (password !== confirmPassword) {
-            alert("パスワードが一致しません。もう一度入力してください。");
-            throw new Error("password does not match");
-          }
-          try {
-            await authenticate(email, password);
-            navigate(PATHS.TOP);
-          } catch (error) {
-            alert("サインアップに失敗しました。もう一度お試しください。");
-            throw new Error("signup failed");
-          }
+          await handleSignup();
         }}
       />
     </Main>
