@@ -5,10 +5,17 @@ import { AssignedParams, ReqParams } from "../utils/type";
 
 configDotenv();
 
+type YahooItemData = {
+  hits: {
+    price: number;
+    image: { small: string; medium: string };
+    url: string;
+  }[];
+};
+
 class YahooItem {
   endpoint: string;
   reqParams: ReqParams;
-  itemData: any; //Yahoo data
   constructor(assignedParams: AssignedParams) {
     this.endpoint =
       "https://shopping.yahooapis.jp/ShoppingWebService/V3/itemSearch";
@@ -18,23 +25,18 @@ class YahooItem {
     );
   }
 
-  private async fetchCheapestItem() {
-    if (!this.itemData) {
-      this.itemData = await fetchData(this.endpoint, this.reqParams).catch(
-        () => {
-          const error = new Error("Failed to access YahooAPI.");
-          error.name = "internal";
-          throw error;
-        }
-      );
-      if (this.itemData.hits.length === 0) {
-        throw new InventryError("item doesn't found on Yahoo.");
-      }
+  async fetchCheapestItem() {
+    const itemData: YahooItemData = await fetchData(
+      this.endpoint,
+      this.reqParams
+    );
+    if (itemData.hits.length === 0) {
+      throw new InventryError("item doesn't found on Yahoo.");
     }
-    return this.itemData.hits[0];
+    return itemData.hits[0];
   }
 
-  formatParams(assignedParams: AssignedParams, appId: string) {
+  private formatParams(assignedParams: AssignedParams, appId: string) {
     const formattedParams: ReqParams = {
       appid: appId,
       sort: "+price",
@@ -43,20 +45,6 @@ class YahooItem {
       condition: assignedParams.condition,
     };
     return formattedParams;
-  }
-
-  async fetchPrice(): Promise<number> {
-    const itemData = await this.fetchCheapestItem();
-    return itemData.price;
-  }
-
-  async fetchImageId(): Promise<string> {
-    const itemData = await this.fetchCheapestItem();
-    return itemData.image.medium;
-  }
-  async fetchUrl(): Promise<string> {
-    const itemData = await this.fetchCheapestItem();
-    return itemData.url;
   }
 }
 

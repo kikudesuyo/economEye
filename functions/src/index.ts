@@ -1,6 +1,6 @@
 import { onCall, HttpsError } from "firebase-functions/v2/https";
 import { today } from "./utils/time";
-import { ClientParams, ItemDb } from "./utils/type";
+import { ClientParams, ItemData } from "./utils/type";
 import { logger } from "firebase-functions";
 import { fetchItemData, setData, updateItem } from "./helper/db";
 import { db } from "./helper/db";
@@ -20,7 +20,7 @@ exports.updateItem = onCall(async () => {
   await Promise.all(
     itemSnapshot.docs.map(async (doc) => {
       const docId = doc.id;
-      const itemDb = doc.data() as ItemDb;
+      const itemDb = doc.data() as ItemData;
       const latestItem = await updateItem(itemDb);
       const docRef = db.collection("items").doc(docId);
       batch.update(docRef, latestItem);

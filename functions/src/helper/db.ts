@@ -2,40 +2,38 @@ import * as admin from "firebase-admin";
 import { HttpsError } from "firebase-functions/v2/https";
 import YahooItem from "../item/yahooItem";
 import { today } from "../utils/time";
-import { ClientParams, ItemDb } from "../utils/type";
+import { ClientParams, ItemData } from "../utils/type";
 import { InventryError } from "../utils/customError";
+import { logger } from "firebase-functions/v1";
 
 admin.initializeApp();
 export const db = admin.firestore();
 
 export const fetchItemData = async (
   inputData: ClientParams
-): Promise<ItemDb> => {
-  const item = new YahooItem({
+): Promise<ItemData> => {
+  const yahooItem = new YahooItem({
     janCode: inputData.janCode,
     condition: inputData.condition,
   });
-  const price = await item.fetchPrice().catch((error) => {
-    throw new HttpsError(error.name, "Failed to fetch price.");
+  const yahooItemData = await yahooItem.fetchCheapestItem().catch(() => {
+    throw new HttpsError("internal", "Failed to fetch item data.");
   });
-  const imageId = await item.fetchImageId().catch(() => {
-    throw new HttpsError("internal", "Failed to fetch image id.");
-  });
-  const url = await item.fetchUrl().catch(() => {
-    throw new HttpsError("internal", "Failed to fetch Url.");
-  });
-  const itemData: ItemDb = {
+  const itemData: ItemData = {
     janCode: inputData.janCode,
     itemName: inputData.itemName,
-    imageId: imageId,
-    url: url,
-    prices: [{ date: today(), value: price }],
+    imageId: yahooItemData.image.medium,
+    url: yahooItemData.url,
+    prices: [{ date: today(), value: yahooItemData.price }],
     condition: inputData.condition,
   };
   return itemData;
 };
 
-export const setData = async (uid: string, itemData: ItemDb): Promise<void> => {
+export const setData = async (
+  uid: string,
+  itemData: ItemData
+): Promise<void> => {
   const itemRef = await db.collection("items").add(itemData);
   const itemId = itemRef.id;
   const docRef = await db.collection("users").doc(uid).get();
@@ -47,33 +45,23 @@ export const setData = async (uid: string, itemData: ItemDb): Promise<void> => {
   await db.collection("users").doc(uid).set(currentItemIds);
 };
 
-export const updateItem = async (itemDb: ItemDb): Promise<ItemDb> => {
-  const dbPrices = itemDb.prices;
-  for (let i = 0; i < dbPrices.length; i++) {
-    const price = dbPrices[i];
-    if (price.date === today()) {
-      break;
+export const updateItem = async (itemData: ItemData): Promise<ItemData> => {
+  const dates = itemData.prices.map((price) => price.date);
+  if (dates.includes(today())) return itemData;
+  const yahooItem = new YahooItem({
+    janCode: itemData.janCode,
+    condition: itemData.condition,
+  });
+  const newItemData: ItemData = { ...itemData };
+  const yahooItemData = await yahooItem.fetchCheapestItem().catch((error) => {
+    if (error instanceof InventryError) {
+      logger.info("Item not found on Yahoo.");
+      return { url: "", price: null };
+    } else {
+      throw new HttpsError("internal", "Failed to fetch item data.");
     }
-    if (i === dbPrices.length - 1) {
-      const item = new YahooItem({
-        janCode: itemDb.janCode,
-        condition: itemDb.condition,
-      });
-      let newPrice: number | null;
-      try {
-        newPrice = await item.fetchPrice();
-        const url = await item.fetchUrl();
-        itemDb["url"] = url;
-      } catch (error) {
-        if (error instanceof InventryError) {
-          newPrice = null;
-          itemDb["url"] = "";
-        } else {
-          throw new HttpsError("internal", "Failed to fetch Price.");
-        }
-      }
-      itemDb.prices.push({ date: today(), value: newPrice });
-    }
-  }
-  return itemDb;
+  });
+  newItemData["url"] = yahooItemData.url;
+  newItemData.prices.push({ date: today(), value: yahooItemData.price });
+  return itemData;
 };

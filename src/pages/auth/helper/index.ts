@@ -5,17 +5,16 @@ import {
 } from "firebase/auth";
 import { setDoc, doc } from "firebase/firestore";
 import { db } from "@/firebase/init";
-import { Auth as firebaseAuth } from "firebase/auth";
+import { Auth as FirebaseAuth } from "firebase/auth";
 
 export class Auth {
-  auth: firebaseAuth;
+  auth: FirebaseAuth;
   constructor() {
     this.auth = getAuth();
   }
 
   async signup(email: string, password: string) {
     try {
-      console.log("before signup");
       const userCredential = await createUserWithEmailAndPassword(
         this.auth,
         email,
@@ -24,7 +23,6 @@ export class Auth {
       const userId = userCredential.user.uid;
       const userDocRef = doc(db, "users", userId);
       await setDoc(userDocRef, { itemIds: [] });
-      console.log("after signup");
       await this.login(email, password);
       return await Promise.resolve();
     } catch (error: any) {

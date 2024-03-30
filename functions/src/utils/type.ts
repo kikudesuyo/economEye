@@ -22,11 +22,13 @@ export type ClientParams = {
   condition: Condition;
 };
 
-export type ItemDb = {
+type ItemPriceValue = number | null;
+
+export type ItemData = {
   janCode: string;
   itemName: string;
   imageId: string;
   url: string;
-  prices: { date: string; value: number | null }[];
+  prices: { date: string; value: ItemPriceValue }[];
   condition?: Condition;
 };
