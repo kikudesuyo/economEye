@@ -1,11 +1,12 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   authenticate,
   isValidEmail,
   isValidPassword,
 } from "@/pages/auth/helper";
 import Button from "@/utils/components/Button";
-import { useNavigate } from "react-router-dom";
+import { PATHS } from "@/utils/helper/constant";
 
 const Signup = () => {
   const [email, setEmail] = useState<string>("");
@@ -62,7 +63,7 @@ const Signup = () => {
           }
           try {
             await authenticate(email, password);
-            navigate("/top");
+            navigate(PATHS.TOP);
           } catch (error) {
             alert("サインアップに失敗しました。もう一度お試しください。");
             throw new Error("signup failed");

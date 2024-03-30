@@ -1,7 +1,7 @@
 type Props = {
   label: string;
   className?: string;
-  func?: () => void;
+  func: () => void;
 };
 
 const Button = ({ label, className, func }: Props) => {

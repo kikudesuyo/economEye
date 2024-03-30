@@ -12,6 +12,7 @@ import { ClientItemDb } from "@/utils/helper/type";
 import { today } from "@/pages/item/helper/timeUtils";
 import { displayPriceDiffFromAverage } from "@/analysis/isOptimalValue";
 import ItemDetail from "./itemDetail";
+import { PATHS } from "@/utils/helper/constant";
 
 const ItemList = () => {
   const [dbData, setDbData] = useState<any>(null);
@@ -88,7 +89,7 @@ const ItemList = () => {
       <Button
         label="トップページに戻る"
         func={() => {
-          navigate("/top");
+          navigate(PATHS.TOP);
         }}
       />
       <Modal

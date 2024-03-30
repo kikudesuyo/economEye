@@ -6,9 +6,10 @@ import Login from "@/pages/auth/login/Login";
 import Signup from "@/pages/auth/signup/Signup";
 import "@/assets/styles/destyle.css";
 import RegisterItem from "@/pages/item/RegisterItem";
-import ItemList from "./pages/item/ItemList";
+import ItemList from "@/pages/item/ItemList";
 import Header from "@/utils/components/Header";
 import Footer from "@/utils/components/Footer";
+import { PATHS } from "@/utils/helper/constant";
 
 function App() {
   return (
@@ -16,12 +17,12 @@ function App() {
       <Router>
         <Header />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/top" element={<Top />} />
-          <Route path="/registerItem" element={<RegisterItem />} />
-          <Route path="/itemList" element={<ItemList />} />
+          <Route path={PATHS.HOME} element={<Home />} />
+          <Route path={PATHS.SIGNUP} element={<Signup />} />
+          <Route path={PATHS.LOGIN} element={<Login />} />
+          <Route path={PATHS.TOP} element={<Top />} />
+          <Route path={PATHS.REGISTER_ITEM} element={<RegisterItem />} />
+          <Route path={PATHS.ITEM_LIST} element={<ItemList />} />
         </Routes>
         <Footer />
       </Router>
