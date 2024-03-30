@@ -64,9 +64,9 @@ export class RegistrationValidator {
   }
 
   async checkItemLimit() {
-    if (!((await this.itemIds).length < 30)) {
+    if ((await this.itemIds).length >= 30) {
       throw new Error(
-        "登録できる商品数の上限に達しました。これ以上登録できません。"
+        "登録できる商品数の上限に達しています。これ以上登録できません。"
       );
     }
   }
