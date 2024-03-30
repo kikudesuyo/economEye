@@ -35,16 +35,13 @@ export class RegistrationValidator {
   }
 
   private isItemDuplicated(items: DocumentData[]) {
-    for (const item of items) {
-      if (
+    return items.some(
+      (item) =>
         item.janCode === this.inputData.janCode &&
         item.condition === this.inputData.condition
-      ) {
-        return true;
-      }
-    }
-    return false;
+    );
   }
+
   async checkItemDuplicated() {
     if ((await this.itemIds).length === 0) {
       return;
@@ -64,9 +61,9 @@ export class RegistrationValidator {
   }
 
   async checkItemLimit() {
-    if (!((await this.itemIds).length < 30)) {
+    if ((await this.itemIds).length >= 30) {
       throw new Error(
-        "登録できる商品数の上限に達しました。これ以上登録できません。"
+        "登録できる商品数の上限に達しています。これ以上登録できません。"
       );
     }
   }

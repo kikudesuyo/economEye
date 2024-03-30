@@ -14,14 +14,14 @@ export type ItemParams = {
   condition?: Condition;
 };
 
-export type NumberOrNull = number | null;
+export type ItemPriceValue = number | null;
 
 export interface ItemDb {
   condition?: Condition;
   imageId: string;
   itemName: string;
   janCode: string;
-  prices: { date: string; value: NumberOrNull }[];
+  prices: { date: string; value: ItemPriceValue }[];
   url: string;
 }
 

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Button from "@/utils/components/Button";
 import { login, isValidEmail, isValidPassword } from "@/pages/auth/helper";
 import { PATHS } from "@/utils/helper/constant";
-import padlock from "@/imgs/padlock.jpg";
+import padlock from "@/imgs/padlock.svg";
 import Main from "@/utils/components/Main";
 
 const Login = () => {
