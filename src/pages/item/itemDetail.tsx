@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { ref, getDownloadURL } from "firebase/storage";
 import { storage } from "@/firebase/init";
-import { ClientItemDb } from "@/utils/helper/type";
+import { UserItemData } from "@/utils/helper/type";
 import Button from "@/utils/components/Button";
 import { calcAverage } from "@/analysis/isOptimalValue";
 import { getPriceArray, getValueForDate } from "@/firebase/firestore/dbFetcher";
 import { today } from "@/pages/item/helper/timeUtils";
 
 type ItemDetailProps = {
-  item: ClientItemDb;
+  item: UserItemData;
   onClose: () => void;
 };
 

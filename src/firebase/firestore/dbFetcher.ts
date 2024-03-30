@@ -8,7 +8,7 @@ import {
 } from "firebase/firestore";
 
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { ClientItemDb, ItemDb, ItemPriceValue } from "@/utils/helper/type";
+import { UserItemData, ItemData, ItemPriceValue } from "@/utils/helper/type";
 import { db } from "@/firebase/init";
 
 export const fetchUserId = () => {
@@ -37,14 +37,14 @@ const fetchUserItemIds = async () => {
   }
 };
 
-export const fetchUserItems = async (): Promise<ClientItemDb[]> => {
+export const fetchUserItems = async (): Promise<UserItemData[]> => {
   try {
     const userItemIds = await fetchUserItemIds();
     const itemsRef = collection(db, "items");
     const itemQuery = query(itemsRef, where("__name__", "in", userItemIds));
     const itemSnapshot = await getDocs(itemQuery);
-    const userItems: ClientItemDb[] = itemSnapshot.docs.map((doc) => {
-      const data = doc.data() as ItemDb;
+    const userItems: UserItemData[] = itemSnapshot.docs.map((doc) => {
+      const data = doc.data() as ItemData;
       return {
         itemId: doc.id,
         ...data,
@@ -57,8 +57,8 @@ export const fetchUserItems = async (): Promise<ClientItemDb[]> => {
   }
 };
 
-export const getValueForDate = (itemDb: ItemDb, targetDate: string) => {
-  const prices = itemDb.prices;
+export const getValueForDate = (itemData: ItemData, targetDate: string) => {
+  const prices = itemData.prices;
   for (const price of prices) {
     if (price.date === targetDate) {
       return price.value;
@@ -72,8 +72,8 @@ interface PriceEntry {
   value: ItemPriceValue;
 }
 
-export const getPriceArray = (itemDb: ItemDb): ItemPriceValue[] => {
-  const prices = itemDb.prices;
+export const getPriceArray = (itemData: ItemData): ItemPriceValue[] => {
+  const prices = itemData.prices;
   const sortByDate = (a: PriceEntry, b: PriceEntry): number => {
     return new Date(a.date).getTime() - new Date(b.date).getTime();
   };

@@ -8,7 +8,7 @@ import {
 } from "@/firebase/firestore/dbFetcher";
 import { updateItem } from "@/firebase/functions/functionsHandler";
 import Button from "@/utils/components/Button";
-import { ClientItemDb } from "@/utils/helper/type";
+import { UserItemData } from "@/utils/helper/type";
 import { today } from "@/pages/item/helper/timeUtils";
 import { displayPriceDiffFromAverage } from "@/analysis/isOptimalValue";
 import ItemDetail from "./itemDetail";
@@ -16,9 +16,9 @@ import { PATHS } from "@/utils/helper/constant";
 import Main from "@/utils/components/Main";
 
 const ItemList = () => {
-  const [dbData, setDbData] = useState<any>(null);
+  const [ItemData, setItemData] = useState<any>(null);
   const [IsOpen, setIsOpen] = useState<boolean>(false);
-  const [SelectedItem, setSelectedItem] = useState<ClientItemDb | null>(null);
+  const [SelectedItem, setSelectedItem] = useState<UserItemData | null>(null);
   const navigate = useNavigate();
 
   Modal.setAppElement("#root");
@@ -27,7 +27,7 @@ const ItemList = () => {
     (async () => {
       try {
         const data = await fetchUserItems();
-        setDbData(data);
+        setItemData(data);
       } catch (error) {
         console.log(error);
       }
@@ -49,7 +49,7 @@ const ItemList = () => {
     };
   }, [IsOpen]);
 
-  const OpenModal = (item: ClientItemDb) => {
+  const OpenModal = (item: UserItemData) => {
     setSelectedItem(item);
     setIsOpen(true);
   };
@@ -62,8 +62,8 @@ const ItemList = () => {
   return (
     <Main style="my-8 gap-8">
       <div className="flex flex-wrap gap-4 justify-center">
-        {dbData &&
-          dbData.map((item: ClientItemDb, index: number) => (
+        {ItemData &&
+          ItemData.map((item: UserItemData, index: number) => (
             <div
               key={index}
               className="cursor-pointer flex flex-col items-center p-3 border-2 border-slate-300 gap-2 w-1/4 min-w-48"

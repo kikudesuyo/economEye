@@ -20,8 +20,8 @@ exports.updateItem = onCall(async () => {
   await Promise.all(
     itemSnapshot.docs.map(async (doc) => {
       const docId = doc.id;
-      const itemDb = doc.data() as ItemData;
-      const latestItem = await updateItem(itemDb);
+      const itemData = doc.data() as ItemData;
+      const latestItem = await updateItem(itemData);
       const docRef = db.collection("items").doc(docId);
       batch.update(docRef, latestItem);
     })

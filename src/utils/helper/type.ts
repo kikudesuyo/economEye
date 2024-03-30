@@ -16,7 +16,7 @@ export type ItemParams = {
 
 export type ItemPriceValue = number | null;
 
-export interface ItemDb {
+export interface ItemData {
   condition?: Condition;
   imageId: string;
   itemName: string;
@@ -25,6 +25,6 @@ export interface ItemDb {
   url: string;
 }
 
-export interface ClientItemDb extends ItemDb {
+export interface UserItemData extends ItemData {
   itemId: string;
 }
