@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "@/utils/components/Button";
 import { login, isValidEmail, isValidPassword } from "@/pages/auth/helper";
+import { PATHS } from "@/utils/helper/constant";
 import padlock from "@/imgs/padlock.jpg";
 
 const Login = () => {
@@ -47,7 +48,7 @@ const Login = () => {
           }
           try {
             await login(email, password);
-            navigate("/top");
+            navigate(PATHS.TOP);
           } catch (error) {
             alert("ログインに失敗しました。もう一度お試しください。");
             throw new Error("login failed");

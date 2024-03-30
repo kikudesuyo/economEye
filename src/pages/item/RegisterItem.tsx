@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { addNewItem } from "@/firebase/functions/functionsHandler";
-
 import Button from "@/utils/components/Button";
+import { PATHS } from "@/utils/helper/constant";
 
 const RegisterItem = () => {
   const [janCode, setJanCode] = useState<string>("4901777216884");
@@ -33,7 +33,7 @@ const RegisterItem = () => {
               itemName: itemName,
               condition: "new",
             });
-            navigate("/itemList");
+            navigate(PATHS.ITEM_LIST);
           }}
         />
       </div>

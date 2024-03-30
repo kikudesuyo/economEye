@@ -1,5 +1,6 @@
 import Button from "@/utils/components/Button";
 import { useNavigate } from "react-router-dom";
+import { PATHS } from "@/utils/helper/constant";
 
 const Top = () => {
   const navigate = useNavigate();
@@ -32,13 +33,13 @@ const Top = () => {
           <Button
             label="商品登録ページ"
             func={() => {
-              navigate("/registerItem");
+              navigate(PATHS.REGISTER_ITEM);
             }}
           />
           <Button
             label="商品一覧ページ"
             func={() => {
-              navigate("/itemList");
+              navigate(PATHS.ITEM_LIST);
             }}
           />
         </div>
