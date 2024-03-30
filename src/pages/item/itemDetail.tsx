@@ -34,46 +34,49 @@ const ItemDetail = ({ item, onClose }: ItemDetailProps) => {
   };
 
   return (
-    <div className="flex flex-col">
-      <div className="flex flex-row justify-start items-end mb-8">
-        <img src={item.imageId} className="w-20 h-20" alt="itemImage" />
-        <div className="flex flex-col ml-6 mb-2">
-          <div className="border-b">
-            <p className="font-bold text-sm">{item.itemName}</p>
+    <div className="flex flex-col gap-8 justify-between h-full">
+      <div className="flex flex-col gap-8">
+        <div className="flex items-end">
+          <img src={item.imageId} className="w-20 h-20" alt="itemImage" />
+          <div className="flex flex-col ml-6 mb-2">
+            <div className="border-b">
+              <p className="font-bold text-sm">{item.itemName}</p>
+            </div>
+          </div>
+        </div>
+        <div className="flex flex-col justify-between gap-4">
+          <div className="flex flex-row justify-between">
+            <p>今日の金額:</p>
+            <p>{todayPrice}円</p>
+          </div>
+          <div className="flex flex-row justify-between">
+            <p>普段の金額:</p>
+            <p>{averageValue}円</p>
+          </div>
+          <div className="flex flex-row justify-between">
+            <p>価格差:</p>
+            <p>{diffPrice()}円</p>
+          </div>
+          <div className="flex flex-row justify-between">
+            <p>URL:</p>
+            <a href={item.url} className="underline">
+              商品URLはこちら
+            </a>
+          </div>
+          <div className="flex flex-row justify-between">
+            <p>カテゴリ名</p>
+            <div className="flex flex-row items-center">
+              <img className="w-6 h-6 mr-2" src={img} alt="" />
+              <p className="text-right max-w-28">飲み物</p>{" "}
+            </div>
           </div>
         </div>
       </div>
-      <div className="flex flex-col justify-between gap-4">
-        <div className="flex flex-row justify-between">
-          <p>今日の金額:</p>
-          <p>{todayPrice}円</p>
-        </div>
-        <div className="flex flex-row justify-between">
-          <p>普段の金額:</p>
-          <p>{averageValue}円</p>
-        </div>
-        <div className="flex flex-row justify-between">
-          <p>価格差:</p>
-          <p>{diffPrice()}円</p>
-        </div>
-        <div className="flex flex-row justify-between">
-          <p>URL:</p>
-          <a href={item.url} className="underline">
-            商品URLはこちら
-          </a>
-        </div>
-        <div className="flex flex-row justify-between">
-          <p>カテゴリ名</p>
-          <div className="flex flex-row items-center">
-            <img className="w-6 h-6 mr-2" src={img} alt="" />
-            <p className="text-right max-w-28">飲み物</p>{" "}
-          </div>
-        </div>
-      </div>
-      <div className="flex flex-row justify-between absolute bottom-48 left-2 right-2">
-        <Button className="w-1/4" label="キャンセル" func={() => onClose()} />
+
+      <div className="flex flex-row justify-around">
+        <Button className="w-2/5" label="キャンセル" func={() => onClose()} />
         <Button
-          className="w-1/4"
+          className="w-2/5"
           label="更新"
           func={() => {
             console.log("更新ボタンが押されました");

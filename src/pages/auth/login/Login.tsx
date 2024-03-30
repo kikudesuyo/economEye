@@ -4,13 +4,14 @@ import Button from "@/utils/components/Button";
 import { login, isValidEmail, isValidPassword } from "@/pages/auth/helper";
 import { PATHS } from "@/utils/helper/constant";
 import padlock from "@/imgs/padlock.jpg";
+import Main from "@/utils/components/Main";
 
 const Login = () => {
   const [email, setEmail] = useState<string>("hogehoge@gmail.com");
   const [password, setPassword] = useState<string>("hogehoge");
   const navigate = useNavigate();
   return (
-    <div className="flex flex-col items-left w-80 mx-auto gap-8 py-8 text-left">
+    <Main style="gap-8 mt-8">
       <div className="flex flex-row items-center">
         <img className="w-14 h-14" src={padlock} alt="" />
         <h1 className="text-3xl">ログイン</h1>
@@ -37,6 +38,7 @@ const Login = () => {
       </div>
       <Button
         label="ログイン"
+        className="w-3/5 mx-auto"
         func={async () => {
           if (!isValidEmail(email)) {
             alert("正しいメールアドレスを入力してください。");
@@ -55,7 +57,7 @@ const Login = () => {
           }
         }}
       />
-    </div>
+    </Main>
   );
 };
 export default Login;

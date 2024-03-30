@@ -13,6 +13,7 @@ import { today } from "@/pages/item/helper/timeUtils";
 import { displayPriceDiffFromAverage } from "@/analysis/isOptimalValue";
 import ItemDetail from "./itemDetail";
 import { PATHS } from "@/utils/helper/constant";
+import Main from "@/utils/components/Main";
 
 const ItemList = () => {
   const [dbData, setDbData] = useState<any>(null);
@@ -59,16 +60,16 @@ const ItemList = () => {
   };
 
   return (
-    <div>
-      <div className="grid grid-cols-4 gap-4 mt-4 mx-4">
+    <Main style="my-8 gap-8">
+      <div className="flex flex-wrap gap-4 justify-center">
         {dbData &&
           dbData.map((item: ClientItemDb, index: number) => (
             <div
               key={index}
-              className="flex flex-col items-center p-3 border-2 border-slate-300 gap-2"
+              className="cursor-pointer flex flex-col items-center p-3 border-2 border-slate-300 gap-2 w-1/4 min-w-48"
               onClick={() => OpenModal(item)}
             >
-              <img src={item.imageId} alt="" />
+              <img src={item.imageId} alt="" className="w-1/3" />
               <p className="max-w-full truncate">{item.itemName}</p>
               <p>{getValueForDate(item, today())}円</p>
               <p>
@@ -82,12 +83,14 @@ const ItemList = () => {
       </div>
       <Button
         label="商品データの更新"
+        className="w-3/5 mx-auto"
         func={() => {
           updateItem();
         }}
       />
       <Button
         label="トップページに戻る"
+        className="w-3/5 mx-auto"
         func={() => {
           navigate(PATHS.TOP);
         }}
@@ -104,7 +107,7 @@ const ItemList = () => {
           <ItemDetail item={SelectedItem} onClose={CloseModal} />
         )}
       </Modal>
-    </div>
+    </Main>
   );
 };
 

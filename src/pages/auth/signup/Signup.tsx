@@ -7,6 +7,7 @@ import {
 } from "@/pages/auth/helper";
 import Button from "@/utils/components/Button";
 import { PATHS } from "@/utils/helper/constant";
+import Main from "@/utils/components/Main";
 
 const Signup = () => {
   const [email, setEmail] = useState<string>("");
@@ -14,7 +15,7 @@ const Signup = () => {
   const [confirmPassword, setConfirmPassword] = useState<string>("");
   const navigate = useNavigate();
   return (
-    <div className="flex flex-col items-left w-80 mx-auto gap-8 py-8 text-left">
+    <Main style="items-left gap-8 text-left mt-8">
       <h1 className="text-3xl">サインアップ</h1>
       <div className="flex flex-col gap-4">
         <a>メールアドレス</a>
@@ -48,6 +49,7 @@ const Signup = () => {
       </div>
       <Button
         label="登録"
+        className="w-3/5 mx-auto"
         func={async () => {
           if (!isValidEmail(email)) {
             alert("正しいメールアドレスを入力してください。");
@@ -70,7 +72,7 @@ const Signup = () => {
           }
         }}
       />
-    </div>
+    </Main>
   );
 };
 export default Signup;

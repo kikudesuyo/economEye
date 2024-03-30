@@ -5,7 +5,7 @@ import { PATHS } from "@/utils/helper/constant";
 const Header = () => {
   const navigate = useNavigate();
   return (
-    <header className="flex justify-between p-3 border-b border-black">
+    <header className="bg-white flex justify-between p-3 border-b border-black sticky top-0">
       <Link to="/" className="flex flex-col justify-center text-xl">
         economEye👀
       </Link>

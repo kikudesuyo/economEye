@@ -1,11 +1,12 @@
 import Button from "@/utils/components/Button";
 import { useNavigate } from "react-router-dom";
 import { PATHS } from "@/utils/helper/constant";
+import Main from "@/utils/components/Main";
 
 const Top = () => {
   const navigate = useNavigate();
   return (
-    <div className="flex flex-col w-80 mx-auto mt-3">
+    <Main style="mt-4">
       <div className="flex flex-col gap-6">
         <div>
           <h1 className="text-2xl font-bold">お知らせ</h1>
@@ -32,19 +33,21 @@ const Top = () => {
         <div className="flex flex-col mt-14 gap-6">
           <Button
             label="商品登録ページ"
+            className="w-3/5 mx-auto"
             func={() => {
               navigate(PATHS.REGISTER_ITEM);
             }}
           />
           <Button
             label="商品一覧ページ"
+            className="w-3/5 mx-auto"
             func={() => {
               navigate(PATHS.ITEM_LIST);
             }}
           />
         </div>
       </div>
-    </div>
+    </Main>
   );
 };
 

@@ -4,7 +4,7 @@ type Props = {
   func: () => void;
 };
 
-const Button = ({ label, className, func }: Props) => {
+const Button = ({ label, className = "", func }: Props) => {
   return (
     <button
       className={`bg-slate-300 px-4 py-3 rounded-xl text-center ${className}`}
