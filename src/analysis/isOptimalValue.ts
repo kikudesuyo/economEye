@@ -1,4 +1,4 @@
-import { ItemPriceValue } from "@/utils/helper/type";
+import { ItemPriceValue } from "@/utils/type";
 
 // const isOptimalValue = (prices: number[], DeadlineArrays: number) => {
 //   /**

@@ -7,13 +7,13 @@ import {
   getPriceArray,
 } from "@/firebase/firestore/dbFetcher";
 import { updateItem } from "@/firebase/functions/functionsHandler";
-import Button from "@/utils/components/Button";
-import { ClientItemDb } from "@/utils/helper/type";
+import Button from "@/components/Button";
+import { ClientItemDb } from "@/utils/type";
 import { today } from "@/pages/item/helper/timeUtils";
 import { displayPriceDiffFromAverage } from "@/analysis/isOptimalValue";
 import ItemDetail from "./itemDetail";
-import { PATHS } from "@/utils/helper/constant";
-import Main from "@/utils/components/Main";
+import { PATHS } from "@/utils/constant";
+import Main from "@/components/Main";
 
 const ItemList = () => {
   const [dbData, setDbData] = useState<any>(null);

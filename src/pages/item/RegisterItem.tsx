@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { addNewItem } from "@/firebase/functions/functionsHandler";
-import Button from "@/utils/components/Button";
-import { PATHS } from "@/utils/helper/constant";
-import Main from "@/utils/components/Main";
+import Button from "@/components/Button";
+import { PATHS } from "@/utils/constant";
+import Main from "@/components/Main";
+import Input from "@/components/Input";
 
 const RegisterItem = () => {
   const [janCode, setJanCode] = useState<string>("4901777216884");
@@ -12,19 +13,21 @@ const RegisterItem = () => {
   return (
     <Main>
       <div className="flex flex-col mt-20 gap-8">
-        <input
-          className="border-b-2 border-slate-300 outline-none w-3/5 mx-auto"
+        <Input
           type="text"
+          label="JANコード"
           placeholder="商品のJANコードを入力してください"
+          style="w-3/5 mx-auto"
           value={janCode}
-          onChange={(e) => setJanCode(e.target.value)}
+          handler={(e) => setJanCode(e.target.value)}
         />
-        <input
-          className="border-b-2 border-slate-300 outline-none w-3/5 mx-auto"
+        <Input
           type="text"
+          label="商品名"
           placeholder="商品名を入力してください"
+          style="w-3/5 mx-auto"
           value={itemName}
-          onChange={(e) => setItemName(e.target.value)}
+          handler={(e) => setItemName(e.target.value)}
         />
         <Button
           label="登録"

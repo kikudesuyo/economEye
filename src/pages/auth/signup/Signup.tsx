@@ -5,9 +5,10 @@ import {
   isValidEmail,
   isValidPassword,
 } from "@/pages/auth/helper";
-import Button from "@/utils/components/Button";
-import { PATHS } from "@/utils/helper/constant";
-import Main from "@/utils/components/Main";
+import Button from "@/components/Button";
+import { PATHS } from "@/utils/constant";
+import Main from "@/components/Main";
+import Input from "@/components/Input";
 
 const Signup = () => {
   const [email, setEmail] = useState<string>("");
@@ -17,36 +18,27 @@ const Signup = () => {
   return (
     <Main style="items-left gap-8 text-left mt-8">
       <h1 className="text-3xl">サインアップ</h1>
-      <div className="flex flex-col gap-4">
-        <a>メールアドレス</a>
-        <input
-          className="border-b-2 border-slate-300 outline-none"
-          type="email"
-          placeholder="例) economEye@gmail.com"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-      </div>
-      <div className="flex flex-col gap-4">
-        <a>パスワード(6文字以上)</a>
-        <input
-          className="border-b-2 border-slate-300 outline-none"
-          type="password"
-          placeholder="パスワードをを入力してください"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </div>
-      <div className="flex flex-col gap-4">
-        <a>パスワード確認用</a>
-        <input
-          className="border-b-2 border-slate-300 outline-none"
-          type="password"
-          placeholder="もう一度パスワードを入力してください"
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
-        />
-      </div>
+      <Input
+        type="email"
+        label="メールアドレス"
+        placeholder="例) economEye@gmail.com"
+        value={email}
+        handler={(e) => setEmail(e.target.value)}
+      />
+      <Input
+        type="password"
+        label="パスワード(6文字以上)"
+        placeholder="パスワードを入力してください"
+        value={password}
+        handler={(e) => setPassword(e.target.value)}
+      />
+      <Input
+        type="password"
+        label="パスワード確認用"
+        placeholder="もう一度パスワードを入力してください"
+        value={confirmPassword}
+        handler={(e) => setConfirmPassword(e.target.value)}
+      />
       <Button
         label="登録"
         style="w-3/5 mx-auto"

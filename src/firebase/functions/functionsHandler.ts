@@ -1,7 +1,7 @@
 import { FirebaseError } from "firebase/app";
 import { httpsCallable } from "firebase/functions";
 import { functions } from "@/firebase/init";
-import { ItemParams } from "@/utils/helper/type";
+import { ItemParams } from "@/utils/type";
 import {
   isValidName,
   isValidJanCode,

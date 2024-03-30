@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
-import Button from "@/utils/components/Button";
-import { PATHS } from "@/utils/helper/constant";
+import Button from "@/components/Button";
+import { PATHS } from "@/utils/constant";
 
 const Header = () => {
   const navigate = useNavigate();

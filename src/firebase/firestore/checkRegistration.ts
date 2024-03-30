@@ -14,7 +14,7 @@ import {
 } from "@/firebase/firestore/errorUtils";
 
 import { fetchUserId } from "@/firebase/firestore/dbFetcher";
-import { ItemParams } from "@/utils/helper/type";
+import { ItemParams } from "@/utils/type";
 import { db } from "@/firebase/init";
 
 export class RegistrationValidator {

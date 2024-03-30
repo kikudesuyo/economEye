@@ -1,7 +1,7 @@
-import Button from "@/utils/components/Button";
+import Button from "@/components/Button";
 import { useNavigate } from "react-router-dom";
-import { PATHS } from "@/utils/helper/constant";
-import Main from "@/utils/components/Main";
+import { PATHS } from "@/utils/constant";
+import Main from "@/components/Main";
 
 const Top = () => {
   const navigate = useNavigate();
