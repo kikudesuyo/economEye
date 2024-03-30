@@ -49,7 +49,7 @@ const Signup = () => {
       </div>
       <Button
         label="登録"
-        className="w-3/5 mx-auto"
+        style="w-3/5 mx-auto"
         func={async () => {
           if (!isValidEmail(email)) {
             alert("正しいメールアドレスを入力してください。");

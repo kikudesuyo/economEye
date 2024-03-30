@@ -74,9 +74,9 @@ const ItemDetail = ({ item, onClose }: ItemDetailProps) => {
       </div>
 
       <div className="flex flex-row justify-around">
-        <Button className="w-2/5" label="キャンセル" func={() => onClose()} />
+        <Button style="w-2/5" label="キャンセル" func={() => onClose()} />
         <Button
-          className="w-2/5"
+          style="w-2/5"
           label="更新"
           func={() => {
             console.log("更新ボタンが押されました");

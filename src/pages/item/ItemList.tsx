@@ -83,14 +83,14 @@ const ItemList = () => {
       </div>
       <Button
         label="商品データの更新"
-        className="w-3/5 mx-auto"
+        style="w-3/5 mx-auto"
         func={() => {
           updateItem();
         }}
       />
       <Button
         label="トップページに戻る"
-        className="w-3/5 mx-auto"
+        style="w-3/5 mx-auto"
         func={() => {
           navigate(PATHS.TOP);
         }}

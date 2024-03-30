@@ -33,14 +33,14 @@ const Top = () => {
         <div className="flex flex-col mt-14 gap-6">
           <Button
             label="商品登録ページ"
-            className="w-3/5 mx-auto"
+            style="w-3/5 mx-auto"
             func={() => {
               navigate(PATHS.REGISTER_ITEM);
             }}
           />
           <Button
             label="商品一覧ページ"
-            className="w-3/5 mx-auto"
+            style="w-3/5 mx-auto"
             func={() => {
               navigate(PATHS.ITEM_LIST);
             }}

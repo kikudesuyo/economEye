@@ -28,7 +28,7 @@ const RegisterItem = () => {
         />
         <Button
           label="登録"
-          className="w-3/5 mx-auto"
+          style="w-3/5 mx-auto"
           func={async () => {
             await addNewItem({
               janCode: janCode,

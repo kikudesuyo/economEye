@@ -38,7 +38,7 @@ const Login = () => {
       </div>
       <Button
         label="ログイン"
-        className="w-3/5 mx-auto"
+        style="w-3/5 mx-auto"
         func={async () => {
           if (!isValidEmail(email)) {
             alert("正しいメールアドレスを入力してください。");
