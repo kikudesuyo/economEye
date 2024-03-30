@@ -1,5 +1,5 @@
 import { fetchData } from "./item";
-import { InventryError } from "../helper/errorUtils";
+import { InventryError } from "../utils/customError";
 import { configDotenv } from "dotenv";
 import { AssignedParams, ReqParams } from "../utils/type";
 
