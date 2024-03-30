@@ -35,16 +35,13 @@ export class RegistrationValidator {
   }
 
   private isItemDuplicated(items: DocumentData[]) {
-    for (const item of items) {
-      if (
+    return items.some(
+      (item) =>
         item.janCode === this.inputData.janCode &&
         item.condition === this.inputData.condition
-      ) {
-        return true;
-      }
-    }
-    return false;
+    );
   }
+
   async checkItemDuplicated() {
     if ((await this.itemIds).length === 0) {
       return;
