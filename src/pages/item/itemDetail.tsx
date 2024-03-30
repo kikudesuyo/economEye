@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { ref, getDownloadURL } from "firebase/storage";
 import { storage } from "@/firebase/init";
-import { UserItemData } from "@/utils/helper/type";
-import Button from "@/utils/components/Button";
+import { UserItemData } from "@/utils/type";
+import Button from "@/components/Button";
 import { calcAverage } from "@/analysis/isOptimalValue";
 import { getPriceArray, getValueForDate } from "@/firebase/firestore/dbFetcher";
 import { today } from "@/pages/item/helper/timeUtils";
@@ -74,9 +74,9 @@ const ItemDetail = ({ item, onClose }: ItemDetailProps) => {
       </div>
 
       <div className="flex flex-row justify-around">
-        <Button className="w-2/5" label="キャンセル" func={() => onClose()} />
+        <Button style="w-2/5" label="キャンセル" func={() => onClose()} />
         <Button
-          className="w-2/5"
+          style="w-2/5"
           label="更新"
           func={() => {
             console.log("更新ボタンが押されました");

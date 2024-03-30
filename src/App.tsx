@@ -7,9 +7,9 @@ import Signup from "@/pages/auth/signup/Signup";
 import "@/assets/styles/destyle.css";
 import RegisterItem from "@/pages/item/RegisterItem";
 import ItemList from "@/pages/item/ItemList";
-import Header from "@/utils/components/Header";
-import Footer from "@/utils/components/Footer";
-import { PATHS } from "@/utils/helper/constant";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import { PATHS } from "@/utils/constant";
 
 function App() {
   return (

@@ -7,13 +7,13 @@ import {
   getPriceArray,
 } from "@/firebase/firestore/dbFetcher";
 import { updateItem } from "@/firebase/functions/functionsHandler";
-import Button from "@/utils/components/Button";
-import { UserItemData } from "@/utils/helper/type";
+import Button from "@/components/Button";
+import { UserItemData } from "@/utils/type";
 import { today } from "@/pages/item/helper/timeUtils";
 import { displayPriceDiffFromAverage } from "@/analysis/isOptimalValue";
 import ItemDetail from "./itemDetail";
-import { PATHS } from "@/utils/helper/constant";
-import Main from "@/utils/components/Main";
+import { PATHS } from "@/utils/constant";
+import Main from "@/components/Main";
 
 const ItemList = () => {
   const [ItemData, setItemData] = useState<any>(null);
@@ -83,14 +83,14 @@ const ItemList = () => {
       </div>
       <Button
         label="商品データの更新"
-        className="w-3/5 mx-auto"
+        style="w-3/5 mx-auto"
         func={() => {
           updateItem();
         }}
       />
       <Button
         label="トップページに戻る"
-        className="w-3/5 mx-auto"
+        style="w-3/5 mx-auto"
         func={() => {
           navigate(PATHS.TOP);
         }}

@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Button from "@/utils/components/Button";
+import Button from "@/components/Button";
+import { PATHS } from "@/utils/constant";
+import padlock from "@/assets/imgs/padlock.svg";
+import Main from "@/components/Main";
+import Input from "@/components/Input";
 import { isValidEmail, isValidPassword, Auth } from "@/pages/auth/helper";
-
-import { PATHS } from "@/utils/helper/constant";
-import padlock from "@/imgs/padlock.svg";
-import Main from "@/utils/components/Main";
 
 const Login = () => {
   const [email, setEmail] = useState<string>("hogehoge@gmail.com");
@@ -36,29 +36,23 @@ const Login = () => {
         <img className="w-14 h-14" src={padlock} alt="" />
         <h1 className="text-3xl">ログイン</h1>
       </div>
-      <div className="flex flex-col gap-4">
-        <p>メールアドレス</p>
-        <input
-          className="border-b-2 border-slate-300 outline-none"
-          type="email"
-          placeholder="例) economEye@gmail.com"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-      </div>
-      <div className="flex flex-col gap-4">
-        <p>パスワード(6文字以上)</p>
-        <input
-          className="border-b-2 border-slate-300 outline-none"
-          type="password"
-          placeholder="パスワードを入力してください"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </div>
+      <Input
+        type="email"
+        label="メールアドレス"
+        placeholder="例) economEye@gmail.com"
+        value={email}
+        handler={(e) => setEmail(e.target.value)}
+      />
+      <Input
+        type="password"
+        label="パスワード"
+        placeholder="パスワードを入力してください"
+        value={password}
+        handler={(e) => setPassword(e.target.value)}
+      />
       <Button
         label="ログイン"
-        className="w-3/5 mx-auto"
+        style="w-3/5 mx-auto"
         func={async () => {
           await handleLogin();
         }}

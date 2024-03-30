@@ -8,7 +8,7 @@ import {
 } from "firebase/firestore";
 
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { UserItemData, ItemData, ItemPriceValue } from "@/utils/helper/type";
+import { UserItemData, ItemData, ItemPriceValue } from "@/utils/type";
 import { db } from "@/firebase/init";
 
 export const fetchUserId = () => {
