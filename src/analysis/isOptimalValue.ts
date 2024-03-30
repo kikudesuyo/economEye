@@ -1,4 +1,4 @@
-import { NumberOrNull } from "@/utils/helper/type";
+import { ItemPriceValue } from "@/utils/helper/type";
 
 // const isOptimalValue = (prices: number[], DeadlineArrays: number) => {
 //   /**
@@ -17,7 +17,7 @@ import { NumberOrNull } from "@/utils/helper/type";
 //   return prices.reduce((acc, cur) => acc + cur, 0) / prices.length;
 // }
 
-export const calcAverage = (prices: NumberOrNull[]) => {
+export const calcAverage = (prices: ItemPriceValue[]) => {
   const validPrices = prices.filter((price) => price !== null) as number[];
   const sum = validPrices.reduce((acc, cur) => acc + cur, 0);
   const average = sum / validPrices.length;
@@ -25,8 +25,8 @@ export const calcAverage = (prices: NumberOrNull[]) => {
 };
 
 export const displayPriceDiffFromAverage = (
-  prices: NumberOrNull[],
-  price: NumberOrNull
+  prices: ItemPriceValue[],
+  price: ItemPriceValue
 ) => {
   const average = calcAverage(prices);
   if (price === null) {
