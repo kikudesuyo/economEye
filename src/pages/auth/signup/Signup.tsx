@@ -1,10 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  authenticate,
-  isValidEmail,
-  isValidPassword,
-} from "@/pages/auth/helper";
+import { Auth, isValidEmail, isValidPassword } from "@/pages/auth/helper";
 import Button from "@/utils/components/Button";
 import { PATHS } from "@/utils/helper/constant";
 import Main from "@/utils/components/Main";
@@ -28,7 +24,8 @@ const Signup = () => {
       throw new Error("password does not match");
     }
     try {
-      await authenticate(email, password);
+      const auth = new Auth();
+      await auth.signup(email, password);
       navigate(PATHS.TOP);
     } catch (error) {
       alert("サインアップに失敗しました。もう一度お試しください。");

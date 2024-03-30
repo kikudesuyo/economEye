@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "@/utils/components/Button";
-import { login, isValidEmail, isValidPassword } from "@/pages/auth/helper";
+import { isValidEmail, isValidPassword, Auth } from "@/pages/auth/helper";
+
 import { PATHS } from "@/utils/helper/constant";
 import padlock from "@/imgs/padlock.svg";
 import Main from "@/utils/components/Main";
@@ -20,7 +21,9 @@ const Login = () => {
       throw new Error("invalid password");
     }
     try {
-      await login(email, password);
+      const auth = new Auth();
+      auth.login(email, password);
+      // await login(email, password);
       navigate(PATHS.TOP);
     } catch (error) {
       alert("ログインに失敗しました。もう一度お試しください。");
