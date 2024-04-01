@@ -20,15 +20,12 @@ const Login = () => {
       alert("パスワードは6文字以上で入力してください。");
       throw new Error("invalid password");
     }
-    try {
-      const auth = new Auth();
-      auth.login(email, password);
-      // await login(email, password);
-      navigate(PATHS.TOP);
-    } catch (error) {
+    const auth = new Auth();
+    await auth.login(email, password).catch(() => {
       alert("ログインに失敗しました。もう一度お試しください。");
       throw new Error("login failed");
-    }
+    });
+    navigate(PATHS.TOP);
   };
   return (
     <Main style="gap-8 mt-8">
