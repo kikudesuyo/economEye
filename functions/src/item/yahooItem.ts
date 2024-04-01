@@ -8,8 +8,15 @@ configDotenv();
 type YahooItemData = {
   hits: {
     price: number;
+    point: {
+      amount: number;
+      times: number;
+      premiumAmount: number;
+      premiumTimes: number;
+    };
     image: { small: string; medium: string };
     url: string;
+    shipping: { code: number; name: string };
   }[];
 };
 
@@ -43,6 +50,7 @@ class YahooItem {
       results: 1,
       jan_code: assignedParams.janCode,
       condition: assignedParams.condition,
+      shipping: "free",
     };
     return formattedParams;
   }

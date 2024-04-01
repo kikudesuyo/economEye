@@ -1,5 +1,6 @@
 type Condition = "used" | "new" | "both";
 type Sort = "+price";
+type Shipping = "free" | "conditional_free";
 
 //for Yahoo API
 export type AssignedParams = {
@@ -14,6 +15,7 @@ export type ReqParams = {
   results: number;
   jan_code: string;
   condition?: Condition;
+  shipping: Shipping;
 };
 
 export type ClientParams = {
