@@ -5,7 +5,7 @@ import { UserItemData } from "@/utils/type";
 import Button from "@/components/Button";
 import { calcAverage } from "@/analysis/isOptimalValue";
 import { getPriceArray, getValueForDate } from "@/firebase/firestore/dbFetcher";
-import { today } from "@/pages/item/helper/timeUtils";
+import { today } from "@/utils/timeUtils";
 
 type ItemDetailProps = {
   item: UserItemData;

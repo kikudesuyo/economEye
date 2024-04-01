@@ -9,7 +9,7 @@ import {
 import { updateItem } from "@/firebase/functions/functionsHandler";
 import Button from "@/components/Button";
 import { UserItemData } from "@/utils/type";
-import { today } from "@/pages/item/helper/timeUtils";
+import { today } from "@/utils/timeUtils";
 import { displayPriceDiffFromAverage } from "@/analysis/isOptimalValue";
 import ItemDetail from "./itemDetail";
 import { PATHS } from "@/utils/constant";
