@@ -1,13 +1,13 @@
 type Condition = "used" | "new" | "both";
 type Sort = "+price";
 
-//for Yahoo API
+// for Yahoo API
 export type AssignedParams = {
   janCode: string;
   condition?: Condition;
 };
 
-//for Yahoo API
+// for Yahoo API
 export type ReqParams = {
   appid: string;
   sort: Sort;

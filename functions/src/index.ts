@@ -2,8 +2,7 @@ import { onCall, HttpsError } from "firebase-functions/v2/https";
 import { today } from "./utils/time";
 import { ClientParams, ItemData } from "./utils/type";
 import { logger } from "firebase-functions";
-import { fetchItemData, setData, updateItem } from "./helper/db";
-import { db } from "./helper/db";
+import { fetchItemData, setData, updateItem, db } from "./helper/db";
 
 exports.registerNewItem = onCall(async (request: any) => {
   const uid = request.auth.uid;
