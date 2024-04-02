@@ -27,6 +27,10 @@ const Top = () => {
     })();
   }, []);
 
+  const isExistUserItem = () => {
+    return ItemData.length > 0;
+  };
+
   const recommendedItems = () => {
     const recommendedItems = ItemData.filter((item: UserItemData) => {
       const averageValue = calcAverage(getPriceArray(item));
@@ -54,7 +58,13 @@ const Top = () => {
         <div>
           <h2 className="text-2xl font-bold">おすすめ</h2>
           <div className="flex flex-col border-2 p-5 gap-2">
-            {recommendedItems().length === 0 && (
+            {!isExistUserItem() && (
+              <div className="flex flex-col text-center">
+                <p>商品が登録されていません。</p>
+                <p>商品登録ページで登録しましょう!</p>
+              </div>
+            )}
+            {isExistUserItem() && recommendedItems().length === 0 && (
               <div className="flex flex-col text-center gap-4">
                 <p>おすすめ商品はありません</p>
                 <p>商品登録をして安くなるまで待ちましょう</p>
