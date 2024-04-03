@@ -10,10 +10,10 @@ import { updateItem } from "@/firebase/functions/functionsHandler";
 import Button from "@/components/Button";
 import { UserItemData } from "@/utils/type";
 import { today } from "@/utils/timeUtils";
-import { displayPriceDiffFromAverage } from "@/analysis/isOptimalValue";
 import ItemDetail from "./itemDetail";
 import { PATHS } from "@/utils/constant";
 import Main from "@/components/Main";
+import DiffFromAverage from "@/components/priceResult/DiffFromAverage";
 
 const ItemList = () => {
   const [ItemData, setItemData] = useState<any>(null);
@@ -71,13 +71,14 @@ const ItemList = () => {
             >
               <img src={item.imageId} alt="" className="w-1/3" />
               <p className="max-w-full truncate">{item.itemName}</p>
-              <p>{getValueForDate(item, today())}円</p>
-              <p>
-                {displayPriceDiffFromAverage(
-                  getPriceArray(item),
-                  getValueForDate(item, today())
-                )}
+              <p className="max-w-full truncate">
+                {getValueForDate(item, today())}円
               </p>
+              <DiffFromAverage
+                prices={getPriceArray(item)}
+                price={getValueForDate(item, today())}
+                style="text-sm"
+              />
             </div>
           ))}
       </div>

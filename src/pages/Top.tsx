@@ -6,7 +6,7 @@ import {
   getValueForDate,
   getPriceArray,
 } from "@/firebase/firestore/dbFetcher";
-import { calcAverage } from "@/analysis/isOptimalValue";
+import { calcAverage } from "@/analysis/calcValue";
 import { PATHS } from "@/utils/constant";
 import { today } from "@/utils/timeUtils";
 import Main from "@/components/Main";

@@ -3,9 +3,10 @@ import { ref, getDownloadURL } from "firebase/storage";
 import { storage } from "@/firebase/init";
 import { UserItemData } from "@/utils/type";
 import Button from "@/components/Button";
-import { calcAverage } from "@/analysis/isOptimalValue";
 import { getPriceArray, getValueForDate } from "@/firebase/firestore/dbFetcher";
 import { today } from "@/utils/timeUtils";
+import DiffFromAverage from "@/components/priceResult/DiffFromAverage";
+import { formattedAverage } from "@/analysis/calcValue";
 
 type ItemDetailProps = {
   item: UserItemData;
@@ -18,7 +19,7 @@ const ItemDetail = ({ item, onClose }: ItemDetailProps) => {
     return null;
   }
   const todayPrice = getValueForDate(item, today());
-  const averageValue = calcAverage(getPriceArray(item));
+  const averagePrice = formattedAverage(getPriceArray(item));
   const storageRef = ref(
     storage,
     "gs://economeye-d5146.appspot.com/tags/red.svg"
@@ -26,13 +27,6 @@ const ItemDetail = ({ item, onClose }: ItemDetailProps) => {
   getDownloadURL(storageRef).then((url) => {
     setImg(url);
   });
-  const diffPrice = () => {
-    if (todayPrice === null) {
-      return "価格を取得できませんでした";
-    }
-    return todayPrice - calcAverage(getPriceArray(item));
-  };
-
   return (
     <div className="flex flex-col gap-8 justify-between h-full">
       <div className="flex flex-col gap-8">
@@ -51,11 +45,15 @@ const ItemDetail = ({ item, onClose }: ItemDetailProps) => {
           </div>
           <div className="flex flex-row justify-between">
             <p>普段の金額:</p>
-            <p>{averageValue}円</p>
+            <p>{averagePrice}円</p>
           </div>
           <div className="flex flex-row justify-between">
             <p>価格差:</p>
-            <p>{diffPrice()}円</p>
+            <DiffFromAverage
+              style="text-right"
+              prices={getPriceArray(item)}
+              price={todayPrice}
+            />
           </div>
           <div className="flex flex-row justify-between">
             <p>URL:</p>
