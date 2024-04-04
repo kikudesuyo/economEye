@@ -4,9 +4,11 @@ import { storage } from "@/firebase/init";
 import { UserItemData } from "@/utils/type";
 import Button from "@/components/Button";
 import { getPriceArray, getValueForDate } from "@/firebase/firestore/dbFetcher";
+import { DataUpdater } from "@/firebase/firestore/updateItem";
 import { today } from "@/utils/timeUtils";
 import DiffFromAverage from "@/components/priceResult/DiffFromAverage";
 import { formattedAverage } from "@/analysis/calcValue";
+import Input from "@/components/Input";
 
 type ItemDetailProps = {
   item: UserItemData;
@@ -14,6 +16,7 @@ type ItemDetailProps = {
 };
 
 const ItemDetail = ({ item, onClose }: ItemDetailProps) => {
+  const [itemName, setItemName] = useState<string>(item.itemName);
   const [img, setImg] = useState<string>("");
   if (!item) {
     return null;
@@ -27,20 +30,29 @@ const ItemDetail = ({ item, onClose }: ItemDetailProps) => {
   getDownloadURL(storageRef).then((url) => {
     setImg(url);
   });
+
+  const updateItemName = async () => {
+    const updater = new DataUpdater("items", item.itemId);
+    await updater.updatePartialData({ itemName: itemName });
+  };
+
   return (
     <div className="flex flex-col gap-8 justify-between h-full">
       <div className="flex flex-col gap-8">
-        <div className="flex items-end">
+        <div className="flex items-center justify-between border-b-2 border-stone-300">
           <img src={item.imageId} className="w-20 h-20" alt="itemImage" />
-          <div className="flex flex-col ml-6 mb-2">
-            <div className="border-b">
-              <p className="font-bold text-sm">{item.itemName}</p>
-            </div>
-          </div>
+          <Input
+            handler={(e) => setItemName(e.target.value)}
+            label="商品名:"
+            placeholder="商品名を入力してください"
+            style="flex flex-row gap-4"
+            type="text"
+            value={itemName}
+          />
         </div>
         <div className="flex flex-col justify-between gap-4">
           <div className="flex flex-row justify-between">
-            <p>今日の金額:</p>
+            <p className="cursor-auto">今日の金額:</p>
             <p>{todayPrice}円</p>
           </div>
           <div className="flex flex-row justify-between">
@@ -76,8 +88,9 @@ const ItemDetail = ({ item, onClose }: ItemDetailProps) => {
         <Button
           style="w-2/5"
           label="更新"
-          func={() => {
-            console.log("更新ボタンが押されました");
+          func={async () => {
+            await updateItemName();
+            onClose();
           }}
         />
       </div>

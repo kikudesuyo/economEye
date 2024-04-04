@@ -4,8 +4,8 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { setDoc, doc } from "firebase/firestore";
-import { db } from "@/firebase/init";
 import { Auth as FirebaseAuth } from "firebase/auth";
+import { db } from "@/firebase/init";
 
 export class Auth {
   auth: FirebaseAuth;

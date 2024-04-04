@@ -10,7 +10,7 @@ import { updateItem } from "@/firebase/functions/functionsHandler";
 import Button from "@/components/Button";
 import { UserItemData } from "@/utils/type";
 import { today } from "@/utils/timeUtils";
-import ItemDetail from "./itemDetail";
+import ItemDetail from "@/pages/item/itemDetail";
 import { PATHS } from "@/utils/constant";
 import Main from "@/components/Main";
 import DiffFromAverage from "@/components/priceResult/DiffFromAverage";

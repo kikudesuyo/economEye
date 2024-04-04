@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import Button from "@/components/Button";
 import { useNavigate } from "react-router-dom";
 import {
   fetchUserItems,
@@ -9,8 +8,9 @@ import {
 import { calcAverage } from "@/analysis/calcValue";
 import { PATHS } from "@/utils/constant";
 import { today } from "@/utils/timeUtils";
-import Main from "@/components/Main";
 import { UserItemData } from "@/utils/type";
+import Button from "@/components/Button";
+import Main from "@/components/Main";
 
 const Top = () => {
   const [ItemData, setItemData] = useState<UserItemData[]>([]);
