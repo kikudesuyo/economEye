@@ -11,7 +11,7 @@ import { today } from "@/utils/timeUtils";
 import { UserItemData } from "@/utils/type";
 import Button from "@/components/Button";
 import Main from "@/components/Main";
-import DiffFromAverage from "@/components/priceResult/DiffFromAverage";
+import DiffFromAverage from "@/pages/item/DiffFromAverage";
 
 const Top = () => {
   const [ItemData, setItemData] = useState<UserItemData[]>([]);
