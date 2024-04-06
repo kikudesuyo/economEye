@@ -78,6 +78,6 @@ export const getPriceArray = (itemData: ItemData): ItemPriceValue[] => {
     return new Date(a.date).getTime() - new Date(b.date).getTime();
   };
   prices.sort(sortByDate);
-  let values: ItemPriceValue[] = prices.map((entry) => entry.value);
+  const values: ItemPriceValue[] = prices.map((entry) => entry.value);
   return values;
 };

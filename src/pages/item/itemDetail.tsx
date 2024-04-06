@@ -3,9 +3,13 @@ import { ref, getDownloadURL } from "firebase/storage";
 import { storage } from "@/firebase/init";
 import { UserItemData } from "@/utils/type";
 import Button from "@/components/Button";
-import { calcAverage } from "@/analysis/isOptimalValue";
 import { getPriceArray, getValueForDate } from "@/firebase/firestore/dbFetcher";
-import { today } from "@/pages/item/helper/timeUtils";
+import { DataUpdater } from "@/firebase/firestore/updateItem";
+import { today } from "@/utils/timeUtils";
+import DiffFromAverage from "@/pages/item/DiffFromAverage";
+import { formattedAverage } from "@/calculation/calcValue";
+import Input from "@/components/Input";
+import Row from "@/pages/item/Row";
 
 type ItemDetailProps = {
   item: UserItemData;
@@ -13,12 +17,13 @@ type ItemDetailProps = {
 };
 
 const ItemDetail = ({ item, onClose }: ItemDetailProps) => {
+  const [itemName, setItemName] = useState<string>(item.itemName);
   const [img, setImg] = useState<string>("");
   if (!item) {
     return null;
   }
   const todayPrice = getValueForDate(item, today());
-  const averageValue = calcAverage(getPriceArray(item));
+  const averagePrice = formattedAverage(getPriceArray(item));
   const storageRef = ref(
     storage,
     "gs://economeye-d5146.appspot.com/tags/red.svg"
@@ -26,50 +31,52 @@ const ItemDetail = ({ item, onClose }: ItemDetailProps) => {
   getDownloadURL(storageRef).then((url) => {
     setImg(url);
   });
-  const diffPrice = () => {
-    if (todayPrice === null) {
-      return "価格を取得できませんでした";
-    }
-    return todayPrice - calcAverage(getPriceArray(item));
+
+  const updateItemName = async () => {
+    const updater = new DataUpdater("items", item.itemId);
+    await updater.updatePartialData({ itemName: itemName });
   };
 
   return (
-    <div className="flex flex-col gap-8 justify-between h-full">
+    <div className="flex h-full flex-col justify-between gap-8">
       <div className="flex flex-col gap-8">
-        <div className="flex items-end">
-          <img src={item.imageId} className="w-20 h-20" alt="itemImage" />
-          <div className="flex flex-col ml-6 mb-2">
-            <div className="border-b">
-              <p className="font-bold text-sm">{item.itemName}</p>
-            </div>
-          </div>
+        <div className="flex items-center justify-between border-b-2 border-stone-300">
+          <img src={item.imageId} className="size-20 " alt="itemImage" />
+          <Input
+            handler={(e) => setItemName(e.target.value)}
+            containerStyle="text-2xl items-center"
+            label="商品名:"
+            labelStyle="text-xl"
+            placeholder="商品名を入力してください"
+            type="text"
+            value={itemName}
+          />
         </div>
         <div className="flex flex-col justify-between gap-4">
-          <div className="flex flex-row justify-between">
-            <p>今日の金額:</p>
+          <Row label="今日の金額:">
             <p>{todayPrice}円</p>
-          </div>
-          <div className="flex flex-row justify-between">
-            <p>普段の金額:</p>
-            <p>{averageValue}円</p>
-          </div>
-          <div className="flex flex-row justify-between">
-            <p>価格差:</p>
-            <p>{diffPrice()}円</p>
-          </div>
-          <div className="flex flex-row justify-between">
-            <p>URL:</p>
+          </Row>
+          <Row label="普段の金額:">
+            <p>{averagePrice}円</p>
+          </Row>
+          <Row label="価格差:">
+            <DiffFromAverage
+              style="text-right"
+              prices={getPriceArray(item)}
+              price={todayPrice}
+            />
+          </Row>
+          <Row label="URL:">
             <a href={item.url} className="underline">
               商品URLはこちら
             </a>
-          </div>
-          <div className="flex flex-row justify-between">
-            <p>カテゴリ名</p>
-            <div className="flex flex-row items-center">
-              <img className="w-6 h-6 mr-2" src={img} alt="" />
-              <p className="text-right max-w-28">飲み物</p>{" "}
+          </Row>
+          <Row label="カテゴリ名:">
+            <div className="flex items-center gap-1">
+              <img className="size-6" src={img} alt="" />
+              <p>飲み物</p>
             </div>
-          </div>
+          </Row>
         </div>
       </div>
 
@@ -78,8 +85,9 @@ const ItemDetail = ({ item, onClose }: ItemDetailProps) => {
         <Button
           style="w-2/5"
           label="更新"
-          func={() => {
-            console.log("更新ボタンが押されました");
+          func={async () => {
+            await updateItemName();
+            onClose();
           }}
         />
       </div>

@@ -5,7 +5,7 @@ type Props = {
 
 const Main = ({ children, style = "" }: Props) => {
   return (
-    <main className={`flex flex-col flex-1 mx-auto w-4/5 ${style}`}>
+    <main className={`mx-auto flex w-4/5 flex-1 flex-col ${style}`}>
       {children}
     </main>
   );

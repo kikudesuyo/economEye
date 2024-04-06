@@ -1,5 +1,5 @@
 module.exports = {
-  root: false,
+  root: true,
   env: {
     es6: true,
     node: true,
@@ -27,5 +27,6 @@ module.exports = {
     "import/no-unresolved": 0,
     indent: ["error", 2],
     "valid-jsdoc": 1, // Ensure JSDoc comments are valid (off by default)
+    "require-jsdoc": 0,
   },
 };

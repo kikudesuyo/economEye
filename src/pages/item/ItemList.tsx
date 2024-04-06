@@ -9,14 +9,14 @@ import {
 import { updateItem } from "@/firebase/functions/functionsHandler";
 import Button from "@/components/Button";
 import { UserItemData } from "@/utils/type";
-import { today } from "@/pages/item/helper/timeUtils";
-import { displayPriceDiffFromAverage } from "@/analysis/isOptimalValue";
-import ItemDetail from "./itemDetail";
+import { today } from "@/utils/timeUtils";
+import ItemDetail from "@/pages/item/ItemDetail";
 import { PATHS } from "@/utils/constant";
 import Main from "@/components/Main";
+import DiffFromAverage from "@/pages/item/DiffFromAverage";
 
 const ItemList = () => {
-  const [ItemData, setItemData] = useState<any>(null);
+  const [ItemData, setItemData] = useState<UserItemData[] | null>(null);
   const [IsOpen, setIsOpen] = useState<boolean>(false);
   const [SelectedItem, setSelectedItem] = useState<UserItemData | null>(null);
   const navigate = useNavigate();
@@ -61,23 +61,24 @@ const ItemList = () => {
 
   return (
     <Main style="my-8 gap-8">
-      <div className="flex flex-wrap gap-4 justify-center">
+      <div className="flex flex-wrap justify-center gap-4 ">
         {ItemData &&
           ItemData.map((item: UserItemData, index: number) => (
             <div
               key={index}
-              className="cursor-pointer flex flex-col items-center p-3 border-2 border-slate-300 gap-2 w-1/4 min-w-48"
+              className="flex w-1/4 min-w-48 cursor-pointer flex-col items-center gap-2 border-2 border-slate-300 p-3"
               onClick={() => OpenModal(item)}
             >
               <img src={item.imageId} alt="" className="w-1/3" />
               <p className="max-w-full truncate">{item.itemName}</p>
-              <p>{getValueForDate(item, today())}円</p>
-              <p>
-                {displayPriceDiffFromAverage(
-                  getPriceArray(item),
-                  getValueForDate(item, today())
-                )}
+              <p className="max-w-full truncate">
+                {getValueForDate(item, today())}円
               </p>
+              <DiffFromAverage
+                prices={getPriceArray(item)}
+                price={getValueForDate(item, today())}
+                style="text-sm"
+              />
             </div>
           ))}
       </div>
@@ -99,7 +100,7 @@ const ItemList = () => {
         style={{
           overlay: { backgroundColor: "rgba(0,0,0,0.5)" },
         }}
-        className="ounded-lg bg-white w-11/12 h-3/5 mx-auto mt-20 p-4 rounded-3xl"
+        className="mx-auto mt-20 h-3/5 w-11/12 rounded-3xl bg-white p-4"
         isOpen={IsOpen}
         onRequestClose={CloseModal}
       >

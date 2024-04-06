@@ -7,7 +7,7 @@ type Props = {
 const Button = ({ label, style = "", func }: Props) => {
   return (
     <button
-      className={`bg-slate-300 px-4 py-3 rounded-xl text-center ${style}`}
+      className={`rounded-xl bg-slate-300 px-4 py-3 text-center ${style}`}
       onClick={func}
     >
       {label}

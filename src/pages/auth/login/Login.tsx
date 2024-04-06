@@ -20,26 +20,24 @@ const Login = () => {
       alert("パスワードは6文字以上で入力してください。");
       throw new Error("invalid password");
     }
-    try {
-      const auth = new Auth();
-      auth.login(email, password);
-      // await login(email, password);
-      navigate(PATHS.TOP);
-    } catch (error) {
+    const auth = new Auth();
+    await auth.login(email, password).catch(() => {
       alert("ログインに失敗しました。もう一度お試しください。");
       throw new Error("login failed");
-    }
+    });
+    navigate(PATHS.TOP);
   };
   return (
     <Main style="gap-8 mt-8">
       <div className="flex flex-row items-center">
-        <img className="w-14 h-14" src={padlock} alt="" />
+        <img className="size-14" src={padlock} alt="" />
         <h1 className="text-3xl">ログイン</h1>
       </div>
       <Input
         type="email"
         label="メールアドレス"
         placeholder="例) economEye@gmail.com"
+        containerStyle="flex-col"
         value={email}
         handler={(e) => setEmail(e.target.value)}
       />
@@ -47,6 +45,7 @@ const Login = () => {
         type="password"
         label="パスワード"
         placeholder="パスワードを入力してください"
+        containerStyle="flex-col"
         value={password}
         handler={(e) => setPassword(e.target.value)}
       />
