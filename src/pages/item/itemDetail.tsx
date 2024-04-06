@@ -7,7 +7,7 @@ import { getPriceArray, getValueForDate } from "@/firebase/firestore/dbFetcher";
 import { DataUpdater } from "@/firebase/firestore/updateItem";
 import { today } from "@/utils/timeUtils";
 import DiffFromAverage from "@/pages/item/DiffFromAverage";
-import { formattedAverage } from "@/analysis/calcValue";
+import { formattedAverage } from "@/calculation/calcValue";
 import Input from "@/components/Input";
 import Row from "@/pages/item/Row";
 

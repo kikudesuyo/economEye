@@ -1,4 +1,4 @@
-import { calcPriceDiffFromAverage } from "@/analysis/calcValue";
+import { calcPriceDiffFromAverage } from "@/calculation/calcValue";
 import { ItemPriceValue } from "@/utils/type";
 
 type Props = {

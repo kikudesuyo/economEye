@@ -1,6 +1,6 @@
 import { ItemPriceValue } from "@/utils/type";
 
-export const formatValue = (value: number): number=> {
+export const formatValue = (value: number): number => {
   return Math.round(value);
 };
 
@@ -14,7 +14,7 @@ export const calcAverage = (prices: ItemPriceValue[]) => {
 export const formattedAverage = (prices: ItemPriceValue[]) => {
   const average = calcAverage(prices);
   return formatValue(average);
-}
+};
 
 export const calcPriceDiffFromAverage = (
   prices: ItemPriceValue[],
@@ -24,5 +24,4 @@ export const calcPriceDiffFromAverage = (
   const formattedAverage = formatValue(average);
   if (price === null) return null;
   return price - formattedAverage;
-}
-
+};
