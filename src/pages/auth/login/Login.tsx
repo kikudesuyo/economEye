@@ -30,14 +30,14 @@ const Login = () => {
   return (
     <Main style="gap-8 mt-8">
       <div className="flex flex-row items-center">
-        <img className="w-14 h-14" src={padlock} alt="" />
+        <img className="size-14" src={padlock} alt="" />
         <h1 className="text-3xl">ログイン</h1>
       </div>
       <Input
         type="email"
         label="メールアドレス"
         placeholder="例) economEye@gmail.com"
-        style="flex flex-col gap-4"
+        style="flex-col"
         value={email}
         handler={(e) => setEmail(e.target.value)}
       />
@@ -45,7 +45,7 @@ const Login = () => {
         type="password"
         label="パスワード"
         placeholder="パスワードを入力してください"
-        style="flex flex-col gap-4"
+        style="flex-col"
         value={password}
         handler={(e) => setPassword(e.target.value)}
       />
