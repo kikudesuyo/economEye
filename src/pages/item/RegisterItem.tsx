@@ -17,7 +17,7 @@ const RegisterItem = () => {
           type="text"
           label="JANコード"
           placeholder="商品のJANコードを入力してください"
-          style="flex-col w-3/5 mx-auto"
+          containerStyle="flex-col w-3/5 mx-auto"
           value={janCode}
           handler={(e) => setJanCode(e.target.value)}
         />
@@ -25,7 +25,7 @@ const RegisterItem = () => {
           type="text"
           label="商品名"
           placeholder="商品名を入力してください"
-          style="flex-col w-3/5 mx-auto"
+          containerStyle="flex-col w-3/5 mx-auto"
           value={itemName}
           handler={(e) => setItemName(e.target.value)}
         />

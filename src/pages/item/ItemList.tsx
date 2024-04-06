@@ -10,10 +10,10 @@ import { updateItem } from "@/firebase/functions/functionsHandler";
 import Button from "@/components/Button";
 import { UserItemData } from "@/utils/type";
 import { today } from "@/utils/timeUtils";
-import ItemDetail from "@/pages/item/itemDetail";
+import ItemDetail from "@/pages/item/ItemDetail";
 import { PATHS } from "@/utils/constant";
 import Main from "@/components/Main";
-import DiffFromAverage from "@/components/priceResult/DiffFromAverage";
+import DiffFromAverage from "@/pages/item/DiffFromAverage";
 
 const ItemList = () => {
   const [ItemData, setItemData] = useState<UserItemData[] | null>(null);

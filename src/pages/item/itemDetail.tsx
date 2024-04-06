@@ -6,9 +6,10 @@ import Button from "@/components/Button";
 import { getPriceArray, getValueForDate } from "@/firebase/firestore/dbFetcher";
 import { DataUpdater } from "@/firebase/firestore/updateItem";
 import { today } from "@/utils/timeUtils";
-import DiffFromAverage from "@/components/priceResult/DiffFromAverage";
-import { formattedAverage } from "@/analysis/calcValue";
+import DiffFromAverage from "@/pages/item/DiffFromAverage";
+import { formattedAverage } from "@/calculation/calcValue";
 import Input from "@/components/Input";
+import Row from "@/pages/item/Row";
 
 type ItemDetailProps = {
   item: UserItemData;
@@ -40,46 +41,42 @@ const ItemDetail = ({ item, onClose }: ItemDetailProps) => {
     <div className="flex h-full flex-col justify-between gap-8">
       <div className="flex flex-col gap-8">
         <div className="flex items-center justify-between border-b-2 border-stone-300">
-          <img src={item.imageId} className="size-20" alt="itemImage" />
+          <img src={item.imageId} className="size-20 " alt="itemImage" />
           <Input
             handler={(e) => setItemName(e.target.value)}
+            containerStyle="text-2xl items-center"
             label="商品名:"
+            labelStyle="text-xl"
             placeholder="商品名を入力してください"
-            style="flex flex-row gap-4"
             type="text"
             value={itemName}
           />
         </div>
         <div className="flex flex-col justify-between gap-4">
-          <div className="flex flex-row justify-between">
-            <p className="cursor-auto">今日の金額:</p>
+          <Row label="今日の金額:">
             <p>{todayPrice}円</p>
-          </div>
-          <div className="flex flex-row justify-between">
-            <p>普段の金額:</p>
+          </Row>
+          <Row label="普段の金額:">
             <p>{averagePrice}円</p>
-          </div>
-          <div className="flex flex-row justify-between">
-            <p>価格差:</p>
+          </Row>
+          <Row label="価格差:">
             <DiffFromAverage
               style="text-right"
               prices={getPriceArray(item)}
               price={todayPrice}
             />
-          </div>
-          <div className="flex flex-row justify-between">
-            <p>URL:</p>
+          </Row>
+          <Row label="URL:">
             <a href={item.url} className="underline">
               商品URLはこちら
             </a>
-          </div>
-          <div className="flex flex-row justify-between">
-            <p>カテゴリ名</p>
-            <div className="flex flex-row items-center">
-              <img className="mr-2 size-6" src={img} alt="" />
-              <p className="max-w-28 text-right">飲み物</p>{" "}
+          </Row>
+          <Row label="カテゴリ名:">
+            <div className="flex items-center gap-1">
+              <img className="size-6" src={img} alt="" />
+              <p>飲み物</p>
             </div>
-          </div>
+          </Row>
         </div>
       </div>
 

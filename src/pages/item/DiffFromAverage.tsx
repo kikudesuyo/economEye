@@ -1,4 +1,4 @@
-import { calcPriceDiffFromAverage } from "@/analysis/calcValue";
+import { calcPriceDiffFromAverage } from "@/calculation/calcValue";
 import { ItemPriceValue } from "@/utils/type";
 
 type Props = {
@@ -19,7 +19,7 @@ const DiffFromAverage = ({ style = "", prices, price }: Props) => {
     }
     return "±0円";
   };
-  return <div className={`${style}`}>{getDisplayText()}</div>;
+  return <p className={`${style}`}>{getDisplayText()}</p>;
 };
 
 export default DiffFromAverage;

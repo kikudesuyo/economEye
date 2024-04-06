@@ -1,8 +1,9 @@
 type Props = {
   handler: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  label: string;
+  label?: string;
   placeholder: string;
-  style?: string;
+  containerStyle?: string;
+  labelStyle?: string;
   type: string;
   value: string;
 };
@@ -11,13 +12,14 @@ const Input = ({
   handler,
   label,
   placeholder,
-  style = "",
+  containerStyle = "",
+  labelStyle,
   type,
   value,
 }: Props) => {
   return (
-    <div className={`flex gap-4 ${style}`}>
-      <p>{label}</p>
+    <div className={`flex gap-4 ${containerStyle}`}>
+      {label && <p className={`${labelStyle}`}>{label}</p>}
       <input
         className="flex-auto border-b-2 border-stone-300 outline-none"
         type={type}

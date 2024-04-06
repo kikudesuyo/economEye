@@ -40,7 +40,7 @@ const Signup = () => {
         type="email"
         label="メールアドレス"
         placeholder="例) economEye@gmail.com"
-        style="flex-col"
+        containerStyle="flex-col"
         value={email}
         handler={(e) => setEmail(e.target.value)}
       />
@@ -48,7 +48,7 @@ const Signup = () => {
         type="password"
         label="パスワード(6文字以上)"
         placeholder="パスワードを入力してください"
-        style="flex-col"
+        containerStyle="flex-col"
         value={password}
         handler={(e) => setPassword(e.target.value)}
       />
@@ -56,7 +56,7 @@ const Signup = () => {
         type="password"
         label="パスワード確認用"
         placeholder="もう一度パスワードを入力してください"
-        style="flex-col gap-4"
+        containerStyle="flex-col gap-4"
         value={confirmPassword}
         handler={(e) => setConfirmPassword(e.target.value)}
       />
