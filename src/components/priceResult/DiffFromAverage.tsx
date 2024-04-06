@@ -15,7 +15,7 @@ const DiffFromAverage = ({ style = "", prices, price }: Props) => {
     } else if (diff > 0) {
       return `普段より${diff}円高い`;
     } else if (diff < 0) {
-      return `普段より${diff}円安い`;
+      return `普段より${Math.abs(diff)}円安い`;
     }
     return "±0円";
   };

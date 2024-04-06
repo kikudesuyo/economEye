@@ -39,7 +39,7 @@ const Top = () => {
       if (todayValue === null) {
         return false;
       }
-      return averageValue > todayValue;
+      return todayValue < averageValue;
     });
     return recommendedItems;
   };
@@ -75,7 +75,6 @@ const Top = () => {
               return (
                 <div key={index} className="flex justify-center gap-8">
                   <p>{item.itemName}</p>
-                  <p></p>
                   <DiffFromAverage
                     prices={getPriceArray(item)}
                     price={getValueForDate(item, today())}
