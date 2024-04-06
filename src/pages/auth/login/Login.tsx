@@ -37,7 +37,7 @@ const Login = () => {
         type="email"
         label="メールアドレス"
         placeholder="例) economEye@gmail.com"
-        style="flex-col"
+        containerStyle="flex-col"
         value={email}
         handler={(e) => setEmail(e.target.value)}
       />
@@ -45,7 +45,7 @@ const Login = () => {
         type="password"
         label="パスワード"
         placeholder="パスワードを入力してください"
-        style="flex-col"
+        containerStyle="flex-col"
         value={password}
         handler={(e) => setPassword(e.target.value)}
       />
