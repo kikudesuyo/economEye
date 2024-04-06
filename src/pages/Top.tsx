@@ -11,6 +11,7 @@ import { today } from "@/utils/timeUtils";
 import { UserItemData } from "@/utils/type";
 import Button from "@/components/Button";
 import Main from "@/components/Main";
+import DiffFromAverage from "@/components/priceResult/DiffFromAverage";
 
 const Top = () => {
   const [ItemData, setItemData] = useState<UserItemData[]>([]);
@@ -72,9 +73,13 @@ const Top = () => {
             )}
             {recommendedItems().map((item: UserItemData, index: number) => {
               return (
-                <div key={index} className="flex justify-between">
+                <div key={index} className="flex justify-center gap-8">
                   <p>{item.itemName}</p>
-                  <p>いつもより500円安い</p>
+                  <p></p>
+                  <DiffFromAverage
+                    prices={getPriceArray(item)}
+                    price={getValueForDate(item, today())}
+                  />
                 </div>
               );
             })}
