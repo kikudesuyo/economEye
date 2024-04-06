@@ -14,29 +14,21 @@ export class Auth {
   }
 
   async signup(email: string, password: string) {
-    try {
-      const userCredential = await createUserWithEmailAndPassword(
-        this.auth,
-        email,
-        password
-      );
-      const userId = userCredential.user.uid;
-      const userDocRef = doc(db, "users", userId);
-      await setDoc(userDocRef, { itemIds: [] });
-      await this.login(email, password);
-      return await Promise.resolve();
-    } catch (error: any) {
-      throw new Error(error.code + error.message);
-    }
+    const userCredential = await createUserWithEmailAndPassword(
+      this.auth,
+      email,
+      password
+    );
+    const userId = userCredential.user.uid;
+    const userDocRef = doc(db, "users", userId);
+    await setDoc(userDocRef, { itemIds: [] });
+    await this.login(email, password);
+    return await Promise.resolve();
   }
 
   async login(email: string, password: string) {
-    try {
-      await signInWithEmailAndPassword(this.auth, email, password);
-      return Promise.resolve();
-    } catch (error: any) {
-      throw new Error(error.code + error.message);
-    }
+    await signInWithEmailAndPassword(this.auth, email, password);
+    return Promise.resolve();
   }
 }
 

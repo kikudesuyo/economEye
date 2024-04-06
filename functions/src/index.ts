@@ -1,10 +1,17 @@
-import { onCall, HttpsError } from "firebase-functions/v2/https";
+import {
+  onCall,
+  HttpsError,
+  CallableRequest,
+} from "firebase-functions/v2/https";
 import { today } from "./utils/time";
 import { ClientParams, ItemData } from "./utils/type";
 import { logger } from "firebase-functions";
 import { fetchItemData, setData, updateItem, db } from "./helper/db";
 
-exports.registerNewItem = onCall(async (request: any) => {
+exports.registerNewItem = onCall(async (request: CallableRequest) => {
+  if (!request.auth) {
+    throw new HttpsError("unauthenticated", "User is not authenticated.");
+  }
   const uid = request.auth.uid;
   const data: ClientParams = request.data;
   const itemData = await fetchItemData(data);

@@ -12,7 +12,7 @@ const RegisterItem = () => {
   const navigate = useNavigate();
   return (
     <Main>
-      <div className="flex flex-col mt-20 gap-8">
+      <div className="mt-20 flex flex-col gap-8">
         <Input
           type="text"
           label="JANコード"
@@ -43,9 +43,9 @@ const RegisterItem = () => {
         />
       </div>
       <div className="flex flex-col pt-8">
-        <div className="bg-white p-8 rounded-lg shadow-md">
-          <h1 className="text-2xl font-bold mb-4">JANコードとは</h1>
-          <ul className="list-disc pl-5 flex flex-col gap-4">
+        <div className="rounded-lg bg-white p-8 shadow-md">
+          <h1 className="mb-4 text-2xl font-bold">JANコードとは</h1>
+          <ul className="flex list-disc flex-col gap-4 pl-5">
             <li className="text-gray-800">
               商品につけられた13桁の番号のことです。
             </li>

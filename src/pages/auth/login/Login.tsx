@@ -30,7 +30,7 @@ const Login = () => {
   return (
     <Main style="gap-8 mt-8">
       <div className="flex flex-row items-center">
-        <img className="w-14 h-14" src={padlock} alt="" />
+        <img className="size-14" src={padlock} alt="" />
         <h1 className="text-3xl">ログイン</h1>
       </div>
       <Input
