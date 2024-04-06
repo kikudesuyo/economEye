@@ -61,12 +61,12 @@ const ItemList = () => {
 
   return (
     <Main style="my-8 gap-8">
-      <div className="flex flex-wrap justify-center gap-4 ">
+      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
         {ItemData &&
           ItemData.map((item: UserItemData, index: number) => (
             <div
               key={index}
-              className="flex w-1/4 min-w-48 cursor-pointer flex-col items-center gap-2 border-2 border-slate-300 p-3"
+              className="flex cursor-pointer flex-col items-center gap-2 border-2 border-slate-300 p-3"
               onClick={() => OpenModal(item)}
             >
               <img src={item.imageId} alt="" className="w-1/3" />
