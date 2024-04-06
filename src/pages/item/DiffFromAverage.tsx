@@ -9,17 +9,18 @@ type Props = {
 
 const DiffFromAverage = ({ style = "", prices, price }: Props) => {
   const diff = calcPriceDiffFromAverage(prices, price);
-  const getDisplayText = (): string => {
+  const displayResult = () => {
     if (diff === null) {
-      return "データがありません";
+      return <p className={`${style}`}>データがありません</p>;
     } else if (diff > 0) {
-      return `普段より${diff}円高い`;
+      return <p className={`${style}`}>普段より{diff}円高い</p>;
     } else if (diff < 0) {
-      return `普段より${Math.abs(diff)}円安い`;
+      return <p className={`${style}`}>普段より{Math.abs(diff)}円安い</p>;
     }
-    return "±0円";
+    return <p className={`${style}`}>±0円</p>;
   };
-  return <p className={`${style}`}>{getDisplayText()}</p>;
+
+  return displayResult();
 };
 
 export default DiffFromAverage;
