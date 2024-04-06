@@ -19,7 +19,7 @@ const Input = ({
     <div className={`${style}`}>
       <p>{label}</p>
       <input
-        className="border-b-2 border-stone-300 outline-none"
+        className="border-b-2 border-stone-300 outline-none w-full"
         type={type}
         placeholder={placeholder}
         value={value}
