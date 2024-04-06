@@ -48,15 +48,6 @@ const Top = () => {
     <Main style="mt-4">
       <div className="flex flex-col gap-6">
         <div>
-          <h1 className="text-2xl font-bold">お知らせ</h1>
-          <div className="grid grid-cols-1 gap-4 border-2 p-5">
-            <ul className="flex list-disc flex-col gap-4 pl-5">
-              <li>2024年3月21日 プレリリース</li>
-              <li>2024年4月01日 スタイルの修正</li>
-            </ul>
-          </div>
-        </div>
-        <div>
           <h2 className="text-2xl font-bold">おすすめ</h2>
           <div className="flex flex-col gap-2 border-2 p-5">
             {!isExistUserItem() && (
@@ -82,6 +73,15 @@ const Top = () => {
                 </div>
               );
             })}
+          </div>
+        </div>
+        <div>
+          <h1 className="text-2xl font-bold">お知らせ</h1>
+          <div className="grid grid-cols-1 gap-4 border-2 p-5">
+            <ul className="flex list-disc flex-col gap-4 pl-5">
+              <li>2024年3月21日 プレリリース</li>
+              <li>2024年4月01日 スタイルの修正</li>
+            </ul>
           </div>
         </div>
         <div className="mt-14 flex flex-col gap-6">
