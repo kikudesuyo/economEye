@@ -37,10 +37,10 @@ const ItemDetail = ({ item, onClose }: ItemDetailProps) => {
   };
 
   return (
-    <div className="flex flex-col gap-8 justify-between h-full">
+    <div className="flex h-full flex-col justify-between gap-8">
       <div className="flex flex-col gap-8">
         <div className="flex items-center justify-between border-b-2 border-stone-300">
-          <img src={item.imageId} className="w-20 h-20" alt="itemImage" />
+          <img src={item.imageId} className="size-20" alt="itemImage" />
           <Input
             handler={(e) => setItemName(e.target.value)}
             label="商品名:"
@@ -76,8 +76,8 @@ const ItemDetail = ({ item, onClose }: ItemDetailProps) => {
           <div className="flex flex-row justify-between">
             <p>カテゴリ名</p>
             <div className="flex flex-row items-center">
-              <img className="w-6 h-6 mr-2" src={img} alt="" />
-              <p className="text-right max-w-28">飲み物</p>{" "}
+              <img className="mr-2 size-6" src={img} alt="" />
+              <p className="max-w-28 text-right">飲み物</p>{" "}
             </div>
           </div>
         </div>
