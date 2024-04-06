@@ -16,10 +16,10 @@ const Input = ({
   value,
 }: Props) => {
   return (
-    <div className={`${style}`}>
+    <div className={`flex gap-4 ${style}`}>
       <p>{label}</p>
       <input
-        className="border-b-2 border-stone-300 outline-none"
+        className="flex-auto border-b-2 border-stone-300 outline-none"
         type={type}
         placeholder={placeholder}
         value={value}
