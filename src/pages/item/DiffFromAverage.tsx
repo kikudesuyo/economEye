@@ -19,7 +19,7 @@ const DiffFromAverage = ({ style = "", prices, price }: Props) => {
     }
     return "±0円";
   };
-  return <div className={`${style}`}>{getDisplayText()}</div>;
+  return <p className={`${style}`}>{getDisplayText()}</p>;
 };
 
 export default DiffFromAverage;

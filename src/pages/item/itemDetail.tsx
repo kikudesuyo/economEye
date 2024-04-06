@@ -6,7 +6,7 @@ import Button from "@/components/Button";
 import { getPriceArray, getValueForDate } from "@/firebase/firestore/dbFetcher";
 import { DataUpdater } from "@/firebase/firestore/updateItem";
 import { today } from "@/utils/timeUtils";
-import DiffFromAverage from "@/components/priceResult/DiffFromAverage";
+import DiffFromAverage from "@/pages/item/DiffFromAverage";
 import { formattedAverage } from "@/analysis/calcValue";
 import Input from "@/components/Input";
 
