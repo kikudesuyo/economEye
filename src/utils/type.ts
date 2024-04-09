@@ -30,17 +30,21 @@ export interface UserItemData extends ItemData {
   itemId: string;
 }
 
+type ChartType = "line" | "bar" | "pie" | "doughnut" | "radar" | "polarArea";
+
 export type GraphDataset = {
+  type: ChartType;
   label: string;
   data: ItemPriceValue[];
-  borderColor: string;
+  borderColor?: string;
+  backgroundColor?: string;
   borderDash?: number[];
   tension: number;
-  legend?: string;
   pointRadius: number;
 };
 
 export type GraphProps = {
-  datasets: GraphDataset[];
+  titleName: string;
   xLabels: string[];
+  datasets: GraphDataset[];
 };

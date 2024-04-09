@@ -10,7 +10,7 @@ import DiffFromAverage from "@/pages/item/DiffFromAverage";
 import { formattedAverage } from "@/calculation/calcValue";
 import Input from "@/components/Input";
 import Row from "@/pages/item/Row";
-import PriceTransition from "@/graphs/PriceTransition";
+import PriceTransition from "@/chart/PriceTransition";
 
 type ItemDetailProps = {
   item: UserItemData;
