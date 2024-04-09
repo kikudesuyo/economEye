@@ -100,7 +100,7 @@ const ItemList = () => {
         style={{
           overlay: { backgroundColor: "rgba(0,0,0,0.5)" },
         }}
-        className="mx-auto mt-20 h-3/5 w-11/12 rounded-3xl bg-white p-4"
+        className="mx-auto mt-20  w-11/12 rounded-3xl bg-white p-4"
         isOpen={IsOpen}
         onRequestClose={CloseModal}
       >

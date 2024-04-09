@@ -3,5 +3,8 @@
   "eslint.workingDirectories": ["./functions"],
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
+  },
+  "editor.quickSuggestions": {
+    "strings": true
   }
 }

@@ -15,16 +15,32 @@ export type ItemParams = {
 };
 
 export type ItemPriceValue = number | null;
+export type Prices = { date: string; value: ItemPriceValue }[];
 
 export interface ItemData {
   condition?: Condition;
   imageId: string;
   itemName: string;
   janCode: string;
-  prices: { date: string; value: ItemPriceValue }[];
+  prices: Prices;
   url: string;
 }
 
 export interface UserItemData extends ItemData {
   itemId: string;
 }
+
+export type GraphDataset = {
+  label: string;
+  data: ItemPriceValue[];
+  borderColor: string;
+  borderDash?: number[];
+  tension: number;
+  legend?: string;
+  pointRadius: number;
+};
+
+export type GraphProps = {
+  datasets: GraphDataset[];
+  xLabels: string[];
+};

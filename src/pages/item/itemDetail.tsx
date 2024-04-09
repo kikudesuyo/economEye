@@ -10,6 +10,7 @@ import DiffFromAverage from "@/pages/item/DiffFromAverage";
 import { formattedAverage } from "@/calculation/calcValue";
 import Input from "@/components/Input";
 import Row from "@/pages/item/Row";
+import PriceTransition from "@/graphs/PriceTransition";
 
 type ItemDetailProps = {
   item: UserItemData;
@@ -36,9 +37,8 @@ const ItemDetail = ({ item, onClose }: ItemDetailProps) => {
     const updater = new DataUpdater("items", item.itemId);
     await updater.updatePartialData({ itemName: itemName });
   };
-
   return (
-    <div className="flex h-full flex-col justify-between gap-8">
+    <div className="flex h-full flex-col gap-8">
       <div className="flex flex-col gap-8">
         <div className="flex items-center justify-between border-b-2 border-stone-300">
           <img src={item.imageId} className="size-20 " alt="itemImage" />
@@ -79,7 +79,7 @@ const ItemDetail = ({ item, onClose }: ItemDetailProps) => {
           </Row>
         </div>
       </div>
-
+      <PriceTransition item={item} />
       <div className="flex flex-row justify-around">
         <Button style="w-2/5" label="キャンセル" func={() => onClose()} />
         <Button
