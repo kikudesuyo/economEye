@@ -3,12 +3,15 @@ import {
   Chart as ChartJS,
   ChartData,
   ChartOptions,
+  LineController,
+  LineElement,
   LinearScale,
   CategoryScale,
+  BarController,
   BarElement,
   PointElement,
-  LineElement,
   Legend,
+  RadialLinearScale,
   Tooltip,
   Title,
 } from "chart.js";
@@ -16,11 +19,14 @@ import { Chart } from "react-chartjs-2";
 
 const CompositeChart = ({ titleName, xLabels, datasets }: GraphProps) => {
   ChartJS.register(
+    LineController,
+    LineElement,
     LinearScale,
     CategoryScale,
+    BarController,
     BarElement,
     PointElement,
-    LineElement,
+    RadialLinearScale,
     Legend,
     Tooltip,
     Title
@@ -46,7 +52,7 @@ const CompositeChart = ({ titleName, xLabels, datasets }: GraphProps) => {
 
   return (
     <div>
-      <Chart type={"bar"} data={data} options={options} />
+      <Chart type={"line"} data={data} options={options} />
     </div>
   );
 };

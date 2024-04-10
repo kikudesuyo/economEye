@@ -1,4 +1,4 @@
-import LineGraph from "@/chart/Chart";
+import CompositeChart from "@/chart/Chart";
 import { PriceFormatter } from "@/chart/formatprices";
 import { formattedAverage } from "@/calculation/calcValue";
 import { UserItemData, GraphDataset } from "@/utils/type";
@@ -34,7 +34,7 @@ const PriceTransition = ({ item }: Props) => {
     },
   ];
   return (
-    <LineGraph
+    <CompositeChart
       titleName={`${item.itemName}の値段推移`}
       xLabels={xLabels}
       datasets={datasets}
