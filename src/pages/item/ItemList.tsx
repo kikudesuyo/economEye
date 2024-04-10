@@ -66,7 +66,7 @@ const ItemList = () => {
           ItemData.map((item: UserItemData, index: number) => (
             <div
               key={index}
-              className="flex cursor-pointer flex-col items-center gap-2 border-2 border-slate-300 p-3"
+              className="flex cursor-pointer flex-col items-center gap-2 border-2 border-slate-300 p-3 hover:shadow-lg"
               onClick={() => OpenModal(item)}
             >
               <img src={item.imageId} alt="" className="w-1/3" />
