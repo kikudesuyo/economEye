@@ -14,6 +14,7 @@ import ItemDetail from "@/pages/item/ItemDetail";
 import { PATHS } from "@/utils/constant";
 import Main from "@/components/Main";
 import DiffFromAverage from "@/pages/item/DiffFromAverage";
+import { registerTag } from "@/firebase/firestore/tag";
 
 const ItemList = () => {
   const [ItemData, setItemData] = useState<UserItemData[] | null>(null);
@@ -96,6 +97,15 @@ const ItemList = () => {
           navigate(PATHS.TOP);
         }}
       />
+      <Button
+        label="tagのデータ追加テスト"
+        style="w-3/5 mx-auto"
+        func={() => {
+          registerTag({ tag: { tagName: "test", itemIds: ["test", "test2"] } });
+          console.log("after registerTag");
+        }}
+      />
+
       <Modal
         style={{
           overlay: { backgroundColor: "rgba(0,0,0,0.5)" },

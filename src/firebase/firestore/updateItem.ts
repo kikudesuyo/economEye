@@ -1,5 +1,9 @@
 import {
+  addDoc,
+  collection,
+  CollectionReference,
   doc,
+  deleteDoc,
   setDoc,
   updateDoc,
   DocumentReference,
@@ -7,15 +11,28 @@ import {
 } from "firebase/firestore";
 import { db } from "@/firebase/init";
 
-export class DataUpdater<DbmModelType extends DocumentData> {
+export class DbDocumentManager<DbmModelType extends DocumentData> {
+  ref: CollectionReference;
+  constructor(collectionName: string) {
+    this.ref = collection(db, collectionName);
+  }
+  registerData = async (data: DbmModelType) => {
+    await addDoc(this.ref, data);
+  };
+}
+
+export class DbFieldManager<DbmModelType extends DocumentData> {
   docRef: DocumentReference;
   constructor(collectionName: string, docId: string) {
     this.docRef = doc(db, collectionName, docId);
   }
-  updatePartialData = async (updateData: DbmModelType) => {
+  updateSpecificFields = async (updateData: DbmModelType) => {
     await updateDoc(this.docRef, updateData);
   };
-  updateAllData = async (updateData: DbmModelType) => {
+  setEntireFields = async (updateData: DbmModelType) => {
     await setDoc(this.docRef, updateData);
+  };
+  deleteDocument = async () => {
+    await deleteDoc(this.docRef);
   };
 }

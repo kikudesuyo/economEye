@@ -30,6 +30,15 @@ export interface UserItemData extends ItemData {
   itemId: string;
 }
 
+type tagValue = {
+  tagName: string;
+  itemIds: string[];
+};
+
+export type TagData = {
+  tag: tagValue;
+};
+
 type ChartType = "line" | "bar" | "pie" | "doughnut" | "radar" | "polarArea";
 
 export type GraphDataset = {
