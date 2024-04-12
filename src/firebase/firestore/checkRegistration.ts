@@ -11,7 +11,7 @@ import { DocumentData } from "firebase-admin/firestore";
 import {
   DuplicateItemError,
   DbNotFoundError,
-} from "@/firebase/firestore/errorUtils";
+} from "@/firebase/firestore/errors";
 
 import { fetchUserId } from "@/firebase/firestore/dbFetcher";
 import { ItemParams } from "@/utils/type";
