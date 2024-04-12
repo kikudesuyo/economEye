@@ -4,7 +4,7 @@ import { storage } from "@/firebase/init";
 import { UserItemData } from "@/utils/type";
 import Button from "@/components/Button";
 import { getPriceArray, getValueForDate } from "@/firebase/firestore/dbFetcher";
-import { DbDocumentManager } from "@/firebase/firestore/updateItem";
+import { DbDocumentManager } from "@/firebase/firestore/dbManage";
 import { today } from "@/utils/timeUtils";
 import DiffFromAverage from "@/pages/item/DiffFromAverage";
 import { formattedAverage } from "@/calculation/calcValue";

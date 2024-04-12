@@ -3,13 +3,16 @@ import { db } from "@/firebase/init";
 import {
   DbDocumentManager,
   DbCollectionManager,
-} from "@/firebase/firestore/updateItem";
+} from "@/firebase/firestore/dbManage";
 import { TagData } from "@/utils/type";
 
-export const createTag = async (tagData: TagData, userId: string) => {
+export const createTag = async (
+  tagData: TagData,
+  userDocRef: DocumentReference
+) => {
   const tagCollection = new DbCollectionManager("tags");
   const tagRef = await tagCollection.addDataAndFetchDocRef(tagData);
-  const usersCollection = new DbDocumentManager("users", userId);
+  const usersCollection = new DbDocumentManager(userDocRef);
   const currentUserData = await usersCollection.fetchDocData();
   const updatedTagIds = [...currentUserData.tagIds, tagRef];
   await usersCollection.updateSpecificFields({
@@ -17,42 +20,47 @@ export const createTag = async (tagData: TagData, userId: string) => {
   });
 };
 
-export const updateTagName = async (tagName: string, tagId: string) => {
-  const tagCollection = new DbDocumentManager("tags", tagId);
+export const updateTagName = async (
+  newTagName: string,
+  tagDocRef: DocumentReference
+) => {
+  const tagCollection = new DbDocumentManager(tagDocRef);
   await tagCollection.updateSpecificFields({
-    tagName: tagName,
+    tagName: newTagName,
   });
 };
 
-//未テスト
-export const deleteTag = async (tagId: string, userId: string) => {
-  const tagCollection = new DbDocumentManager("tags", tagId);
+export const deleteTag = async (
+  tagDocRef: DocumentReference,
+  userDocRef: DocumentReference
+) => {
+  const tagCollection = new DbDocumentManager(tagDocRef);
   const tagRef = await tagCollection.fetchDocRef();
   await tagCollection.deleteDocument();
-  const usersCollection = new DbDocumentManager("users", userId);
+  const usersCollection = new DbDocumentManager(userDocRef);
   const currentUserData = await usersCollection.fetchDocData();
   const updatedTagIds = currentUserData.tagIds.filter(
-    (id: DocumentReference) => id !== tagRef
+    (id: DocumentReference) => id.path !== tagRef.path
   );
+  if (updatedTagIds.length === currentUserData.tagIds.length) {
+    throw new Error("designated tagId not found in user");
+  }
   await usersCollection.updateSpecificFields({
     tagIds: updatedTagIds,
   });
 };
 
 export const changeTag = async (
-  previousTagId: string,
-  nextTagId: string,
-  itemId: string
+  previousTagDocRef: DocumentReference,
+  nextTagDocRef: DocumentReference,
+  itemDocRef: DocumentReference
 ) => {
   try {
     await runTransaction(db, async () => {
-      const previousTagCollection = new DbDocumentManager(
-        "tags",
-        previousTagId
-      );
+      const previousTagCollection = new DbDocumentManager(previousTagDocRef);
       const previousItemIds = await previousTagCollection.fetchDocData();
       const updatedPreviousTagIds = previousItemIds.itemIds.filter(
-        (id: string) => id !== itemId
+        (DocRef: DocumentReference) => DocRef.path !== itemDocRef.path
       );
       if (updatedPreviousTagIds.length === previousItemIds.itemIds.length) {
         throw new Error("designated itemId not found in previous tag");
@@ -60,9 +68,9 @@ export const changeTag = async (
       await previousTagCollection.updateSpecificFields({
         itemIds: updatedPreviousTagIds,
       });
-      const nextTagCollection = new DbDocumentManager("tags", nextTagId);
+      const nextTagCollection = new DbDocumentManager(nextTagDocRef);
       nextTagCollection.updateSpecificFields({
-        itemIds: [...updatedPreviousTagIds, itemId],
+        itemIds: [...updatedPreviousTagIds, itemDocRef],
       });
     });
   } catch (error) {

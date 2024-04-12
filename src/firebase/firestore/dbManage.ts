@@ -2,15 +2,22 @@ import {
   addDoc,
   collection,
   CollectionReference,
-  doc,
   deleteDoc,
+  doc,
+  DocumentData,
+  DocumentReference,
+  getDoc,
   setDoc,
   updateDoc,
-  DocumentReference,
-  DocumentData,
-  getDoc,
 } from "firebase/firestore";
 import { db } from "@/firebase/init";
+
+export const fetchDocRef = (
+  collectionName: string,
+  docId: string
+): DocumentReference => {
+  return doc(db, collectionName, docId);
+};
 
 export class DbCollectionManager<DbmModelType extends DocumentData> {
   collectionRef: CollectionReference;
@@ -25,8 +32,8 @@ export class DbCollectionManager<DbmModelType extends DocumentData> {
 
 export class DbDocumentManager<DbmModelType extends DocumentData> {
   docRef: DocumentReference;
-  constructor(collectionName: string, docId: string) {
-    this.docRef = doc(db, collectionName, docId);
+  constructor(docRef: DocumentReference) {
+    this.docRef = docRef;
   }
   fetchDocRef = async (): Promise<DocumentReference> => {
     return this.docRef;

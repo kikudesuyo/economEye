@@ -1,3 +1,5 @@
+import { DocumentReference } from "firebase/firestore";
+
 export type PageName =
   | "Home"
   | "Signup"
@@ -32,7 +34,7 @@ export interface UserItemData extends ItemData {
 
 export type TagData = {
   tagName: string;
-  itemIds: string[];
+  itemIds: DocumentReference[];
 };
 
 type ChartType = "line" | "bar" | "pie" | "doughnut" | "radar" | "polarArea";
