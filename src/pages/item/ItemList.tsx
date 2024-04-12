@@ -60,7 +60,13 @@ const ItemList = () => {
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
         {ItemData &&
           ItemData.map((item: UserItemData, index: number) => (
-            <ItemCard item={item} openModal={openModal} key={index} />
+            <ItemCard
+              item={item}
+              openModal={() => {
+                openModal(item);
+              }}
+              key={index}
+            />
           ))}
       </div>
       <Button

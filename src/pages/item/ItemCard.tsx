@@ -9,14 +9,14 @@ import Button from "@/components/Button";
 
 type Props = {
   item: UserItemData;
-  openModal: (item: UserItemData) => void;
+  openModal: () => void;
 };
 
 const ItemCard = ({ item, openModal }: Props) => {
   return (
     <div
       className="flex cursor-pointer flex-col items-center justify-between gap-2 border-2 border-slate-300 p-3"
-      onClick={() => openModal(item)}
+      onClick={openModal}
     >
       <img src={item.imageId} alt="" className="w-3/5" />
       <div className="flex flex-col items-center gap-1">
