@@ -14,7 +14,12 @@ import ItemDetail from "@/pages/item/ItemDetail";
 import { PATHS } from "@/utils/constant";
 import Main from "@/components/Main";
 import DiffFromAverage from "@/pages/item/DiffFromAverage";
-import { registerTag } from "@/firebase/firestore/tag";
+import {
+  deleteTag,
+  updateTagName,
+  changeTag,
+  fetchDocRef,
+} from "@/firebase/firestore/tag";
 
 const ItemList = () => {
   const [ItemData, setItemData] = useState<UserItemData[] | null>(null);
@@ -98,11 +103,14 @@ const ItemList = () => {
         }}
       />
       <Button
-        label="tagのデータ追加テスト"
+        label="tagの削除テスト"
         style="w-3/5 mx-auto"
-        func={() => {
-          registerTag({ tag: { tagName: "test", itemIds: ["test", "test2"] } });
-          console.log("after registerTag");
+        func={async () => {
+          console.log("tag削除テスト");
+          await deleteTag(
+            "vq1wyB1o1ejHN0QnJdvR",
+            "lcGNQ00u9xOp1VfikIIbreZ2pkx2"
+          );
         }}
       />
 

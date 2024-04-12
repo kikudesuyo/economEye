@@ -4,7 +4,7 @@ import { storage } from "@/firebase/init";
 import { UserItemData } from "@/utils/type";
 import Button from "@/components/Button";
 import { getPriceArray, getValueForDate } from "@/firebase/firestore/dbFetcher";
-import { DbFieldManager } from "@/firebase/firestore/updateItem";
+import { DbDocumentManager } from "@/firebase/firestore/updateItem";
 import { today } from "@/utils/timeUtils";
 import DiffFromAverage from "@/pages/item/DiffFromAverage";
 import { formattedAverage } from "@/calculation/calcValue";
@@ -34,7 +34,7 @@ const ItemDetail = ({ item, onClose }: ItemDetailProps) => {
   });
 
   const updateItemName = async () => {
-    const updater = new DbFieldManager("items", item.itemId);
+    const updater = new DbDocumentManager("items", item.itemId);
     await updater.updateSpecificFields({ itemName: itemName });
   };
   return (

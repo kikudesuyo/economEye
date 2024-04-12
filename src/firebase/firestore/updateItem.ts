@@ -8,24 +8,36 @@ import {
   updateDoc,
   DocumentReference,
   DocumentData,
+  getDoc,
 } from "firebase/firestore";
 import { db } from "@/firebase/init";
 
-export class DbDocumentManager<DbmModelType extends DocumentData> {
-  ref: CollectionReference;
+export class DbCollectionManager<DbmModelType extends DocumentData> {
+  collectionRef: CollectionReference;
   constructor(collectionName: string) {
-    this.ref = collection(db, collectionName);
+    this.collectionRef = collection(db, collectionName);
   }
-  registerData = async (data: DbmModelType) => {
-    await addDoc(this.ref, data);
+  addDataAndFetchDocRef = async (data: DbmModelType) => {
+    const docRef = await addDoc(this.collectionRef, data);
+    return docRef;
   };
 }
 
-export class DbFieldManager<DbmModelType extends DocumentData> {
+export class DbDocumentManager<DbmModelType extends DocumentData> {
   docRef: DocumentReference;
   constructor(collectionName: string, docId: string) {
     this.docRef = doc(db, collectionName, docId);
   }
+  fetchDocRef = async (): Promise<DocumentReference> => {
+    return this.docRef;
+  };
+  fetchDocData = async (): Promise<DocumentData> => {
+    const docSnap = await getDoc(this.docRef);
+    if (!docSnap.exists()) {
+      throw new Error("Document does not exist");
+    }
+    return docSnap.data();
+  };
   updateSpecificFields = async (updateData: DbmModelType) => {
     await updateDoc(this.docRef, updateData);
   };
