@@ -1,6 +1,9 @@
 import { today } from "@/utils/timeUtils";
 import DiffFromAverage from "@/pages/item/DiffFromAverage";
-import { getValueForDate, getPriceArray } from "@/firebase/firestore/dbFetcher";
+import {
+  getPriceValueOnDate,
+  getPriceArray,
+} from "@/firebase/firestore/dbFetcher";
 import { UserItemData } from "@/utils/type";
 import Button from "@/components/Button";
 
@@ -19,11 +22,11 @@ const ItemCard = ({ item, openModal }: Props) => {
       <div className="flex flex-col items-center gap-1">
         <p className="max-w-full truncate font-bold">{item.itemName}</p>
         <p className="max-w-full truncate">
-          {getValueForDate(item, today())}円
+          {getPriceValueOnDate(item, today())}円
         </p>
         <DiffFromAverage
           prices={getPriceArray(item)}
-          price={getValueForDate(item, today())}
+          price={getPriceValueOnDate(item, today())}
           style="text-sm"
         />
       </div>

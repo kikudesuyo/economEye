@@ -23,6 +23,7 @@ const ItemList = () => {
       try {
         const data = await fetchUserItems();
         setItemData(data);
+        console.table(data); //TODO delete
       } catch (error) {
         console.log(error);
       }

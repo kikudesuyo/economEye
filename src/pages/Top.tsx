@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   fetchUserItems,
-  getValueForDate,
+  getPriceValueOnDate,
   getPriceArray,
 } from "@/firebase/firestore/dbFetcher";
 import { calcAverage } from "@/calculation/calcValue";
@@ -35,7 +35,7 @@ const Top = () => {
   const recommendedItems = () => {
     const recommendedItems = ItemData.filter((item: UserItemData) => {
       const averageValue = calcAverage(getPriceArray(item));
-      const todayValue = getValueForDate(item, today());
+      const todayValue = getPriceValueOnDate(item, today());
       if (todayValue === null) {
         return false;
       }
@@ -68,7 +68,7 @@ const Top = () => {
                   <p>{item.itemName}</p>
                   <DiffFromAverage
                     prices={getPriceArray(item)}
-                    price={getValueForDate(item, today())}
+                    price={getPriceValueOnDate(item, today())}
                   />
                 </div>
               );

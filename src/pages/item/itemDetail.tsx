@@ -1,6 +1,9 @@
 import { UserItemData } from "@/utils/type";
 import Button from "@/components/Button";
-import { getPriceArray, getValueForDate } from "@/firebase/firestore/dbFetcher";
+import {
+  getPriceArray,
+  getPriceValueOnDate,
+} from "@/firebase/firestore/dbFetcher";
 import { today } from "@/utils/timeUtils";
 import DiffFromAverage from "@/pages/item/DiffFromAverage";
 import { formattedAverage } from "@/calculation/calcValue";
@@ -15,7 +18,7 @@ const ItemDetail = ({ item, onClose }: ItemDetailProps) => {
   if (!item) {
     return null;
   }
-  const todayPrice = getValueForDate(item, today());
+  const todayPrice = getPriceValueOnDate(item, today());
   const averagePrice = formattedAverage(getPriceArray(item));
 
   return (
