@@ -22,14 +22,15 @@ exports.registerNewItem = onCall(async (request: CallableRequest) => {
 
 exports.updateItem = onCall(async () => {
   const batch = db.batch();
-  const itemSnapshot = await db.collection("items").get();
+  const itemRefs = db.collection("items").listDocuments();
   await Promise.all(
-    itemSnapshot.docs.map(async (doc) => {
-      const docId = doc.id;
-      const itemData = doc.data() as ItemData;
+    (
+      await itemRefs
+    ).map(async (ref) => {
+      const itemSnapshot = await ref.get();
+      const itemData = itemSnapshot.data() as ItemData;
       const latestItem = await updateItem(itemData);
-      const docRef = db.collection("items").doc(docId);
-      batch.update(docRef, latestItem);
+      batch.update(ref, latestItem);
     })
   );
   await batch.commit().catch(() => {
