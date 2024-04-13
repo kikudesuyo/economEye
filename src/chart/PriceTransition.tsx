@@ -1,8 +1,9 @@
-import CompositeChart from "@/chart/Chart";
+import ItemChart from "@/chart/ItemChart";
 import { PriceFormatter } from "@/chart/formatprices";
 import { formattedAverage } from "@/calculation/calcValue";
 import { UserItemData, GraphDataset } from "@/utils/type";
 import { formatDate } from "@/utils/timeUtils";
+
 type Props = {
   item: UserItemData;
 };
@@ -23,7 +24,6 @@ const PriceTransition = ({ item }: Props) => {
       tension: 0.1,
       pointRadius: 0,
     },
-
     {
       type: "bar",
       label: "料金",
@@ -33,13 +33,7 @@ const PriceTransition = ({ item }: Props) => {
       pointRadius: 2,
     },
   ];
-  return (
-    <CompositeChart
-      titleName={`${item.itemName}の値段推移`}
-      xLabels={xLabels}
-      datasets={datasets}
-    />
-  );
+  return <ItemChart xLabels={xLabels} datasets={datasets} />;
 };
 
 export default PriceTransition;

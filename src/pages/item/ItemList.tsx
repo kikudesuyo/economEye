@@ -5,7 +5,7 @@ import { fetchUserItems } from "@/firebase/firestore/item";
 import { updateItem } from "@/firebase/functions/functionsHandler";
 import Button from "@/components/Button";
 import { UserItemData } from "@/utils/type";
-import ItemDetail from "@/pages/item/ItemKoya";
+import ItemModal from "@/pages/item/ItemModal";
 import { PATHS } from "@/utils/constant";
 import Main from "@/components/Main";
 import ItemCard from "@/pages/item/ItemCard";
@@ -23,7 +23,6 @@ const ItemList = () => {
       try {
         const data = await fetchUserItems();
         setItemData(data);
-        console.table(data); //TODO delete
       } catch (error) {
         console.log(error);
       }
@@ -85,15 +84,15 @@ const ItemList = () => {
       />
       <Modal
         style={{
-          overlay: { backgroundColor: "rgba(0,0,0,0.5)" },
+          overlay: {
+            backgroundColor: "rgba(0,0,0,0.5)",
+          },
         }}
-        className="mx-auto mt-20  w-11/12 rounded-3xl bg-white p-4"
+        className="mx-auto mt-12 w-11/12 rounded-3xl bg-white p-4"
         isOpen={IsOpen}
         onRequestClose={closeModal}
       >
-        {SelectedItem && (
-          <ItemDetail item={SelectedItem} onClose={closeModal} />
-        )}
+        {SelectedItem && <ItemModal item={SelectedItem} onClose={closeModal} />}
       </Modal>
     </Main>
   );

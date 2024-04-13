@@ -1,4 +1,4 @@
-import { GraphProps } from "@/utils/type";
+import { GraphDataset } from "@/utils/type";
 import {
   Chart as ChartJS,
   ChartData,
@@ -13,11 +13,15 @@ import {
   Legend,
   RadialLinearScale,
   Tooltip,
-  Title,
 } from "chart.js";
 import { Chart } from "react-chartjs-2";
 
-const CompositeChart = ({ titleName, xLabels, datasets }: GraphProps) => {
+export type Props = {
+  xLabels: string[];
+  datasets: GraphDataset[];
+};
+
+const ItemChart = ({ xLabels, datasets }: Props) => {
   ChartJS.register(
     LineController,
     LineElement,
@@ -28,8 +32,7 @@ const CompositeChart = ({ titleName, xLabels, datasets }: GraphProps) => {
     PointElement,
     RadialLinearScale,
     Legend,
-    Tooltip,
-    Title
+    Tooltip
   );
 
   const data: ChartData = {
@@ -39,10 +42,6 @@ const CompositeChart = ({ titleName, xLabels, datasets }: GraphProps) => {
 
   const options: ChartOptions = {
     plugins: {
-      title: {
-        display: true,
-        text: titleName,
-      },
       legend: {
         position: "bottom",
       },
@@ -51,10 +50,12 @@ const CompositeChart = ({ titleName, xLabels, datasets }: GraphProps) => {
   };
 
   return (
-    <div>
-      <Chart type={"line"} data={data} options={options} />
+    <div className="flex w-full justify-center">
+      <div className="w-2/3">
+        <Chart type={"line"} data={data} options={options} width={300} />
+      </div>
     </div>
   );
 };
 
-export default CompositeChart;
+export default ItemChart;

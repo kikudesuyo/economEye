@@ -49,9 +49,3 @@ export type GraphDataset = {
   tension: number;
   pointRadius: number;
 };
-
-export type GraphProps = {
-  titleName: string;
-  xLabels: string[];
-  datasets: GraphDataset[];
-};
