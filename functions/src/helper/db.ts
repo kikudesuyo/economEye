@@ -1,4 +1,5 @@
 import * as admin from "firebase-admin";
+import { DocumentReference } from "firebase-admin/firestore";
 import { HttpsError } from "firebase-functions/v2/https";
 import YahooItem from "../item/yahooItem";
 import { today } from "../utils/time";
@@ -35,14 +36,19 @@ export const setData = async (
   itemData: ItemData
 ): Promise<void> => {
   const itemRef = await db.collection("items").add(itemData);
-  const itemId = itemRef.id;
-  const docRef = await db.collection("users").doc(uid).get();
-  if (!docRef.exists) {
+  const userSnapshot = await db.collection("users").doc(uid).get();
+  if (!userSnapshot.exists) {
     throw new HttpsError("internal", `The following uid does not exist${uid}.`);
   }
-  const currentItemIds: { [itemId: string]: string[] } = docRef.data() || {};
-  currentItemIds["itemIds"].push(itemId);
-  await db.collection("users").doc(uid).set(currentItemIds);
+  const currentItemData = userSnapshot.data() as {
+    itemRefs: DocumentReference[];
+    tagRefs: DocumentReference[];
+  };
+  const newItemData = {
+    ...currentItemData,
+    itemRefs: [...currentItemData.itemRefs, itemRef],
+  };
+  await db.collection("users").doc(uid).set(newItemData);
 };
 
 export const updateItem = async (itemData: ItemData): Promise<ItemData> => {
