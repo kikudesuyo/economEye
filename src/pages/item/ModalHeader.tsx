@@ -4,13 +4,13 @@ import { UserItemData } from "@/utils/type";
 import Button from "@/components/Button";
 import { ref, getDownloadURL } from "firebase/storage";
 import { storage } from "@/firebase/init";
-import { DataUpdater } from "@/firebase/firestore/updateItem";
+import { DbDocumentManager } from "@/firebase/firestore/dbManage";
 
 type Props = {
   item: UserItemData;
 };
 
-const ItemPrice = ({ item }: Props) => {
+const ModalHeader = ({ item }: Props) => {
   const [itemName, setItemName] = useState<string>(item.itemName);
   const [canEdit, setCanEdit] = useState<boolean>(false);
   const [img, setImg] = useState<string>("");
@@ -22,8 +22,8 @@ const ItemPrice = ({ item }: Props) => {
     setImg(url);
   });
   const updateItemName = async () => {
-    const updater = new DataUpdater("items", item.itemId);
-    await updater.updatePartialData({ itemName: itemName });
+    const updater = new DbDocumentManager(item.itemRef);
+    await updater.updateSpecificFields({ itemName: itemName });
   };
 
   return (
@@ -70,4 +70,4 @@ const ItemPrice = ({ item }: Props) => {
   );
 };
 
-export default ItemPrice;
+export default ModalHeader;

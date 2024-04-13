@@ -1,27 +1,31 @@
 import { UserItemData } from "@/utils/type";
 import Button from "@/components/Button";
-import { getPriceArray, getValueForDate } from "@/firebase/firestore/dbFetcher";
+import {
+  getPriceArray,
+  getPriceValueOnDate,
+} from "@/firebase/firestore/dbFetcher";
 import { today } from "@/utils/timeUtils";
 import DiffFromAverage from "@/pages/item/DiffFromAverage";
 import { formattedAverage } from "@/calculation/calcValue";
-import ItemPrice from "@/pages/item/ItemPrice";
+import PriceTransition from "@/chart/PriceTransition";
+import ModalHeader from "@/pages/item/ModalHeader";
 
 type ItemDetailProps = {
   item: UserItemData;
   onClose: () => void;
 };
 
-const ItemDetail = ({ item, onClose }: ItemDetailProps) => {
+const ItemModal = ({ item, onClose }: ItemDetailProps) => {
   if (!item) {
     return null;
   }
-  const todayPrice = getValueForDate(item, today());
+  const todayPrice = getPriceValueOnDate(item, today());
   const averagePrice = formattedAverage(getPriceArray(item));
 
   return (
-    <div className="flex h-full flex-col justify-between gap-4">
-      <div className="flex flex-1 flex-col">
-        <ItemPrice item={item} />
+    <div className="flex flex-col justify-between gap-4 bg-white">
+      <div className="flex flex-col gap-4">
+        <ModalHeader item={item} />
         <div className="flex flex-1 flex-col items-center justify-around">
           <div className="flex items-end gap-8">
             <div>
@@ -39,6 +43,7 @@ const ItemDetail = ({ item, onClose }: ItemDetailProps) => {
             price={todayPrice}
           />
         </div>
+        <PriceTransition item={item} />
       </div>
       <div className="flex flex-row justify-around">
         <Button style="w-2/5" label="閉じる" func={() => onClose()} />
@@ -54,4 +59,4 @@ const ItemDetail = ({ item, onClose }: ItemDetailProps) => {
   );
 };
 
-export default ItemDetail;
+export default ItemModal;
