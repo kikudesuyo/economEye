@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { fetchUserItems } from "@/firebase/firestore/item";
 import { updateItem } from "@/firebase/functions/functionsHandler";
 import Button from "@/components/Button";
-import { UserItemData } from "@/utils/type";
+import { UserItemData } from "@/utils/types/items";
 import ItemDetail from "@/pages/item/ItemDetail";
 import { PATHS } from "@/utils/constant";
 import Main from "@/components/Main";

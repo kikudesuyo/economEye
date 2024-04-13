@@ -1,5 +1,5 @@
 import { calcPriceDiffFromAverage } from "@/calculation/calcValue";
-import { ItemPriceValue } from "@/utils/type";
+import { ItemPriceValue } from "@/utils/types/items";
 
 type Props = {
   style?: string;

@@ -1,7 +1,8 @@
 import CompositeChart from "@/chart/Chart";
 import { PriceFormatter } from "@/chart/formatprices";
 import { formattedAverage } from "@/calculation/calcValue";
-import { UserItemData, GraphDataset } from "@/utils/type";
+import { GraphDataset } from "@/utils/types/ui";
+import { UserItemData } from "@/utils/types/items";
 import { formatDate } from "@/utils/timeUtils";
 type Props = {
   item: UserItemData;

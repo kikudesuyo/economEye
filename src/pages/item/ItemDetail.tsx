@@ -1,4 +1,4 @@
-import { UserItemData } from "@/utils/type";
+import { UserItemData } from "@/utils/types/items";
 import Button from "@/components/Button";
 import { getPriceArray, getValueForDate } from "@/firebase/firestore/dbFetcher";
 import { today } from "@/utils/timeUtils";

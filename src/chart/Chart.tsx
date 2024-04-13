@@ -1,4 +1,4 @@
-import { GraphProps } from "@/utils/type";
+import { GraphProps } from "@/utils/types/ui";
 import {
   Chart as ChartJS,
   ChartData,

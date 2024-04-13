@@ -1,7 +1,7 @@
 import { today } from "@/utils/timeUtils";
 import DiffFromAverage from "@/pages/item/DiffFromAverage";
 import { getValueForDate, getPriceArray } from "@/firebase/firestore/dbFetcher";
-import { UserItemData } from "@/utils/type";
+import { UserItemData } from "@/utils/types/items";
 import Button from "@/components/Button";
 
 type Props = {
