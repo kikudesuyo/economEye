@@ -1,16 +1,14 @@
 import { useEffect, useState } from "react";
 import Modal from "react-modal";
 import { useNavigate } from "react-router-dom";
-import { getValueForDate, getPriceArray } from "@/firebase/firestore/dbFetcher";
 import { fetchUserItems } from "@/firebase/firestore/item";
 import { updateItem } from "@/firebase/functions/functionsHandler";
 import Button from "@/components/Button";
 import { UserItemData } from "@/utils/type";
-import { today } from "@/utils/timeUtils";
 import ItemDetail from "@/pages/item/ItemDetail";
 import { PATHS } from "@/utils/constant";
 import Main from "@/components/Main";
-import DiffFromAverage from "@/pages/item/DiffFromAverage";
+import ItemCard from "@/pages/item/ItemCard";
 
 const ItemList = () => {
   const [ItemData, setItemData] = useState<UserItemData[] | null>(null);
@@ -46,12 +44,12 @@ const ItemList = () => {
     };
   }, [IsOpen]);
 
-  const OpenModal = (item: UserItemData) => {
+  const openModal = (item: UserItemData) => {
     setSelectedItem(item);
     setIsOpen(true);
   };
 
-  const CloseModal = () => {
+  const closeModal = () => {
     setSelectedItem(null);
     setIsOpen(false);
   };
@@ -61,22 +59,7 @@ const ItemList = () => {
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
         {ItemData &&
           ItemData.map((item: UserItemData, index: number) => (
-            <div
-              key={index}
-              className="flex cursor-pointer flex-col items-center gap-2 border-2 border-slate-300 p-3 hover:shadow-lg"
-              onClick={() => OpenModal(item)}
-            >
-              <img src={item.imageId} alt="" className="w-1/3" />
-              <p className="max-w-full truncate">{item.itemName}</p>
-              <p className="max-w-full truncate">
-                {getValueForDate(item, today())}円
-              </p>
-              <DiffFromAverage
-                prices={getPriceArray(item)}
-                price={getValueForDate(item, today())}
-                style="text-sm"
-              />
-            </div>
+            <ItemCard item={item} openModal={openModal} key={index} />
           ))}
       </div>
       <Button
@@ -99,10 +82,10 @@ const ItemList = () => {
         }}
         className="mx-auto mt-20  w-11/12 rounded-3xl bg-white p-4"
         isOpen={IsOpen}
-        onRequestClose={CloseModal}
+        onRequestClose={closeModal}
       >
         {SelectedItem && (
-          <ItemDetail item={SelectedItem} onClose={CloseModal} />
+          <ItemDetail item={SelectedItem} onClose={closeModal} />
         )}
       </Modal>
     </Main>
