@@ -1,13 +1,8 @@
 import { ItemData, ItemPriceValue } from "@/utils/types/items";
 
-export const getValueForDate = (itemData: ItemData, targetDate: string) => {
-  const prices = itemData.prices;
-  for (const price of prices) {
-    if (price.date === targetDate) {
-      return price.value;
-    }
-  }
-  return null;
+export const getPriceValueOnDate = (itemData: ItemData, targetDate: string) => {
+  const price = itemData.prices.find((price) => price.date === targetDate);
+  return price ? price.value : null;
 };
 
 interface PriceEntry {

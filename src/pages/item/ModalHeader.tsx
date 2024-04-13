@@ -10,7 +10,7 @@ type Props = {
   item: UserItemData;
 };
 
-const ItemPrice = ({ item }: Props) => {
+const ModalHeader = ({ item }: Props) => {
   const [itemName, setItemName] = useState<string>(item.itemName);
   const [canEdit, setCanEdit] = useState<boolean>(false);
   const [img, setImg] = useState<string>("");
@@ -70,4 +70,4 @@ const ItemPrice = ({ item }: Props) => {
   );
 };
 
-export default ItemPrice;
+export default ModalHeader;

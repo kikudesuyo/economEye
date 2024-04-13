@@ -12,9 +12,3 @@ export type ChartDataset = {
   tension: number;
   pointRadius: number;
 };
-
-export type ChartProps = {
-  titleName: string;
-  xLabels: string[];
-  datasets: ChartDataset[];
-};

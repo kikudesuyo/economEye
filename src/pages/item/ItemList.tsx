@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { fetchUserItems } from "@/firebase/firestore/item";
 import { updateItem } from "@/firebase/functions/functionsHandler";
 import Button from "@/components/Button";
-import { UserItemData } from "@/utils/types/items";
-import ItemDetail from "@/pages/item/ItemDetail";
+import { UserItemData } from "@/utils/type";
+import ItemModal from "@/pages/item/ItemModal";
 import { PATHS } from "@/utils/constant";
 import Main from "@/components/Main";
 import ItemCard from "@/pages/item/ItemCard";
@@ -59,7 +59,13 @@ const ItemList = () => {
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
         {ItemData &&
           ItemData.map((item: UserItemData, index: number) => (
-            <ItemCard item={item} openModal={openModal} key={index} />
+            <ItemCard
+              item={item}
+              openModal={() => {
+                openModal(item);
+              }}
+              key={index}
+            />
           ))}
       </div>
       <Button
@@ -78,15 +84,15 @@ const ItemList = () => {
       />
       <Modal
         style={{
-          overlay: { backgroundColor: "rgba(0,0,0,0.5)" },
+          overlay: {
+            backgroundColor: "rgba(0,0,0,0.5)",
+          },
         }}
-        className="mx-auto mt-20  w-11/12 rounded-3xl bg-white p-4"
+        className="mx-auto mt-12 w-11/12 rounded-3xl bg-white p-4"
         isOpen={IsOpen}
         onRequestClose={closeModal}
       >
-        {SelectedItem && (
-          <ItemDetail item={SelectedItem} onClose={closeModal} />
-        )}
+        {SelectedItem && <ItemModal item={SelectedItem} onClose={closeModal} />}
       </Modal>
     </Main>
   );
