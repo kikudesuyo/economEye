@@ -35,12 +35,13 @@ export const setData = async (
   itemData: ItemData
 ): Promise<void> => {
   const itemRef = await db.collection("items").add(itemData);
+  const itemId = itemRef.id;
   const docRef = await db.collection("users").doc(uid).get();
   if (!docRef.exists) {
     throw new HttpsError("internal", `The following uid does not exist${uid}.`);
   }
   const currentItemIds: { [itemId: string]: string[] } = docRef.data() || {};
-  currentItemIds["itemRef"].push(itemRef);
+  currentItemIds["itemIds"].push(itemId);
   await db.collection("users").doc(uid).set(currentItemIds);
 };
 
