@@ -34,7 +34,7 @@ const ItemDetail = ({ item, onClose }: ItemDetailProps) => {
   });
 
   const updateItemName = async () => {
-    const updater = new DbDocumentManager("items", item.itemId);
+    const updater = new DbDocumentManager(item.itemRef);
     await updater.updateSpecificFields({ itemName: itemName });
   };
   return (
