@@ -4,7 +4,7 @@ import { UserItemData } from "@/utils/type";
 import Button from "@/components/Button";
 import { ref, getDownloadURL } from "firebase/storage";
 import { storage } from "@/firebase/init";
-import { DataUpdater } from "@/firebase/firestore/updateItem";
+import { DbDocumentManager } from "@/firebase/firestore/dbManage";
 
 type Props = {
   item: UserItemData;
@@ -22,8 +22,8 @@ const ItemPrice = ({ item }: Props) => {
     setImg(url);
   });
   const updateItemName = async () => {
-    const updater = new DataUpdater("items", item.itemId);
-    await updater.updatePartialData({ itemName: itemName });
+    const updater = new DbDocumentManager(item.itemRef);
+    await updater.updateSpecificFields({ itemName: itemName });
   };
 
   return (

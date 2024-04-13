@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import Modal from "react-modal";
 import { useNavigate } from "react-router-dom";
-import { fetchUserItems } from "@/firebase/firestore/dbFetcher";
+import { fetchUserItems } from "@/firebase/firestore/item";
 import { updateItem } from "@/firebase/functions/functionsHandler";
 import Button from "@/components/Button";
 import { UserItemData } from "@/utils/type";
-import ItemDetail from "@/pages/item/ItemDetail";
+import ItemDetail from "@/pages/item/ItemKoya";
 import { PATHS } from "@/utils/constant";
 import Main from "@/components/Main";
 import ItemCard from "@/pages/item/ItemCard";
@@ -87,7 +87,7 @@ const ItemList = () => {
         style={{
           overlay: { backgroundColor: "rgba(0,0,0,0.5)" },
         }}
-        className="mx-auto mt-20 h-3/5 w-11/12 rounded-3xl bg-white p-4"
+        className="mx-auto mt-20  w-11/12 rounded-3xl bg-white p-4"
         isOpen={IsOpen}
         onRequestClose={closeModal}
       >
