@@ -8,7 +8,7 @@ import { fetchUserItems } from "@/firebase/firestore/item";
 import { calcAverage } from "@/calculation/calcValue";
 import { PATHS } from "@/utils/constant";
 import { today } from "@/utils/timeUtils";
-import { UserItemData } from "@/utils/type";
+import { UserItemData } from "@/utils/types/items";
 import Button from "@/components/Button";
 import Main from "@/components/Main";
 import DiffFromAverage from "@/pages/item/DiffFromAverage";

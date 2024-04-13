@@ -4,7 +4,7 @@ import {
   DbDocumentManager,
   DbCollectionManager,
 } from "@/firebase/firestore/dbManage";
-import { TagData } from "@/utils/type";
+import { TagData } from "@/utils/types/tags";
 
 export const createTag = async (
   tagData: TagData,

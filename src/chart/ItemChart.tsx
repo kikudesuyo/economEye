@@ -1,4 +1,4 @@
-import { GraphDataset } from "@/utils/type";
+import { ChartDataset } from "@/utils/types/ui";
 import {
   Chart as ChartJS,
   ChartData,
@@ -18,7 +18,7 @@ import { Chart } from "react-chartjs-2";
 
 export type Props = {
   xLabels: string[];
-  datasets: GraphDataset[];
+  datasets: ChartDataset[];
 };
 
 const ItemChart = ({ xLabels, datasets }: Props) => {

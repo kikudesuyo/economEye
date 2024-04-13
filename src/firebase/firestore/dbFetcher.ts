@@ -1,4 +1,4 @@
-import { ItemData, ItemPriceValue } from "@/utils/type";
+import { ItemData, ItemPriceValue } from "@/utils/types/items";
 
 export const getPriceValueOnDate = (itemData: ItemData, targetDate: string) => {
   const price = itemData.prices.find((price) => price.date === targetDate);

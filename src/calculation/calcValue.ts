@@ -1,4 +1,4 @@
-import { ItemPriceValue } from "@/utils/type";
+import { ItemPriceValue } from "@/utils/types/items";
 
 export const formatValue = (value: number): number => {
   return Math.round(value);

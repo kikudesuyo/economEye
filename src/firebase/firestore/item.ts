@@ -1,7 +1,7 @@
 import { DocumentReference } from "firebase/firestore";
 import { DbDocumentManager } from "@/firebase/firestore/dbManage";
 import { getUserDocRef } from "@/firebase/firestore/auth";
-import { UserItemData } from "@/utils/type";
+import { UserItemData } from "@/utils/types/items";
 
 export const fetchUserItemRefs = async () => {
   try {

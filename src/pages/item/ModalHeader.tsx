@@ -1,6 +1,6 @@
 import Input from "@/components/Input";
 import { useState } from "react";
-import { UserItemData } from "@/utils/type";
+import { UserItemData } from "@/utils/types/items";
 import Button from "@/components/Button";
 import { ref, getDownloadURL } from "firebase/storage";
 import { storage } from "@/firebase/init";

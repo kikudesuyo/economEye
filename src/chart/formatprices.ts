@@ -1,4 +1,4 @@
-import { ItemPriceValue, Prices } from "@/utils/type";
+import { ItemPriceValue, Prices } from "@/utils/types/items";
 
 export class PriceFormatter {
   prices: Prices;
