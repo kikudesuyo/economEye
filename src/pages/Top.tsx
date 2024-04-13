@@ -1,10 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  fetchUserItems,
-  getValueForDate,
-  getPriceArray,
-} from "@/firebase/firestore/dbFetcher";
+import { getValueForDate, getPriceArray } from "@/firebase/firestore/dbFetcher";
+import { fetchUserItems } from "@/firebase/firestore/item";
 import { calcAverage } from "@/calculation/calcValue";
 import { PATHS } from "@/utils/constant";
 import { today } from "@/utils/timeUtils";

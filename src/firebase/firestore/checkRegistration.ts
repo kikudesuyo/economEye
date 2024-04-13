@@ -1,37 +1,24 @@
 import {
-  getDoc,
-  doc,
   collection,
   getDocs,
   query,
   where,
+  DocumentReference,
 } from "firebase/firestore";
 
+import { fetchUserItemRefs } from "@/firebase/firestore/item";
 import { DocumentData } from "firebase-admin/firestore";
-import {
-  DuplicateItemError,
-  DbNotFoundError,
-} from "@/firebase/firestore/errors";
+import { DuplicateItemError } from "@/firebase/firestore/errors";
 
-import { fetchUserId } from "@/firebase/firestore/dbFetcher";
 import { ItemParams } from "@/utils/type";
 import { db } from "@/firebase/init";
 
 export class RegistrationValidator {
-  itemIds: Promise<string[]>;
+  itemRefs: Promise<DocumentReference[]>;
   inputData: ItemParams;
   constructor(inputData: ItemParams) {
-    this.itemIds = this.fetchUserItemIds();
+    this.itemRefs = fetchUserItemRefs();
     this.inputData = inputData;
-  }
-
-  async fetchUserItemIds(): Promise<string[]> {
-    const uid = await fetchUserId();
-    const itemSnap = await getDoc(doc(db, "users", uid));
-    if (!itemSnap.exists()) {
-      throw new DbNotFoundError("予期せぬエラーが起きています。");
-    }
-    return itemSnap.data().itemIds;
   }
 
   private isItemDuplicated(items: DocumentData[]) {
@@ -43,13 +30,13 @@ export class RegistrationValidator {
   }
 
   async checkItemDuplicated() {
-    if ((await this.itemIds).length === 0) {
+    if ((await this.itemRefs).length === 0) {
       return;
     }
     const itemsRef = collection(db, "items");
     const itemQuery = query(
       itemsRef,
-      where("__name__", "in", await this.itemIds)
+      where("__name__", "in", await this.itemRefs)
     );
     const itemSnapshot = await getDocs(itemQuery);
     const userItems = itemSnapshot.docs.map((doc) => doc.data());
@@ -61,7 +48,7 @@ export class RegistrationValidator {
   }
 
   async checkItemLimit() {
-    if ((await this.itemIds).length >= 30) {
+    if ((await this.itemRefs).length >= 30) {
       throw new Error(
         "登録できる商品数の上限に達しています。これ以上登録できません。"
       );

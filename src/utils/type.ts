@@ -29,7 +29,7 @@ export interface ItemData {
 }
 
 export interface UserItemData extends ItemData {
-  itemId: string;
+  itemRef: DocumentReference;
 }
 
 export type TagData = {

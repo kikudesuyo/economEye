@@ -1,11 +1,8 @@
 import { useEffect, useState } from "react";
 import Modal from "react-modal";
 import { useNavigate } from "react-router-dom";
-import {
-  fetchUserItems,
-  getValueForDate,
-  getPriceArray,
-} from "@/firebase/firestore/dbFetcher";
+import { getValueForDate, getPriceArray } from "@/firebase/firestore/dbFetcher";
+import { fetchUserItems } from "@/firebase/firestore/item";
 import { updateItem } from "@/firebase/functions/functionsHandler";
 import Button from "@/components/Button";
 import { UserItemData } from "@/utils/type";

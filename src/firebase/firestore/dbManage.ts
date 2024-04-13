@@ -12,7 +12,7 @@ import {
 } from "firebase/firestore";
 import { db } from "@/firebase/init";
 
-export const fetchDocRef = (
+export const getDocRef = (
   collectionName: string,
   docId: string
 ): DocumentReference => {
@@ -28,6 +28,9 @@ export class DbCollectionManager<DbmModelType extends DocumentData> {
     const docRef = await addDoc(this.collectionRef, data);
     return docRef;
   };
+  fetchCollectionRef = async () => {
+    return this.collectionRef;
+  };
 }
 
 export class DbDocumentManager<DbmModelType extends DocumentData> {
@@ -35,9 +38,6 @@ export class DbDocumentManager<DbmModelType extends DocumentData> {
   constructor(docRef: DocumentReference) {
     this.docRef = docRef;
   }
-  fetchDocRef = async (): Promise<DocumentReference> => {
-    return this.docRef;
-  };
   fetchDocData = async (): Promise<DocumentData> => {
     const docSnap = await getDoc(this.docRef);
     if (!docSnap.exists()) {

@@ -14,9 +14,9 @@ export const createTag = async (
   const tagRef = await tagCollection.addDataAndFetchDocRef(tagData);
   const usersCollection = new DbDocumentManager(userDocRef);
   const currentUserData = await usersCollection.fetchDocData();
-  const updatedTagIds = [...currentUserData.tagIds, tagRef];
+  const updatedTagRefs = [...currentUserData.tagRefs, tagRef];
   await usersCollection.updateSpecificFields({
-    tagIds: updatedTagIds,
+    tagRefs: updatedTagRefs,
   });
 };
 
@@ -35,18 +35,17 @@ export const deleteTag = async (
   userDocRef: DocumentReference
 ) => {
   const tagCollection = new DbDocumentManager(tagDocRef);
-  const tagRef = await tagCollection.fetchDocRef();
   await tagCollection.deleteDocument();
   const usersCollection = new DbDocumentManager(userDocRef);
   const currentUserData = await usersCollection.fetchDocData();
-  const updatedTagIds = currentUserData.tagIds.filter(
-    (id: DocumentReference) => id.path !== tagRef.path
+  const updatedTagRefs = currentUserData.tagRefs.filter(
+    (ref: DocumentReference) => ref.path !== tagDocRef.path
   );
-  if (updatedTagIds.length === currentUserData.tagIds.length) {
-    throw new Error("designated tagId not found in user");
+  if (updatedTagRefs.length === currentUserData.tagRefs.length) {
+    throw new Error("designated tagRef not found in user");
   }
   await usersCollection.updateSpecificFields({
-    tagIds: updatedTagIds,
+    tagRefs: updatedTagRefs,
   });
 };
 
@@ -58,19 +57,19 @@ export const changeTag = async (
   try {
     await runTransaction(db, async () => {
       const previousTagCollection = new DbDocumentManager(previousTagDocRef);
-      const previousItemIds = await previousTagCollection.fetchDocData();
-      const updatedPreviousTagIds = previousItemIds.itemIds.filter(
+      const previousItemRefs = await previousTagCollection.fetchDocData();
+      const updatedPreviousTagRefs = previousItemRefs.itemRefs.filter(
         (DocRef: DocumentReference) => DocRef.path !== itemDocRef.path
       );
-      if (updatedPreviousTagIds.length === previousItemIds.itemIds.length) {
-        throw new Error("designated itemId not found in previous tag");
+      if (updatedPreviousTagRefs.length === previousItemRefs.itemRefs.length) {
+        throw new Error("designated itemRefs not found in previous tag");
       }
       await previousTagCollection.updateSpecificFields({
-        itemIds: updatedPreviousTagIds,
+        itemRefs: updatedPreviousTagRefs,
       });
       const nextTagCollection = new DbDocumentManager(nextTagDocRef);
       nextTagCollection.updateSpecificFields({
-        itemIds: [...updatedPreviousTagIds, itemDocRef],
+        itemRefs: [...updatedPreviousTagRefs, itemDocRef],
       });
     });
   } catch (error) {
