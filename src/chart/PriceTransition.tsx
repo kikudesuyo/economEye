@@ -1,7 +1,7 @@
 import CompositeChart from "@/chart/Chart";
 import { PriceFormatter } from "@/chart/formatprices";
 import { formattedAverage } from "@/calculation/calcValue";
-import { GraphDataset } from "@/utils/types/ui";
+import { ChartDataset } from "@/utils/types/ui";
 import { UserItemData } from "@/utils/types/items";
 import { formatDate } from "@/utils/timeUtils";
 type Props = {
@@ -14,7 +14,7 @@ const PriceTransition = ({ item }: Props) => {
   const dates = prices.dates();
 
   const xLabels = dates.map((date) => formatDate(date));
-  const datasets: GraphDataset[] = [
+  const datasets: ChartDataset[] = [
     {
       type: "line",
       label: "平均",

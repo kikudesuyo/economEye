@@ -2,7 +2,7 @@ import { ItemPriceValue } from "@/utils/types/items";
 
 type ChartType = "line" | "bar";
 
-export type GraphDataset = {
+export type ChartDataset = {
   type: ChartType;
   label: string;
   data: ItemPriceValue[];
@@ -13,8 +13,8 @@ export type GraphDataset = {
   pointRadius: number;
 };
 
-export type GraphProps = {
+export type ChartProps = {
   titleName: string;
   xLabels: string[];
-  datasets: GraphDataset[];
+  datasets: ChartDataset[];
 };

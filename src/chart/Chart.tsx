@@ -1,4 +1,4 @@
-import { GraphProps } from "@/utils/types/ui";
+import { ChartProps } from "@/utils/types/ui";
 import {
   Chart as ChartJS,
   ChartData,
@@ -17,7 +17,7 @@ import {
 } from "chart.js";
 import { Chart } from "react-chartjs-2";
 
-const CompositeChart = ({ titleName, xLabels, datasets }: GraphProps) => {
+const CompositeChart = ({ titleName, xLabels, datasets }: ChartProps) => {
   ChartJS.register(
     LineController,
     LineElement,
