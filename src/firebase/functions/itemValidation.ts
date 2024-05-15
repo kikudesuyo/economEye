@@ -4,5 +4,6 @@ export const isValidName = (input: string): boolean => {
 
 export const isValidJanCode = (input: string): boolean => {
   const regex = /^\d{13}$/;
+  console.log("hoge");
   return regex.test(input);
 };
