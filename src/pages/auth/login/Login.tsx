@@ -8,8 +8,8 @@ import Input from "@/components/Input";
 import { isValidEmail, isValidPassword, Auth } from "@/pages/auth/helper";
 
 const Login = () => {
-  const [email, setEmail] = useState<string>("hogehoge@gmail.com");
-  const [password, setPassword] = useState<string>("hogehoge");
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
   const navigate = useNavigate();
   const handleLogin = async () => {
     if (!isValidEmail(email)) {
