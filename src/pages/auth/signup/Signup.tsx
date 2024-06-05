@@ -5,6 +5,7 @@ import { PATHS } from "@/utils/constant";
 import Main from "@/components/Main";
 import Input from "@/components/Input";
 import { Auth, isValidEmail, isValidPassword } from "@/pages/auth/helper";
+import signupLogo from "@/assets/imgs/signup.svg";
 
 const Signup = () => {
   const [email, setEmail] = useState<string>("");
@@ -34,39 +35,46 @@ const Signup = () => {
     }
   };
   return (
-    <Main style="items-left gap-8 text-left mt-8">
-      <h1 className="text-3xl">サインアップ</h1>
-      <Input
-        type="email"
-        label="メールアドレス"
-        placeholder="例) economEye@gmail.com"
-        style="flex-col"
-        value={email}
-        handler={(e) => setEmail(e.target.value)}
-      />
-      <Input
-        type="password"
-        label="パスワード(6文字以上)"
-        placeholder="パスワードを入力してください"
-        style="flex-col"
-        value={password}
-        handler={(e) => setPassword(e.target.value)}
-      />
-      <Input
-        type="password"
-        label="パスワード確認用"
-        placeholder="もう一度パスワードを入力してください"
-        style="flex-col gap-4"
-        value={confirmPassword}
-        handler={(e) => setConfirmPassword(e.target.value)}
-      />
-      <Button
-        label="登録"
-        style="w-3/5 mx-auto"
-        func={async () => {
-          await handleSignup();
-        }}
-      />
+    <Main style="gap-8 mt-8">
+      <h1 className="text-center text-3xl font-bold">サインアップ</h1>
+      <div className="flex flex-row gap-20">
+        <div>
+          <img src={signupLogo} />
+        </div>
+        <div className="flex flex-col gap-8 text-left">
+          <Input
+            type="email"
+            label="メールアドレス"
+            placeholder="例) economEye@gmail.com"
+            style="flex-col"
+            value={email}
+            handler={(e) => setEmail(e.target.value)}
+          />
+          <Input
+            type="password"
+            label="パスワード(6文字以上)"
+            placeholder="パスワードを入力してください"
+            style="flex-col"
+            value={password}
+            handler={(e) => setPassword(e.target.value)}
+          />
+          <Input
+            type="password"
+            label="パスワード確認用"
+            placeholder="もう一度パスワードを入力してください"
+            style="flex-col gap-4"
+            value={confirmPassword}
+            handler={(e) => setConfirmPassword(e.target.value)}
+          />
+          <Button
+            label="登録"
+            style="w-3/5 mx-auto"
+            func={async () => {
+              await handleSignup();
+            }}
+          />
+        </div>
+      </div>
     </Main>
   );
 };

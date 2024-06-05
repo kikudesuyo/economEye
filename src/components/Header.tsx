@@ -11,14 +11,12 @@ const Header = () => {
       </Link>
       <div className="flex gap-2">
         <Button
-          style="font-bold hover:bg-gray-400"
           label="ログイン"
           func={() => {
             navigate(PATHS.LOGIN);
           }}
         />
         <Button
-          style="font-bold hover:bg-gray-400"
           label="新規登録"
           func={() => {
             navigate(PATHS.SIGNUP);
