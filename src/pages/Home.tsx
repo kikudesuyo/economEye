@@ -1,5 +1,6 @@
 import Main from "@/components/Main";
 import graphLogo from "@/assets/imgs/graph_creating.svg";
+import SampleItemList from "@/pages/item/sample/SampleItemList";
 
 const Home = () => {
   return (
@@ -11,8 +12,9 @@ const Home = () => {
           <h2 className="text-xl">商品の買い時がわかります</h2>
         </div>
         <div className="container mx-auto p-4">
-          <img className="mx-auto w-1/2" src={graphLogo} />
+          <img className="mx-auto w-1/3" src={graphLogo} />
         </div>
+        <SampleItemList />
       </div>
     </Main>
   );
