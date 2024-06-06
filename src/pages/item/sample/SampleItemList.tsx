@@ -1,3 +1,5 @@
+import arrow from "@/assets/imgs/arrow.svg";
+
 type Props = {
   step: number;
   title: string;
@@ -6,8 +8,8 @@ type Props = {
 
 const StepCard = ({ step, title, description }: Props) => {
   return (
-    <div className="grid grid-cols-1 gap-6">
-      <div className="rounded-lg bg-white p-6 shadow-md hover:shadow-2xl ">
+    <div className="flex flex-col items-center ">
+      <div className="w-full rounded-lg bg-white p-4 shadow-xl md:w-auto">
         <div className="mb-4 flex items-center">
           <h2 className="text-lg font-bold">
             Step {step}: {title}
@@ -19,11 +21,14 @@ const StepCard = ({ step, title, description }: Props) => {
   );
 };
 
-const SampleItemList = () => {
+const Description = () => {
   return (
     <div className="container mx-auto p-8 ">
-      <div className="flex flex-row gap-8">
-        <StepCard step={1} title="アカウントの作成" description="" />
+      <div className="flex flex-row justify-center gap-8">
+        <StepCard step={1} title="アカウント作成" description="" />
+        <div className="flex w-1/2 items-center">
+          <img src={arrow} alt="" />
+        </div>
         <StepCard
           step={2}
           title="商品の登録"
@@ -31,10 +36,13 @@ const SampleItemList = () => {
          欲しい商品のJANコードを入力しましょう
           (JANコードは商品のバーコードに記載されている13桁の数字です)"
         />
+        <div className="flex w-1/2 items-center">
+          <img src={arrow} alt="" />
+        </div>
         <StepCard step={3} title="商品一覧の確認" description="" />
       </div>
     </div>
   );
 };
 
-export default SampleItemList;
+export default Description;
