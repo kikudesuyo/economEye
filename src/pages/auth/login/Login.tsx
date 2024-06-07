@@ -34,7 +34,7 @@ const Login = () => {
         <img src={padlock} alt="" className="h-auto w-10" />
         <h1 className="text-center text-3xl font-bold">ログイン</h1>
       </div>
-      <div className="flex flex-col gap-12">
+      <div className="flex flex-col gap-6">
         <div className="flex w-full justify-center ">
           <img src={loginLogo} className="h-auto w-full max-w-md" />
         </div>
