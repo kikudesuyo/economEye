@@ -4,7 +4,8 @@ import Button from "@/components/Button";
 import { PATHS } from "@/utils/constant";
 import Main from "@/components/Main";
 import Input from "@/components/Input";
-import { Auth, isValidEmail, isValidPassword } from "@/pages/auth/helper";
+// import { Auth, isValidEmail, isValidPassword } from "@/pages/auth/helper";
+import { validateSignup } from "@/pages/auth/authHandling";
 import signupLogo from "@/assets/imgs/signup.svg";
 import padlock from "@/assets/imgs/padlock.svg";
 
@@ -14,27 +15,32 @@ const Signup = () => {
   const [confirmPassword, setConfirmPassword] = useState<string>("");
   const navigate = useNavigate();
   const handleSignup = async () => {
-    if (!isValidEmail(email)) {
-      alert("正しいメールアドレスを入力してください。");
-      throw new Error("invalid email");
-    }
-    if (!isValidPassword(password)) {
-      alert("パスワードは6文字以上で入力してください。");
-      throw new Error("invalid password");
-    }
-    if (password !== confirmPassword) {
-      alert("パスワードが一致しません。もう一度入力してください。");
-      throw new Error("password does not match");
-    }
-    try {
-      const auth = new Auth();
-      await auth.signup(email, password);
-      navigate(PATHS.TOP);
-    } catch (error) {
-      alert("サインアップに失敗しました。もう一度お試しください。");
-      throw new Error("signup failed");
-    }
+    await validateSignup(email, password, confirmPassword);
+    navigate(PATHS.TOP);
   };
+
+  // const handleSignup = async () => {
+  //   if (!isValidEmail(email)) {
+  //     alert("正しいメールアドレスを入力してください。");
+  //     throw new Error("invalid email");
+  //   }
+  //   if (!isValidPassword(password)) {
+  //     alert("パスワードは6文字以上で入力してください。");
+  //     throw new Error("invalid password");
+  //   }
+  //   if (password !== confirmPassword) {
+  //     alert("パスワードが一致しません。もう一度入力してください。");
+  //     throw new Error("password does not match");
+  //   }
+  //   try {
+  //     const auth = new Auth();
+  //     await auth.signup(email, password);
+  //     navigate(PATHS.TOP);
+  //   } catch (error) {
+  //     alert("サインアップに失敗しました。もう一度お試しください。");
+  //     throw new Error("signup failed");
+  //   }
+  // };
   return (
     <Main style="gap-8 mt-8">
       <div className="flex flex-row items-center justify-center gap-4">

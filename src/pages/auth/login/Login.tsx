@@ -4,7 +4,8 @@ import Button from "@/components/Button";
 import { PATHS } from "@/utils/constant";
 import Main from "@/components/Main";
 import Input from "@/components/Input";
-import { isValidEmail, isValidPassword, Auth } from "@/pages/auth/helper";
+// import { isValidEmail, isValidPassword, Auth } from "@/pages/auth/helper";
+import { validateLogin } from "@/pages/auth/authHandling";
 import loginLogo from "@/assets/imgs/login.svg";
 import padlock from "@/assets/imgs/padlock.svg";
 
@@ -13,21 +14,25 @@ const Login = () => {
   const [password, setPassword] = useState<string>("");
   const navigate = useNavigate();
   const handleLogin = async () => {
-    if (!isValidEmail(email)) {
-      alert("正しいメールアドレスを入力してください。");
-      throw new Error("invalid email");
-    }
-    if (!isValidPassword(password)) {
-      alert("パスワードは6文字以上で入力してください。");
-      throw new Error("invalid password");
-    }
-    const auth = new Auth();
-    await auth.login(email, password).catch(() => {
-      alert("ログインに失敗しました。もう一度お試しください。");
-      throw new Error("login failed");
-    });
+    await validateLogin(email, password);
     navigate(PATHS.TOP);
   };
+  // const handleLogin = async () => {
+  //   if (!isValidEmail(email)) {
+  //     alert("正しいメールアドレスを入力してください。");
+  //     throw new Error("invalid email");
+  //   }
+  //   if (!isValidPassword(password)) {
+  //     alert("パスワードは6文字以上で入力してください。");
+  //     throw new Error("invalid password");
+  //   }
+  //   const auth = new Auth();
+  //   await auth.login(email, password).catch(() => {
+  //     alert("ログインに失敗しました。もう一度お試しください。");
+  //     throw new Error("login failed");
+  //   });
+  //   navigate(PATHS.TOP);
+  // };
   return (
     <Main style="gap-8 mt-8">
       <div className="flex flex-row items-center justify-center gap-4">
