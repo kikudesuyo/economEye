@@ -8,14 +8,14 @@ type Props = {
 
 const StepCard = ({ step, title, description }: Props) => {
   return (
-    <div className="flex flex-col items-center ">
-      <div className="w-full rounded-lg bg-white p-4 shadow-xl md:w-auto">
-        <div className="mb-4 flex items-center">
-          <h2 className="text-lg font-bold">
+    <div className="flex w-full flex-col items-center md:w-1/3 ">
+      <div className="size-full rounded-lg bg-white p-4 shadow-xl">
+        <div className="my-4 flex items-center">
+          <h2 className="text-2xl font-bold">
             Step {step}: {title}
           </h2>
         </div>
-        <p className="text-gray-700">{description}</p>
+        <p className="text-sm font-bold text-gray-700">{description}</p>
       </div>
     </div>
   );
@@ -23,24 +23,34 @@ const StepCard = ({ step, title, description }: Props) => {
 
 const Description = () => {
   return (
-    <div className="container mx-auto p-8 ">
-      <div className="flex flex-row justify-center gap-8">
-        <StepCard step={1} title="アカウント作成" description="" />
-        <div className="flex w-1/2 items-center">
-          <img src={arrow} alt="" />
-        </div>
-        <StepCard
-          step={2}
-          title="商品の登録"
-          description="
-         欲しい商品のJANコードを入力しましょう
-          (JANコードは商品のバーコードに記載されている13桁の数字です)"
+    <div className="flex w-full flex-col flex-nowrap justify-center gap-8 md:flex-row">
+      <StepCard step={1} title="アカウント作成" description="" />
+      <div className="flex items-center justify-center">
+        <img
+          src={arrow}
+          alt=""
+          className="size-24 rotate-90 md:size-32 md:rotate-0"
         />
-        <div className="flex w-1/2 items-center">
-          <img src={arrow} alt="" />
-        </div>
-        <StepCard step={3} title="商品一覧の確認" description="" />
       </div>
+      <StepCard
+        step={2}
+        title="商品登録"
+        description="
+         欲しい商品のJANコードを入力しましょう"
+      />
+      <div className="flex items-center justify-center">
+        <img
+          src={arrow}
+          alt=""
+          className="size-24 rotate-90 md:size-32 md:rotate-0"
+        />
+      </div>
+      <StepCard
+        step={3}
+        title="商品一覧の確認"
+        description="
+      登録した商品の価格を確認しましょう"
+      />
     </div>
   );
 };

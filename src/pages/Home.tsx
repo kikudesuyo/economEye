@@ -13,10 +13,12 @@ const Home = () => {
           <h2 className="text-xl">あなたの生活を豊かに</h2>
           <h2 className="text-xl">商品の買い時がわかります</h2>
         </div>
-        <div className="container mx-auto p-4">
-          <img className="mx-auto md:w-3/5 lg:w-1/2" src={graphLogo} />
+        <div className="flex flex-col gap-12">
+          <div className="container mx-auto p-4">
+            <img className="mx-auto md:w-3/5 lg:w-1/2" src={graphLogo} />
+          </div>
+          <Description />
         </div>
-        <Description />
       </div>
     </Main>
   );
