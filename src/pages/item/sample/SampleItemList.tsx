@@ -23,13 +23,13 @@ const StepCard = ({ step, title, description }: Props) => {
 
 const Description = () => {
   return (
-    <div className="flex w-full flex-col flex-nowrap justify-center gap-8 md:flex-row">
+    <div className="flex w-full flex-col flex-nowrap justify-center gap-2 md:flex-row md:gap-8">
       <StepCard step={1} title="アカウント作成" description="" />
       <div className="flex items-center justify-center">
         <img
           src={arrow}
           alt=""
-          className="size-24 rotate-90 md:size-32 md:rotate-0"
+          className="size-12 rotate-90 sm:size-24  md:size-32 md:rotate-0"
         />
       </div>
       <StepCard
@@ -42,7 +42,7 @@ const Description = () => {
         <img
           src={arrow}
           alt=""
-          className="size-24 rotate-90 md:size-32 md:rotate-0"
+          className="size-12 rotate-90 sm:size-24 md:size-32 md:rotate-0"
         />
       </div>
       <StepCard

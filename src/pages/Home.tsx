@@ -17,9 +17,9 @@ const Home = () => {
             商品の買い時がわかります
           </h2>
         </div>
-        <div className="flex flex-col gap-12">
+        <div className="flex flex-col gap-8">
           <div className="container mx-auto p-4">
-            <img className="mx-auto md:w-3/5 lg:w-1/2" src={graphLogo} />
+            <img className="mx-auto w-1/2 md:w-3/5" src={graphLogo} />
           </div>
           <Description />
         </div>
