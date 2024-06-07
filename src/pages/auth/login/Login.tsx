@@ -2,10 +2,11 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "@/components/Button";
 import { PATHS } from "@/utils/constant";
-import padlock from "@/assets/imgs/padlock.svg";
 import Main from "@/components/Main";
 import Input from "@/components/Input";
 import { isValidEmail, isValidPassword, Auth } from "@/pages/auth/helper";
+import loginLogo from "@/assets/imgs/login.svg";
+import padlock from "@/assets/imgs/padlock.svg";
 
 const Login = () => {
   const [email, setEmail] = useState<string>("");
@@ -29,33 +30,46 @@ const Login = () => {
   };
   return (
     <Main style="gap-8 mt-8">
-      <div className="flex flex-row items-center">
-        <img className="size-14" src={padlock} alt="" />
-        <h1 className="text-3xl">ログイン</h1>
+      <div className="flex flex-row items-center justify-center gap-4">
+        <img src={padlock} alt="" className="h-auto w-10" />
+        <h1 className="text-center text-3xl font-bold">ログイン</h1>
       </div>
-      <Input
-        type="email"
-        label="メールアドレス"
-        placeholder="例) economEye@gmail.com"
-        style="flex-col"
-        value={email}
-        handler={(e) => setEmail(e.target.value)}
-      />
-      <Input
-        type="password"
-        label="パスワード"
-        placeholder="パスワードを入力してください"
-        style="flex-col"
-        value={password}
-        handler={(e) => setPassword(e.target.value)}
-      />
-      <Button
-        label="ログイン"
-        style="w-3/5 mx-auto"
-        func={async () => {
-          await handleLogin();
-        }}
-      />
+      <div className="flex flex-col gap-12">
+        <div className="flex w-full justify-center ">
+          <img src={loginLogo} className="h-auto w-full max-w-md" />
+        </div>
+        <div className="flex justify-center">
+          <div className="flex w-full flex-col gap-8  md:w-3/5">
+            <div className="rounded-lg bg-white p-6 shadow-lg">
+              <div className="flex flex-col gap-8 text-left">
+                <Input
+                  type="email"
+                  label="メールアドレス"
+                  placeholder="例) economEye@gmail.com"
+                  style="flex-col"
+                  value={email}
+                  handler={(e) => setEmail(e.target.value)}
+                />
+                <Input
+                  type="password"
+                  label="パスワード"
+                  placeholder="パスワードを入力してください"
+                  style="flex-col"
+                  value={password}
+                  handler={(e) => setPassword(e.target.value)}
+                />
+              </div>
+            </div>
+            <Button
+              label="ログイン"
+              style="w-3/5 mx-auto"
+              func={async () => {
+                await handleLogin();
+              }}
+            />
+          </div>
+        </div>
+      </div>
     </Main>
   );
 };
