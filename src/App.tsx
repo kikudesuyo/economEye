@@ -9,12 +9,14 @@ import RegisterItem from "@/pages/item/RegisterItem";
 import ItemList from "@/pages/item/ItemList";
 import Header from "@/components/Header";
 // import Footer from "@/components/Footer";
+import ScrollToTop from "@/utils/ScrollTop";
 import { PATHS } from "@/utils/constant";
 
 function App() {
   return (
     <div className="flex min-h-screen flex-col">
       <Router>
+        <ScrollToTop />
         <Header />
         <Routes>
           <Route path={PATHS.HOME} element={<Home />} />
