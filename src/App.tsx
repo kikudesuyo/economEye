@@ -8,7 +8,7 @@ import "@/assets/styles/destyle.css";
 import RegisterItem from "@/pages/item/RegisterItem";
 import ItemList from "@/pages/item/ItemList";
 import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+// import Footer from "@/components/Footer";
 import { PATHS } from "@/utils/constant";
 
 function App() {
@@ -24,7 +24,7 @@ function App() {
           <Route path={PATHS.REGISTER_ITEM} element={<RegisterItem />} />
           <Route path={PATHS.ITEM_LIST} element={<ItemList />} />
         </Routes>
-        <Footer />
+        {/* <Footer /> */}
       </Router>
     </div>
   );

@@ -4,7 +4,6 @@ import Button from "@/components/Button";
 import { PATHS } from "@/utils/constant";
 import Main from "@/components/Main";
 import Input from "@/components/Input";
-// import { isValidEmail, isValidPassword, Auth } from "@/pages/auth/helper";
 import { validateLogin } from "@/pages/auth/authHandling";
 import loginLogo from "@/assets/imgs/login.svg";
 import padlock from "@/assets/imgs/padlock.svg";
@@ -17,41 +16,25 @@ const Login = () => {
     await validateLogin(email, password);
     navigate(PATHS.TOP);
   };
-  // const handleLogin = async () => {
-  //   if (!isValidEmail(email)) {
-  //     alert("正しいメールアドレスを入力してください。");
-  //     throw new Error("invalid email");
-  //   }
-  //   if (!isValidPassword(password)) {
-  //     alert("パスワードは6文字以上で入力してください。");
-  //     throw new Error("invalid password");
-  //   }
-  //   const auth = new Auth();
-  //   await auth.login(email, password).catch(() => {
-  //     alert("ログインに失敗しました。もう一度お試しください。");
-  //     throw new Error("login failed");
-  //   });
-  //   navigate(PATHS.TOP);
-  // };
   return (
-    <Main style="gap-8 mt-8">
+    <Main style="gap-4 md:gap-8 mt-8">
       <div className="flex flex-row items-center justify-center gap-4">
-        <img src={padlock} alt="" className="h-auto w-10" />
-        <h1 className="text-center text-3xl font-bold">ログイン</h1>
+        <img src={padlock} alt="" className="w-6 md:w-10" />
+        <h1 className="text-center text-xl font-bold md:text-3xl">ログイン</h1>
       </div>
-      <div className="flex flex-col gap-6">
-        <div className="flex w-full justify-center ">
-          <img src={loginLogo} className="h-auto w-full max-w-md" />
+      <div className="flex flex-col">
+        <div className="flex  items-center justify-center">
+          <img src={loginLogo} className="w-full max-w-md" />
         </div>
-        <div className="flex justify-center">
+        <div className="flex  justify-center">
           <div className="flex w-full flex-col gap-8  md:w-3/5">
-            <div className="rounded-lg bg-white p-6 shadow-lg">
+            <div className="rounded-lg bg-white p-4 shadow-lg">
               <div className="flex flex-col gap-8 text-left">
                 <Input
                   type="email"
                   label="メールアドレス"
                   placeholder="例) economEye@gmail.com"
-                  style="flex-col"
+                  style="flex-col "
                   value={email}
                   handler={(e) => setEmail(e.target.value)}
                 />
@@ -65,16 +48,16 @@ const Login = () => {
                 />
               </div>
             </div>
-            <Button
-              label="ログイン"
-              style="w-3/5 mx-auto"
-              func={async () => {
-                await handleLogin();
-              }}
-            />
           </div>
         </div>
       </div>
+      <Button
+        label="ログイン"
+        style="w-3/5 mx-auto"
+        func={async () => {
+          await handleLogin();
+        }}
+      />
     </Main>
   );
 };
