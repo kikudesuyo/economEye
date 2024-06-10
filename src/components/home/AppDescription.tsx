@@ -1,27 +1,7 @@
 import arrow from "@/assets/imgs/arrow.svg";
+import StepCard from "@/components/home/StepCard";
 
-type Props = {
-  step: number;
-  title: string;
-  description: string;
-};
-
-const StepCard = ({ step, title, description }: Props) => {
-  return (
-    <div className="flex w-full flex-col items-center md:w-1/3 ">
-      <div className="size-full rounded-lg bg-white p-4 shadow-xl">
-        <div className="my-4 flex items-center">
-          <h2 className="text-2xl font-bold">
-            Step {step}: {title}
-          </h2>
-        </div>
-        <p className="text-sm font-bold text-gray-700">{description}</p>
-      </div>
-    </div>
-  );
-};
-
-const Description = () => {
+const AppDescription = () => {
   return (
     <div className="flex w-full flex-col flex-nowrap justify-center gap-2 md:flex-row md:gap-8">
       <StepCard step={1} title="アカウント作成" description="" />
@@ -55,4 +35,4 @@ const Description = () => {
   );
 };
 
-export default Description;
+export default AppDescription;

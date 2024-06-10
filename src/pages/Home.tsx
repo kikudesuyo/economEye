@@ -1,6 +1,6 @@
 import Main from "@/components/Main";
 import graphLogo from "@/assets/imgs/graph_creating.svg";
-import Description from "@/pages/item/sample/SampleItemList";
+import AppDescription from "@/components/home/AppDescription";
 
 const Home = () => {
   return (
@@ -21,7 +21,7 @@ const Home = () => {
           <div className="container mx-auto p-4">
             <img className="mx-auto w-4/6 md:w-3/5" src={graphLogo} />
           </div>
-          <Description />
+          <AppDescription />
         </div>
       </div>
     </Main>
