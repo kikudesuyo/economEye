@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { fetchUserItems } from "@/firebase/firestore/item";
-import { UserItemData } from "@/utils/type";
-import { calcAverage } from "@/calculation/calcValue";
 import {
   getPriceArray,
   getPriceValueOnDate,
 } from "@/firebase/firestore/dbFetcher";
+import { UserItemData } from "@/utils/type";
 import { today } from "@/utils/timeUtils";
+import { calcAverage } from "@/calculation/calcValue";
 import DiffFromAverage from "@/pages/item/DiffFromAverage";
 
 const Recommendation = () => {
@@ -41,15 +41,15 @@ const Recommendation = () => {
   return (
     <div>
       <h2 className="text-2xl font-bold">おすすめ</h2>
-      <div className="flex flex-col gap-2 border-2 p-5">
+      <div className="rounded-md border-2 border-gray-300 p-5 shadow-md">
         {!isExistUserItem() && (
-          <div className="flex flex-col text-center">
+          <div className="flex flex-col items-center">
             <p>商品が登録されていません。</p>
             <p>商品登録ページで登録しましょう!</p>
           </div>
         )}
         {isExistUserItem() && recommendedItems().length === 0 && (
-          <div className="flex flex-col gap-4 text-center">
+          <div className="flex flex-col items-center gap-4">
             <p>おすすめ商品はありません</p>
             <p>商品登録をして安くなるまで待ちましょう</p>
           </div>
