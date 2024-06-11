@@ -15,7 +15,7 @@ type Props = {
 const ItemCard = ({ item, openModal }: Props) => {
   return (
     <div
-      className="flex cursor-pointer flex-col items-center justify-between gap-2 border-2 border-slate-300 p-3"
+      className="flex cursor-pointer flex-col items-center justify-between gap-2 rounded-md border-2 border-gray-300 p-3 hover:bg-gray-200"
       onClick={openModal}
     >
       <img src={item.imageId} alt="" className="w-3/5" />
