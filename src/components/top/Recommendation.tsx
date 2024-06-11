@@ -41,7 +41,7 @@ const Recommendation = () => {
   return (
     <div>
       <h2 className="text-2xl font-bold">おすすめ</h2>
-      <div className="rounded-md border-2 border-gray-300 p-5 shadow-md">
+      <div className="flex flex-col gap-4 rounded-md border-2 border-gray-300 bg-neutral-100 p-5 shadow-md">
         {!isExistUserItem() && (
           <div className="flex flex-col items-center">
             <p>商品が登録されていません。</p>

@@ -50,18 +50,20 @@ const RegisterItem = () => {
           </ul>
         </div>
       </div>
-      <Button
-        label="登録"
-        style="w-3/5 mx-auto md:w-2/5"
-        func={async () => {
-          await addNewItem({
-            janCode: janCode,
-            itemName: itemName,
-            condition: "new",
-          });
-          navigate(PATHS.ITEM_LIST);
-        }}
-      />
+      <div className="flex justify-center">
+        <Button
+          label="登録"
+          style="w-3/5 md:w-2/5"
+          func={async () => {
+            await addNewItem({
+              janCode: janCode,
+              itemName: itemName,
+              condition: "new",
+            });
+            navigate(PATHS.ITEM_LIST);
+          }}
+        />
+      </div>
     </Main>
   );
 };
