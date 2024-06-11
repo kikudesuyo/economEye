@@ -27,33 +27,35 @@ const Signup = () => {
         <div className="flex w-full justify-center">
           <img src={signupLogo} className="h-auto w-full max-w-md" />
         </div>
-        <div className="w-full justify-center gap-8 md:w-3/5">
-          <div className="rounded-lg bg-white p-6 shadow-lg">
-            <div className="flex flex-col gap-8 text-left">
-              <Input
-                type="email"
-                label="メールアドレス"
-                placeholder="例) economEye@gmail.com"
-                style="flex-col"
-                value={email}
-                handler={(e) => setEmail(e.target.value)}
-              />
-              <Input
-                type="password"
-                label="パスワード(6文字以上)"
-                placeholder="パスワードを入力してください"
-                style="flex-col"
-                value={password}
-                handler={(e) => setPassword(e.target.value)}
-              />
-              <Input
-                type="password"
-                label="パスワード確認用"
-                placeholder="もう一度パスワードを入力してください"
-                style="flex-col gap-4"
-                value={confirmPassword}
-                handler={(e) => setConfirmPassword(e.target.value)}
-              />
+        <div className="flex justify-center">
+          <div className="w-full flex-col gap-8 md:w-3/5">
+            <div className="rounded-lg bg-white p-6 shadow-lg">
+              <div className="flex flex-col gap-8 text-left">
+                <Input
+                  type="email"
+                  label="メールアドレス"
+                  placeholder="例) economEye@gmail.com"
+                  style="flex-col"
+                  value={email}
+                  handler={(e) => setEmail(e.target.value)}
+                />
+                <Input
+                  type="password"
+                  label="パスワード(6文字以上)"
+                  placeholder="パスワードを入力してください"
+                  style="flex-col"
+                  value={password}
+                  handler={(e) => setPassword(e.target.value)}
+                />
+                <Input
+                  type="password"
+                  label="パスワード確認用"
+                  placeholder="もう一度パスワードを入力してください"
+                  style="flex-col gap-4"
+                  value={confirmPassword}
+                  handler={(e) => setConfirmPassword(e.target.value)}
+                />
+              </div>
             </div>
           </div>
         </div>
