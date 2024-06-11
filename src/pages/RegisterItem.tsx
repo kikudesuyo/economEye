@@ -8,8 +8,8 @@ import Input from "@/components/Input";
 import { PATHS } from "@/utils/constant";
 
 const RegisterItem = () => {
-  const [janCode, setJanCode] = useState<string>("4901777216884");
-  const [itemName, setItemName] = useState<string>("重複テスト");
+  const [janCode, setJanCode] = useState<string>("");
+  const [itemName, setItemName] = useState<string>("");
   const navigate = useNavigate();
   return (
     <Main style="gap-12">
@@ -23,7 +23,7 @@ const RegisterItem = () => {
               type="text"
               label="JANコード"
               placeholder="商品のJANコードを入力してください"
-              style="flex-col w-3/5 mx-auto"
+              style="flex-col md:w-3/5 mx-auto w-full"
               value={janCode}
               handler={(e) => setJanCode(e.target.value)}
             />
@@ -31,7 +31,7 @@ const RegisterItem = () => {
               type="text"
               label="商品名"
               placeholder="商品名を入力してください"
-              style="flex-col w-3/5 mx-auto"
+              style="flex-col md:w-3/5 mx-auto w-full"
               value={itemName}
               handler={(e) => setItemName(e.target.value)}
             />
