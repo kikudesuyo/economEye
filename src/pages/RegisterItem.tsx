@@ -42,18 +42,16 @@ const RegisterItem = () => {
           }}
         />
       </div>
-      <div className="flex flex-col pt-8">
-        <div className="rounded-lg bg-white p-8 shadow-md">
-          <h1 className="mb-4 text-2xl font-bold">JANコードとは</h1>
-          <ul className="flex list-disc flex-col gap-4 pl-5">
-            <li className="text-gray-800">
-              商品につけられた13桁の番号のことです。
-            </li>
-            <li className="text-gray-800">
-              登録したい番号が分からない場合はWebサイトで検索してください。
-            </li>
-          </ul>
-        </div>
+      <div className="rounded-lg bg-white p-8 shadow-md">
+        <h1 className="mb-4 text-2xl font-bold">JANコードとは</h1>
+        <ul className="flex list-disc flex-col gap-4 pl-5">
+          <li className="text-gray-800">
+            商品につけられた13桁の番号のことです。
+          </li>
+          <li className="text-gray-800">
+            登録したい番号が分からない場合はWebサイトで検索してください。
+          </li>
+        </ul>
       </div>
     </Main>
   );
