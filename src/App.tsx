@@ -6,7 +6,7 @@ import Login from "@/pages/Login";
 import Signup from "@/pages/Signup";
 import "@/assets/styles/destyle.css";
 import RegisterItem from "@/pages/RegisterItem";
-import ItemList from "@/pages/item/ItemList";
+import ItemList from "@/pages/ItemList";
 import Header from "@/components/Header";
 // import Footer from "@/components/Footer";
 import ScrollToTop from "@/utils/ScrollTop";
