@@ -13,17 +13,17 @@ const Top = () => {
       <div className="flex flex-col gap-6">
         <Recommendation />
         <Notice />
-        <div className="mt-14 flex flex-col gap-6">
+        <div className="mt-14 flex flex-col gap-6 md:gap-12">
           <Button
             label="商品登録ページ"
-            style="w-3/5 mx-auto"
+            style="w-3/5 mx-auto md:w-2/5 md:p-5 md:text-xl"
             func={() => {
               navigate(PATHS.REGISTER_ITEM);
             }}
           />
           <Button
             label="商品一覧ページ"
-            style="w-3/5 mx-auto"
+            style="w-3/5 mx-auto md:w-2/5 md:p-5 md:text-xl"
             func={() => {
               navigate(PATHS.ITEM_LIST);
             }}
