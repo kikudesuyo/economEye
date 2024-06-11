@@ -1,14 +1,16 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
+import "@/assets/styles/destyle.css";
+import Header from "@/components/Header";
+// import Footer from "@/components/Footer";
+
 import Top from "@/pages/Top";
 import Home from "@/pages/Home";
 import Login from "@/pages/Login";
 import Signup from "@/pages/Signup";
-import "@/assets/styles/destyle.css";
 import RegisterItem from "@/pages/RegisterItem";
 import ItemList from "@/pages/ItemList";
-import Header from "@/components/Header";
-// import Footer from "@/components/Footer";
+
 import ScrollToTop from "@/utils/ScrollTop";
 import { PATHS } from "@/utils/constant";
 
