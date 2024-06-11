@@ -19,7 +19,7 @@ const Input = ({
     <div className={`flex gap-4 ${style}`}>
       {label && <p className="font-bold">{label}</p>}
       <input
-        className="w-full flex-auto appearance-none rounded border-b-2 border-stone-300 px-3 py-2 leading-tight text-gray-700  outline-none focus:shadow-md "
+        className="w-full flex-auto appearance-none rounded border-2 border-stone-300 bg-white p-4 leading-tight  text-gray-700 outline-none  focus:shadow-md "
         type={type}
         placeholder={placeholder}
         value={value}

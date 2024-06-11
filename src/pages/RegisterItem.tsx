@@ -11,38 +11,29 @@ const RegisterItem = () => {
   const [itemName, setItemName] = useState<string>("重複テスト");
   const navigate = useNavigate();
   return (
-    <Main>
-      <div className="mt-20 flex flex-col gap-8">
-        <Input
-          type="text"
-          label="JANコード"
-          placeholder="商品のJANコードを入力してください"
-          style="flex-col w-3/5 mx-auto"
-          value={janCode}
-          handler={(e) => setJanCode(e.target.value)}
-        />
-        <Input
-          type="text"
-          label="商品名"
-          placeholder="商品名を入力してください"
-          style="flex-col w-3/5 mx-auto"
-          value={itemName}
-          handler={(e) => setItemName(e.target.value)}
-        />
-        <Button
-          label="登録"
-          style="w-3/5 mx-auto"
-          func={async () => {
-            await addNewItem({
-              janCode: janCode,
-              itemName: itemName,
-              condition: "new",
-            });
-            navigate(PATHS.ITEM_LIST);
-          }}
-        />
+    <Main style="gap-12">
+      <div className="mt-10 rounded-lg bg-neutral-50 p-4 shadow-lg">
+        <h1 className="text-center text-xl font-bold md:text-3xl">商品登録</h1>
+        <div className="flex flex-col gap-8">
+          <Input
+            type="text"
+            label="JANコード"
+            placeholder="商品のJANコードを入力してください"
+            style="flex-col w-3/5 mx-auto"
+            value={janCode}
+            handler={(e) => setJanCode(e.target.value)}
+          />
+          <Input
+            type="text"
+            label="商品名"
+            placeholder="商品名を入力してください"
+            style="flex-col w-3/5 mx-auto"
+            value={itemName}
+            handler={(e) => setItemName(e.target.value)}
+          />
+        </div>
       </div>
-      <div className="rounded-lg bg-white p-8 shadow-md">
+      <div className="rounded-lg bg-neutral-50 p-8 shadow-md">
         <h1 className="mb-4 text-2xl font-bold">JANコードとは</h1>
         <ul className="flex list-disc flex-col gap-4 pl-5">
           <li className="text-gray-800">
@@ -53,6 +44,19 @@ const RegisterItem = () => {
           </li>
         </ul>
       </div>
+
+      <Button
+        label="登録"
+        style="w-3/5 mx-auto"
+        func={async () => {
+          await addNewItem({
+            janCode: janCode,
+            itemName: itemName,
+            condition: "new",
+          });
+          navigate(PATHS.ITEM_LIST);
+        }}
+      />
     </Main>
   );
 };
