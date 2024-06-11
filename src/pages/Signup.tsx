@@ -4,7 +4,7 @@ import Button from "@/components/Button";
 import { PATHS } from "@/utils/constant";
 import Main from "@/components/Main";
 import Input from "@/components/Input";
-import { validateSignup } from "@/pages/auth/authHandling";
+import { validateSignup } from "@/auth/authHandling";
 import signupLogo from "@/assets/imgs/signup.svg";
 import padlock from "@/assets/imgs/padlock.svg";
 

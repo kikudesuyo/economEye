@@ -1,4 +1,4 @@
-import { isValidEmail, isValidPassword, Auth } from "@/pages/auth/helper";
+import { isValidEmail, isValidPassword, Auth } from "@/auth/helper";
 
 export const validateLogin = async (email: string, password: string) => {
   if (!isValidEmail(email)) {
