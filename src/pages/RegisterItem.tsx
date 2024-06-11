@@ -13,7 +13,7 @@ const RegisterItem = () => {
   return (
     <Main style="gap-12">
       <div className="flex justify-center">
-        <div className="mt-4 flex w-full flex-col gap-4 rounded-lg border border-gray-300 bg-neutral-100 p-4 shadow-lg md:w-4/5">
+        <div className="mt-4 flex w-full flex-col gap-4 rounded-lg border border-gray-300 bg-neutral-100 p-4 shadow-md md:w-4/5">
           <h1 className="text-center text-xl font-bold md:text-3xl">
             商品登録
           </h1>
@@ -38,7 +38,7 @@ const RegisterItem = () => {
         </div>
       </div>
       <div className="flex justify-center">
-        <div className="w-full rounded-lg border border-gray-300 bg-neutral-100 p-4 shadow-lg md:w-4/5">
+        <div className="w-full rounded-lg border border-gray-300 bg-neutral-100 p-4 shadow-md md:w-4/5">
           <h1 className="mb-4 text-2xl font-bold">JANコードとは</h1>
           <ul className="flex list-disc flex-col gap-4 pl-4">
             <li className="text-gray-800">

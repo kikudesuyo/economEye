@@ -28,7 +28,7 @@ const Login = () => {
         </div>
         <div className="flex justify-center">
           <div className="w-full  gap-8  md:w-3/5">
-            <div className="rounded-lg bg-neutral-50 p-4 shadow-lg">
+            <div className="rounded-lg border border-gray-300 bg-neutral-50 p-4 shadow-lg">
               <div className="flex flex-col gap-8 text-left">
                 <Input
                   type="email"
