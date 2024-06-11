@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+
 import { addNewItem } from "@/firebase/functions/functionsHandler";
 import Button from "@/components/Button";
-import { PATHS } from "@/utils/constant";
 import Main from "@/components/Main";
 import Input from "@/components/Input";
+import { PATHS } from "@/utils/constant";
 
 const RegisterItem = () => {
   const [janCode, setJanCode] = useState<string>("4901777216884");

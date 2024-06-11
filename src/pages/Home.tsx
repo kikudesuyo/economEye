@@ -1,6 +1,6 @@
 import Main from "@/components/Main";
-import graphLogo from "@/assets/imgs/graph_creating.svg";
 import AppDescription from "@/components/home/AppDescription";
+import graphLogo from "@/assets/imgs/graph_creating.svg";
 
 const Home = () => {
   return (

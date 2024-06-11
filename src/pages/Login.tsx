@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+
 import Button from "@/components/Button";
-import { PATHS } from "@/utils/constant";
 import Main from "@/components/Main";
 import Input from "@/components/Input";
 import { validateLogin } from "@/auth/authHandling";
+import { PATHS } from "@/utils/constant";
 import loginLogo from "@/assets/imgs/login.svg";
 import padlock from "@/assets/imgs/padlock.svg";
 

@@ -5,6 +5,7 @@ import {
 } from "firebase/auth";
 import { setDoc, doc } from "firebase/firestore";
 import { Auth as FirebaseAuth } from "firebase/auth";
+
 import { db } from "@/firebase/init";
 
 export class Auth {

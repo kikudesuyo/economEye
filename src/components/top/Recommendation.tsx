@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
+
+import DiffFromAverage from "@/pages/item/DiffFromAverage";
 import { fetchUserItems } from "@/firebase/firestore/item";
 import {
   getPriceArray,
   getPriceValueOnDate,
 } from "@/firebase/firestore/dbFetcher";
+import { calcAverage } from "@/calculation/calcValue";
 import { UserItemData } from "@/utils/type";
 import { today } from "@/utils/timeUtils";
-import { calcAverage } from "@/calculation/calcValue";
-import DiffFromAverage from "@/pages/item/DiffFromAverage";
 
 const Recommendation = () => {
   const [ItemData, setItemData] = useState<UserItemData[]>([]);

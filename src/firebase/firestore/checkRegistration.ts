@@ -5,13 +5,12 @@ import {
   where,
   DocumentReference,
 } from "firebase/firestore";
+import { DocumentData } from "firebase-admin/firestore";
 
 import { fetchUserItemRefs } from "@/firebase/firestore/item";
-import { DocumentData } from "firebase-admin/firestore";
 import { DuplicateItemError } from "@/firebase/firestore/errors";
-
-import { ItemParams } from "@/utils/types/items";
 import { db } from "@/firebase/init";
+import { ItemParams } from "@/utils/types/items";
 
 export class RegistrationValidator {
   itemRefs: Promise<DocumentReference[]>;
