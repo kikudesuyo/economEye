@@ -53,7 +53,7 @@ const Login = () => {
       </div>
       <Button
         label="ログイン"
-        style="w-3/5 mx-auto"
+        style="w-3/5 mx-auto text-xl"
         func={async () => {
           await handleLogin();
         }}
