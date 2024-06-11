@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import "@/assets/styles/destyle.css";
 import Header from "@/components/Header";
-// import Footer from "@/components/Footer";
+import Footer from "@/components/Footer";
 
 import Top from "@/pages/Top";
 import Home from "@/pages/Home";
@@ -28,7 +28,7 @@ function App() {
           <Route path={PATHS.REGISTER_ITEM} element={<RegisterItem />} />
           <Route path={PATHS.ITEM_LIST} element={<ItemList />} />
         </Routes>
-        {/* <Footer /> */}
+        <Footer />
       </Router>
     </div>
   );
