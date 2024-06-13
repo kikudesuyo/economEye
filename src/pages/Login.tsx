@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { useAuth } from "@/contexts/useAuth";
 import Button from "@/components/Button";
 import Main from "@/components/Main";
 import Input from "@/components/Input";
@@ -12,9 +13,11 @@ import padlock from "@/assets/imgs/padlock.svg";
 const Login = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const { login } = useAuth();
   const navigate = useNavigate();
   const handleLogin = async () => {
     await validateLogin(email, password);
+    login();
     navigate(PATHS.TOP);
   };
   return (
