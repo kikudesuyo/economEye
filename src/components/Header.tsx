@@ -9,9 +9,6 @@ const Header = () => {
   const navigate = useNavigate();
   return (
     <header className="sticky top-0 flex justify-between border-b border-gray-700 bg-white p-3 shadow-md">
-      {/* <Link to="/" className="flex flex-col justify-center text-xl font-bold">
-        economEye👀
-      </Link> */}
       <Link
         to={isAuthenticated ? PATHS.TOP : PATHS.HOME}
         className="flex flex-col justify-center text-xl font-bold"
