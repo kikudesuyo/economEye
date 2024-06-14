@@ -2,8 +2,8 @@ import { DocumentReference } from "firebase/firestore";
 
 export type PageName =
   | "Home"
-  | "Signup"
   | "Login"
+  | "Signup"
   | "Top"
   | "RegisterItem"
   | "ItemList";

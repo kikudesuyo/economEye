@@ -2,9 +2,11 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signOut,
 } from "firebase/auth";
 import { setDoc, doc } from "firebase/firestore";
 import { Auth as FirebaseAuth } from "firebase/auth";
+
 import { db } from "@/firebase/init";
 
 export class Auth {
@@ -28,6 +30,11 @@ export class Auth {
 
   async login(email: string, password: string) {
     await signInWithEmailAndPassword(this.auth, email, password);
+    return Promise.resolve();
+  }
+
+  async logout() {
+    await signOut(this.auth);
     return Promise.resolve();
   }
 }

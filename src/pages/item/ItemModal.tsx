@@ -1,14 +1,14 @@
-import { UserItemData } from "@/utils/types/items";
-import Button from "@/components/Button";
 import {
   getPriceArray,
   getPriceValueOnDate,
 } from "@/firebase/firestore/dbFetcher";
-import { today } from "@/utils/timeUtils";
+import ModalHeader from "@/pages/item/ModalHeader";
 import DiffFromAverage from "@/pages/item/DiffFromAverage";
+import Button from "@/components/Button";
 import { formattedAverage } from "@/calculation/calcValue";
 import PriceTransition from "@/chart/PriceTransition";
-import ModalHeader from "@/pages/item/ModalHeader";
+import { UserItemData } from "@/utils/types/items";
+import { today } from "@/utils/timeUtils";
 
 type ItemDetailProps = {
   item: UserItemData;
