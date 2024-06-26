@@ -23,7 +23,7 @@ export class Auth {
     );
     const userId = userCredential.user.uid;
     const userDocRef = doc(db, "users", userId);
-    await setDoc(userDocRef, { itemIds: [] });
+    await setDoc(userDocRef, { itemRefs: [] });
     await this.login(email, password);
     return await Promise.resolve();
   }
