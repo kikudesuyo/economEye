@@ -27,6 +27,12 @@ exports.updateItem = onCall(async () => {
   return updateAllItems();
 });
 
-exports.runScheduledJobs = onSchedule("every day 00:00", async () => {
-  await updateAllItems();
-});
+exports.runScheduledJobs = onSchedule(
+  {
+    schedule: "every day 00:00",
+    timeZone: "Asia/Tokyo",
+  },
+  async () => {
+    await updateAllItems();
+  }
+);
