@@ -23,10 +23,6 @@ exports.registerNewItem = onCall(async (request: CallableRequest) => {
   return { succuess: "success!" };
 });
 
-exports.updateItem = onCall(async () => {
-  return updateAllItems();
-});
-
 exports.runScheduledJobs = onSchedule(
   {
     schedule: "every day 00:00",
