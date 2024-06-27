@@ -3,10 +3,10 @@ import { DocumentReference } from "firebase-admin/firestore";
 import { HttpsError } from "firebase-functions/v2/https";
 import { logger } from "firebase-functions";
 
-import YahooItem from "../item/yahooItem";
-import { today } from "../utils/time";
-import { ClientParams, ItemData } from "../utils/type";
-import { InventryError } from "../utils/customError";
+import YahooItem from "@/item/yahooItem";
+import { today } from "@/utils/time";
+import { ClientParams, ItemData } from "@/utils/type";
+import { InventryError } from "@/utils/customError";
 
 admin.initializeApp();
 export const db = admin.firestore();
