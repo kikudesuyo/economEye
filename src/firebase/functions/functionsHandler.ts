@@ -41,15 +41,3 @@ export const addNewItem = async (params: ItemParams) => {
     throw new Error("登録に失敗しました。");
   });
 };
-
-export const updateItem = async () => {
-  const updateItemFunction = httpsCallable(functions, "updateItem");
-  updateItemFunction()
-    .then((result) => {
-      console.log(result.data);
-    })
-    .catch((error) => {
-      console.error(error);
-      alert("更新に失敗しました。");
-    });
-};
