@@ -1,8 +1,10 @@
 import { onCall, CallableRequest } from "firebase-functions/v2/https";
 import { onSchedule } from "firebase-functions/v2/scheduler";
 
-import { updateAllItems } from "./helper/updateAllItem";
-import { registeItem } from "./helper/registerNewItem";
+import "module-alias/register";
+
+import { updateAllItems } from "@/helper/updateAllItem";
+import { registeItem } from "@/helper/registerNewItem";
 
 // 新規商品登録
 exports.registerNewItem = onCall(async (request: CallableRequest) => {
