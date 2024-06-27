@@ -1,9 +1,9 @@
 import { HttpsError } from "firebase-functions/v2/https";
 import { logger } from "firebase-functions";
 
+import { db, updateItem } from "./db";
 import { ItemData } from "../utils/type";
 import { today } from "../utils/time";
-import { db, updateItem } from "./db";
 
 export async function updateAllItems() {
   const batch = db.batch();
