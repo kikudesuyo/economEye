@@ -1,5 +1,5 @@
 import { HttpsError } from "firebase-functions/v2/https";
-import { logger } from "firebase-functions";
+import { logger } from "firebase-functions/v2";
 
 import { db, updateItem } from "@/helper/db";
 import { ItemData } from "@/utils/type";

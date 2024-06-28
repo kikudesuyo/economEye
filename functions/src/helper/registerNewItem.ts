@@ -1,5 +1,5 @@
 import { CallableRequest, HttpsError } from "firebase-functions/v2/https";
-import { logger } from "firebase-functions";
+import { logger } from "firebase-functions/v2";
 
 import { setData, fetchItemData } from "@/helper/db";
 import { ClientParams } from "@/utils/type";
