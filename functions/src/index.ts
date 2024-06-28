@@ -1,10 +1,10 @@
+import { region } from "firebase-functions";
 import { CallableRequest } from "firebase-functions/v2/https";
 
 import "module-alias/register";
 
 import { updateAllItems } from "@/helper/updateAllItem";
 import { registerItem } from "@/helper/registerNewItem";
-import { region } from "firebase-functions";
 
 // 新規商品登録
 exports.registerNewItem = region("asia-northeast1").https.onCall(

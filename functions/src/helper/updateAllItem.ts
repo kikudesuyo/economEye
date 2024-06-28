@@ -3,7 +3,6 @@ import { logger } from "firebase-functions";
 
 import { db, updateItem } from "@/helper/db";
 import { ItemData } from "@/utils/type";
-
 import { today } from "@/utils/time";
 
 export async function updateAllItems() {
