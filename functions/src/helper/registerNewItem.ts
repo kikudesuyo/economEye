@@ -5,7 +5,7 @@ import { setData, fetchItemData } from "@/helper/db";
 import { ClientParams } from "@/utils/type";
 import { today } from "@/utils/time";
 
-export const registeItem = async (request: CallableRequest) => {
+export const registerItem = async (request: CallableRequest) => {
   if (!request.auth) {
     throw new HttpsError("unauthenticated", "User is not authenticated.");
   }
