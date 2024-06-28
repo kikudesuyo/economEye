@@ -5,10 +5,15 @@ import "module-alias/register";
 
 import { updateAllItems } from "@/helper/updateAllItem";
 import { registerItem } from "@/helper/registerNewItem";
+import {
+  FUNCTION_REGION,
+  FUNCTION_TIMEZONE,
+  ITEM_UPDATE_SCHEDULE,
+} from "@/constant/region";
 
 // 新規商品登録
 exports.registerNewItem = onCall(
-  { region: "asia-northeast1" },
+  { region: FUNCTION_REGION },
   async (request: CallableRequest) => {
     return await registerItem(request);
   }
@@ -17,9 +22,9 @@ exports.registerNewItem = onCall(
 // 商品情報の更新
 exports.runScheduledJobs = onSchedule(
   {
-    region: "asia-northeast1",
-    timeZone: "Asia/Tokyo",
-    schedule: "every day 00:00",
+    region: FUNCTION_REGION,
+    timeZone: FUNCTION_TIMEZONE,
+    schedule: ITEM_UPDATE_SCHEDULE,
   },
   async () => {
     await updateAllItems();
