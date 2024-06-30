@@ -1,4 +1,4 @@
-import { isValidEmail, isValidPassword, Auth } from "@/auth";
+import { isValidEmail, isValidPassword, Auth } from "@/auth/auth";
 
 export const validateLogin = async (email: string, password: string) => {
   if (!isValidEmail(email)) {
