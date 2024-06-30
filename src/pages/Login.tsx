@@ -5,7 +5,7 @@ import { useAuth } from "@/contexts/useAuth";
 import Button from "@/components/Button";
 import Main from "@/components/Main";
 import Input from "@/components/Input";
-import { validateLogin } from "@/auth/authHandling";
+import { validateLogin, validateAnonymousLogin } from "@/auth/authHandling";
 import { PATHS } from "@/utils/constant";
 import loginLogo from "@/assets/imgs/login.svg";
 import padlock from "@/assets/imgs/padlock.svg";
@@ -18,6 +18,10 @@ const Login = () => {
   const handleLogin = async () => {
     await validateLogin(email, password);
     login();
+    navigate(PATHS.TOP);
+  };
+  const handleAnonymousLogin = async () => {
+    await validateAnonymousLogin();
     navigate(PATHS.TOP);
   };
   return (
@@ -62,6 +66,23 @@ const Login = () => {
           await handleLogin();
         }}
       />
+      <div className="mx-auto flex w-3/5 flex-col items-center justify-center gap-8">
+        <div className="flex w-full items-center">
+          <span className="grow border-t-4 text-gray-300"></span>
+          <span className="relative px-2 text-xl text-gray-500">または</span>
+          <span className="grow border-t-4 bg-gray-300 "></span>
+        </div>
+        <button>
+          <span
+            className="cursor-pointer text-xl text-gray-500 underline"
+            onClick={async () => {
+              await handleAnonymousLogin();
+            }}
+          >
+            ゲストとしてログイン
+          </span>
+        </button>
+      </div>
     </Main>
   );
 };
