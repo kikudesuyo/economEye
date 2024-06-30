@@ -5,7 +5,7 @@ import { useAuth } from "@/contexts/useAuth";
 import Button from "@/components/Button";
 import Main from "@/components/Main";
 import Input from "@/components/Input";
-import { validateSignup } from "@/auth/authHandling";
+import { validateSignup } from "@/auth/helper/authHandling";
 import { PATHS } from "@/utils/constant";
 import signupLogo from "@/assets/imgs/signup.svg";
 import padlock from "@/assets/imgs/padlock.svg";
