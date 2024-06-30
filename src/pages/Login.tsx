@@ -68,9 +68,9 @@ const Login = () => {
       />
       <div className="mx-auto flex w-3/5 flex-col items-center justify-center gap-8">
         <div className="flex w-full items-center">
-          <span className="grow border-t-4 text-gray-300"></span>
-          <span className="relative px-2 text-xl text-gray-500">または</span>
-          <span className="grow border-t-4 bg-gray-300 "></span>
+          <span className="grow border-t-4 "></span>
+          <span className="relative px-2 text-xl">または</span>
+          <span className="grow border-t-4 "></span>
         </div>
         <button>
           <span
