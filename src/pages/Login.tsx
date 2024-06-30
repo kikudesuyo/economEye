@@ -22,6 +22,7 @@ const Login = () => {
   };
   const handleAnonymousLogin = async () => {
     await validateAnonymousLogin();
+    login();
     navigate(PATHS.TOP);
   };
   return (
