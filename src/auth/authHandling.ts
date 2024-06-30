@@ -1,4 +1,4 @@
-import { isValidEmail, isValidPassword, Auth } from "@/auth/helper";
+import { isValidEmail, isValidPassword, Auth } from "@/auth/auth";
 
 export const validateLogin = async (email: string, password: string) => {
   if (!isValidEmail(email)) {
@@ -40,4 +40,12 @@ export const validateSignup = async (
     alert("サインアップに失敗しました。もう一度お試しください。");
     throw new Error("signup failed");
   }
+};
+
+export const validateAnonymousLogin = async () => {
+  const auth = new Auth();
+  await auth.anonymousLogin().catch(() => {
+    alert("匿名ログインに失敗しました。もう一度お試しください。");
+    throw new Error("anonymous login failed");
+  });
 };

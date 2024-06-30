@@ -3,7 +3,6 @@ import Modal from "react-modal";
 import { useNavigate } from "react-router-dom";
 
 import { fetchUserItems } from "@/firebase/firestore/item";
-import { updateItem } from "@/firebase/functions/functionsHandler";
 import ItemModal from "@/pages/item/ItemModal";
 import ItemCard from "@/pages/item/ItemCard";
 import Button from "@/components/Button";
@@ -69,13 +68,6 @@ const ItemList = () => {
             />
           ))}
       </div>
-      <Button
-        label="商品データの更新"
-        style="w-3/5 mx-auto"
-        func={() => {
-          updateItem();
-        }}
-      />
       <Button
         label="トップページに戻る"
         style="w-3/5 mx-auto"

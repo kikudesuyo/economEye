@@ -33,23 +33,10 @@ export const addNewItem = async (params: ItemParams) => {
     } else if (error.code === "functions/not-found") {
       alert("入力した条件の商品は見つかりませんでした。");
     } else if (error.code === "functions/internal") {
-      console.log(error.message);
       alert("登録に失敗しました。もう一度入力してください");
     } else if (error.code === "functions/resource-exhausted") {
       alert("登録できる商品数の上限に達しました。 これ以上登録できません。");
     }
     throw new Error("登録に失敗しました。");
   });
-};
-
-export const updateItem = async () => {
-  const updateItemFunction = httpsCallable(functions, "updateItem");
-  updateItemFunction()
-    .then((result) => {
-      console.log(result.data);
-    })
-    .catch((error) => {
-      console.error(error);
-      alert("更新に失敗しました。");
-    });
 };

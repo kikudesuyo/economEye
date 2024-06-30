@@ -1,58 +1,53 @@
-import { ChartDataset } from "@/utils/types/ui";
-import {
-  Chart as ChartJS,
-  ChartData,
-  ChartOptions,
-  LineController,
-  LineElement,
-  LinearScale,
-  CategoryScale,
-  BarController,
-  BarElement,
-  PointElement,
-  Legend,
-  RadialLinearScale,
-  Tooltip,
-} from "chart.js";
-import { Chart } from "react-chartjs-2";
+import { useEffect, useRef } from "react";
+import { Chart, registerables, ChartData } from "chart.js";
+
+Chart.register(...registerables);
 
 export type Props = {
   xLabels: string[];
-  datasets: ChartDataset[];
+  datasets: ChartData["datasets"];
 };
 
 const ItemChart = ({ xLabels, datasets }: Props) => {
-  ChartJS.register(
-    LineController,
-    LineElement,
-    LinearScale,
-    CategoryScale,
-    BarController,
-    BarElement,
-    PointElement,
-    RadialLinearScale,
-    Legend,
-    Tooltip
-  );
+  const chartRef = useRef<Chart | null>(null);
+  const chartCanvas = useRef<HTMLCanvasElement | null>(null);
 
-  const data: ChartData = {
-    datasets: datasets,
-    labels: xLabels,
-  };
+  useEffect(() => {
+    if (chartRef.current) {
+      chartRef.current.destroy();
+    }
 
-  const options: ChartOptions = {
-    plugins: {
-      legend: {
-        position: "bottom",
-      },
-    },
-    responsive: true,
-  };
+    const context = chartCanvas.current?.getContext("2d");
+    if (context) {
+      chartRef.current = new Chart(context, {
+        type: "line",
+        data: {
+          labels: xLabels,
+          datasets: datasets,
+        },
+        options: {
+          plugins: {
+            legend: {
+              position: "bottom",
+            },
+          },
+          responsive: true,
+        },
+      });
+    }
+
+    return () => {
+      if (chartRef.current) {
+        chartRef.current.destroy();
+        chartRef.current = null;
+      }
+    };
+  }, [xLabels, datasets]);
 
   return (
     <div className="flex w-full justify-center">
       <div className="w-2/3">
-        <Chart type={"line"} data={data} options={options} width={300} />
+        <canvas ref={chartCanvas}></canvas>
       </div>
     </div>
   );
