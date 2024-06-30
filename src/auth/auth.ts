@@ -3,6 +3,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
+  signInAnonymously,
 } from "firebase/auth";
 import { setDoc, doc } from "firebase/firestore";
 import { Auth as FirebaseAuth } from "firebase/auth";
@@ -35,6 +36,11 @@ export class Auth {
 
   async logout() {
     await signOut(this.auth);
+    return Promise.resolve();
+  }
+  //匿名認証
+  async anonymousLogin() {
+    await signInAnonymously(this.auth);
     return Promise.resolve();
   }
 }
