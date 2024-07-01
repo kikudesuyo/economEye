@@ -1,20 +1,6 @@
 import { DocumentReference } from "firebase/firestore";
 
-export type PageName =
-  | "Home"
-  | "Login"
-  | "Signup"
-  | "Top"
-  | "RegisterItem"
-  | "ItemList";
-
 export type Condition = "used" | "new" | "both";
-
-export type ItemParams = {
-  janCode: string;
-  itemName: string;
-  condition?: Condition;
-};
 
 export type ItemPriceValue = number | null;
 export type Prices = { date: string; value: ItemPriceValue }[];
@@ -35,17 +21,4 @@ export interface UserItemData extends ItemData {
 export type TagData = {
   tagName: string;
   itemIds: DocumentReference[];
-};
-
-type ChartType = "line" | "bar" | "pie" | "doughnut" | "radar" | "polarArea";
-
-export type GraphDataset = {
-  type: ChartType;
-  label: string;
-  data: ItemPriceValue[];
-  borderColor?: string;
-  backgroundColor?: string;
-  borderDash?: number[];
-  tension: number;
-  pointRadius: number;
 };
