@@ -16,12 +16,10 @@ export const formattedAverage = (prices: ItemPriceValue[]) => {
   return formatValue(average);
 };
 
-export const calcPriceDiffFromAverage = (
-  prices: ItemPriceValue[],
+export const calcDeviationFromAverage = (
+  average: number,
   price: ItemPriceValue
 ) => {
-  const average = calcAverage(prices);
-  const formattedAverage = formatValue(average);
   if (price === null) return null;
-  return price - formattedAverage;
+  return price - average;
 };
