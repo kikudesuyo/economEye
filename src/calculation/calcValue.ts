@@ -7,8 +7,7 @@ const formatValue = (value: number): number => {
 const calcAverage = (prices: ItemPriceValue[]) => {
   const validPrices = prices.filter((price) => price !== null) as number[];
   const sum = validPrices.reduce((acc, cur) => acc + cur, 0);
-  const average = sum / validPrices.length;
-  return average;
+  return sum / validPrices.length;
 };
 
 export const formattedAverage = (prices: ItemPriceValue[]) => {
