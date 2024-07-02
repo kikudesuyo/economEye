@@ -9,6 +9,7 @@ export type ItemSearchParams = {
 };
 
 export type ItemPriceValue = number | null;
+
 export type Prices = { date: string; value: ItemPriceValue }[];
 
 export interface ItemData {
