@@ -2,7 +2,7 @@ import { DocumentReference } from "firebase/firestore";
 
 type Condition = "used" | "new" | "both";
 
-export type ItemParams = {
+export type ItemSearchParams = {
   janCode: string;
   itemName: string;
   condition?: Condition;

@@ -10,12 +10,12 @@ import { DocumentData } from "firebase-admin/firestore";
 import { fetchUserItemRefs } from "@/firebase/firestore/item";
 import { DuplicateItemError } from "@/firebase/firestore/errors";
 import { db } from "@/firebase/init";
-import { ItemParams } from "@/utils/types/items";
+import { ItemSearchParams } from "@/utils/types/items";
 
 export class RegistrationValidator {
   itemRefs: Promise<DocumentReference[]>;
-  inputData: ItemParams;
-  constructor(inputData: ItemParams) {
+  inputData: ItemSearchParams;
+  constructor(inputData: ItemSearchParams) {
     this.itemRefs = fetchUserItemRefs();
     this.inputData = inputData;
   }
