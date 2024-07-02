@@ -7,7 +7,7 @@ import {
   getPriceValueOnDate,
 } from "@/firebase/firestore/dbFetcher";
 import { calcAverage } from "@/calculation/calcValue";
-import { UserItemData } from "@/utils/type";
+import { UserItemData } from "@/utils/types/items";
 import { today } from "@/utils/timeUtils";
 
 const Recommendation = () => {
