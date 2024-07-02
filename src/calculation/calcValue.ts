@@ -1,27 +1,20 @@
 import { ItemPriceValue } from "@/utils/types/items";
 
-export const formatValue = (value: number): number => {
-  return Math.round(value);
-};
-
-export const calcAverage = (prices: ItemPriceValue[]) => {
+const calcAverage = (prices: ItemPriceValue[]) => {
   const validPrices = prices.filter((price) => price !== null) as number[];
   const sum = validPrices.reduce((acc, cur) => acc + cur, 0);
-  const average = sum / validPrices.length;
-  return average;
+  return sum / validPrices.length;
 };
 
-export const formattedAverage = (prices: ItemPriceValue[]) => {
+export const formatAverage = (prices: ItemPriceValue[]) => {
   const average = calcAverage(prices);
-  return formatValue(average);
+  return Math.round(average);
 };
 
-export const calcPriceDiffFromAverage = (
-  prices: ItemPriceValue[],
+export const calcDeviationFromAverage = (
+  average: number,
   price: ItemPriceValue
 ) => {
-  const average = calcAverage(prices);
-  const formattedAverage = formatValue(average);
   if (price === null) return null;
-  return price - formattedAverage;
+  return price - average;
 };

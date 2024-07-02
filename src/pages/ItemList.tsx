@@ -7,7 +7,7 @@ import ItemModal from "@/pages/item/ItemModal";
 import ItemCard from "@/pages/item/ItemCard";
 import Button from "@/components/Button";
 import Main from "@/components/Main";
-import { UserItemData } from "@/utils/type";
+import { UserItemData } from "@/utils/types/items";
 import { PATHS } from "@/utils/constant";
 
 const ItemList = () => {

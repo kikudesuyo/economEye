@@ -1,5 +1,5 @@
 import StepCard from "@/components/home/StepCard";
-import arrow from "@/assets/imgs/arrow.svg";
+import arrow from "@/assets/imgs/logo/arrow.svg";
 
 const AppDescription = () => {
   return (

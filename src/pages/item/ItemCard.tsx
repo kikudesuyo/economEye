@@ -5,7 +5,7 @@ import {
 import DiffFromAverage from "@/pages/item/DiffFromAverage";
 import Button from "@/components/Button";
 import { today } from "@/utils/timeUtils";
-import { UserItemData } from "@/utils/type";
+import { UserItemData } from "@/utils/types/items";
 
 type Props = {
   item: UserItemData;
