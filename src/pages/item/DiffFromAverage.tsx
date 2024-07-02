@@ -1,6 +1,6 @@
 import {
   calcDeviationFromAverage,
-  formattedAverage,
+  formatAverage,
 } from "@/calculation/calcValue";
 import { ItemPriceValue } from "@/utils/types/items";
 
@@ -11,7 +11,7 @@ type Props = {
 };
 
 const DiffFromAverage = ({ style = "", prices, price }: Props) => {
-  const average = formattedAverage(prices);
+  const average = formatAverage(prices);
   const diff = calcDeviationFromAverage(average, price);
   if (diff === null) {
     return <p className={`${style}`}>データがありません</p>;

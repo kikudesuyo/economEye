@@ -6,7 +6,7 @@ const calcAverage = (prices: ItemPriceValue[]) => {
   return sum / validPrices.length;
 };
 
-export const formattedAverage = (prices: ItemPriceValue[]) => {
+export const formatAverage = (prices: ItemPriceValue[]) => {
   const average = calcAverage(prices);
   return Math.round(average);
 };
