@@ -7,8 +7,8 @@ import Main from "@/components/Main";
 import Input from "@/components/Input";
 import { validateLogin, validateAnonymousLogin } from "@/auth/authHandling";
 import { PATHS } from "@/utils/constant";
-import loginLogo from "@/assets/imgs/login.svg";
-import padlock from "@/assets/imgs/padlock.svg";
+import loginLogo from "@/assets/imgs/logo/login.svg";
+import padlock from "@/assets/imgs/logo/padlock.svg";
 
 const Login = () => {
   const [email, setEmail] = useState<string>("");
