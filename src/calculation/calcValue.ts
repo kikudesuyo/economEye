@@ -1,10 +1,10 @@
 import { ItemPriceValue } from "@/utils/types/items";
 
-export const formatValue = (value: number): number => {
+const formatValue = (value: number): number => {
   return Math.round(value);
 };
 
-export const calcAverage = (prices: ItemPriceValue[]) => {
+const calcAverage = (prices: ItemPriceValue[]) => {
   const validPrices = prices.filter((price) => price !== null) as number[];
   const sum = validPrices.reduce((acc, cur) => acc + cur, 0);
   const average = sum / validPrices.length;

@@ -6,7 +6,7 @@ import {
   getPriceArray,
   getPriceValueOnDate,
 } from "@/firebase/firestore/dbFetcher";
-import { calcAverage } from "@/calculation/calcValue";
+import { formattedAverage } from "@/calculation/calcValue";
 import { UserItemData } from "@/utils/types/items";
 import { today } from "@/utils/timeUtils";
 
@@ -29,7 +29,7 @@ const Recommendation = () => {
 
   const recommendedItems = () => {
     const recommendedItems = ItemData.filter((item: UserItemData) => {
-      const averageValue = calcAverage(getPriceArray(item));
+      const averageValue = formattedAverage(getPriceArray(item));
       const todayValue = getPriceValueOnDate(item, today());
       if (todayValue === null) {
         return false;
