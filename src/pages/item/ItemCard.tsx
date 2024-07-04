@@ -1,7 +1,4 @@
-import {
-  getPriceValueOnDate,
-  getPriceArray,
-} from "@/firebase/firestore/dbFetcher";
+import { getPriceValueOnDate, getPriceArray } from "@/pages/item/dbFetcher";
 import DiffFromAverage from "@/pages/item/DiffFromAverage";
 import Button from "@/components/Button";
 import { today } from "@/utils/timeUtils";
