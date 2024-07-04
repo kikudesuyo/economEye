@@ -13,8 +13,8 @@ export const createTag = async (
   const tagCollection = new DbCollectionManager("tags");
   const tagRef = await tagCollection.addDataAndFetchDocRef(tagData);
   const usersCollection = new DbDocumentManager(userDocRef);
-  const currentUserData = await usersCollection.fetchDocData();
-  const updatedTagRefs = [...currentUserData.tagRefs, tagRef];
+  const oldUserData = await usersCollection.fetchDocData();
+  const updatedTagRefs = [...oldUserData.tagRefs, tagRef];
   await usersCollection.updateSpecificFields({
     tagRefs: updatedTagRefs,
   });
@@ -37,11 +37,11 @@ export const deleteTag = async (
   const tagCollection = new DbDocumentManager(tagDocRef);
   await tagCollection.deleteDocument();
   const usersCollection = new DbDocumentManager(userDocRef);
-  const currentUserData = await usersCollection.fetchDocData();
-  const updatedTagRefs = currentUserData.tagRefs.filter(
+  const oldUserData = await usersCollection.fetchDocData();
+  const updatedTagRefs = oldUserData.tagRefs.filter(
     (ref: DocumentReference) => ref.path !== tagDocRef.path
   );
-  if (updatedTagRefs.length === currentUserData.tagRefs.length) {
+  if (updatedTagRefs.length === oldUserData.tagRefs.length) {
     throw new Error("designated tagRef not found in user");
   }
   await usersCollection.updateSpecificFields({
