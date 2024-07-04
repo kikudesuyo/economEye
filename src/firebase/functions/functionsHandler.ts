@@ -6,7 +6,7 @@ import {
   isValidName,
   isValidJanCode,
 } from "@/firebase/functions/itemValidation";
-import { RegistrationValidator } from "@/firebase/firestore/checkRegistration";
+import { RegistrationValidator } from "@/firebase/firestore/checkItemRegistration";
 
 export const addNewItem = async (params: ItemSearchParams) => {
   if (!isValidJanCode(params.janCode)) {
