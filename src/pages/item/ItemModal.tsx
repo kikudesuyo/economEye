@@ -1,4 +1,7 @@
-import { getPriceArray, getPriceValueOnDate } from "@/pages/item/dbFetcher";
+import {
+  getPriceArray,
+  getPriceValueOnDate,
+} from "@/pages/item/priceDataFormatter";
 import ModalHeader from "@/pages/item/ModalHeader";
 import DiffFromAverage from "@/pages/item/DiffFromAverage";
 import Button from "@/components/Button";

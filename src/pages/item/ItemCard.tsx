@@ -1,4 +1,7 @@
-import { getPriceValueOnDate, getPriceArray } from "@/pages/item/dbFetcher";
+import {
+  getPriceValueOnDate,
+  getPriceArray,
+} from "@/pages/item/priceDataFormatter";
 import DiffFromAverage from "@/pages/item/DiffFromAverage";
 import Button from "@/components/Button";
 import { today } from "@/utils/timeUtils";

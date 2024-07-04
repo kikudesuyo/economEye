@@ -2,7 +2,10 @@ import { useEffect, useState } from "react";
 
 import DiffFromAverage from "@/pages/item/DiffFromAverage";
 import { fetchUserItems } from "@/firebase/firestore/item";
-import { getPriceArray, getPriceValueOnDate } from "@/pages/item/dbFetcher";
+import {
+  getPriceArray,
+  getPriceValueOnDate,
+} from "@/pages/item/priceDataFormatter";
 import { formatAverage } from "@/calculation/calcValue";
 import { UserItemData } from "@/utils/types/items";
 import { today } from "@/utils/timeUtils";
