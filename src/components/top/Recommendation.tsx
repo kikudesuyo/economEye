@@ -6,7 +6,7 @@ import {
   getPriceArray,
   getPriceValueOnDate,
 } from "@/pages/item/priceDataFormatter";
-import { formatAverage } from "@/calculation/calcValue";
+import { formatAverage } from "@/pages/item/calcValue";
 import { UserItemData } from "@/utils/types/items";
 import { today } from "@/utils/timeUtils";
 

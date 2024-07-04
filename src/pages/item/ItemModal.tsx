@@ -5,7 +5,7 @@ import {
 import ModalHeader from "@/pages/item/ModalHeader";
 import DiffFromAverage from "@/pages/item/DiffFromAverage";
 import Button from "@/components/Button";
-import { formatAverage } from "@/calculation/calcValue";
+import { formatAverage } from "@/pages/item/calcValue";
 import PriceTransition from "@/chart/PriceTransition";
 import { UserItemData } from "@/utils/types/items";
 import { today } from "@/utils/timeUtils";

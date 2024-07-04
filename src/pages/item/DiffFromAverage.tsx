@@ -1,7 +1,7 @@
 import {
   calcDeviationFromAverage,
   formatAverage,
-} from "@/calculation/calcValue";
+} from "@/pages/item/calcValue";
 import { ItemPriceValue } from "@/utils/types/items";
 
 type Props = {

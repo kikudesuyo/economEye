@@ -1,6 +1,6 @@
 import ItemChart from "@/chart/ItemChart";
 import { PriceFormatter } from "@/chart/formatprices";
-import { formatAverage } from "@/calculation/calcValue";
+import { formatAverage } from "@/pages/item/calcValue";
 import { ChartDataset } from "@/utils/types/ui";
 import { UserItemData } from "@/utils/types/items";
 import { formatDate } from "@/utils/timeUtils";
