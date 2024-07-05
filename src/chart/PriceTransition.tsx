@@ -1,6 +1,6 @@
 import ItemChart from "@/chart/ItemChart";
 import { PriceFormatter } from "@/chart/formatprices";
-import { formattedAverage } from "@/calculation/calcValue";
+import { formatAverage } from "@/pages/item/calcValue";
 import { ChartDataset } from "@/utils/types/ui";
 import { UserItemData } from "@/utils/types/items";
 import { formatDate } from "@/utils/timeUtils";
@@ -19,7 +19,7 @@ const PriceTransition = ({ item }: Props) => {
     {
       type: "line",
       label: "平均",
-      data: Array(values.length).fill(formattedAverage(values)),
+      data: Array(values.length).fill(formatAverage(values)),
       borderColor: "rgba(119, 119, 119, 1)",
       borderDash: [5, 5],
       tension: 0.1,

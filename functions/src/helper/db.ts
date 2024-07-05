@@ -41,13 +41,13 @@ export const setData = async (
   if (!userSnapshot.exists) {
     throw new HttpsError("internal", `The following uid does not exist${uid}.`);
   }
-  const currentItemData = userSnapshot.data() as {
+  const oldItemData = userSnapshot.data() as {
     itemRefs: DocumentReference[];
     tagRefs: DocumentReference[];
   };
   const newItemData = {
-    ...currentItemData,
-    itemRefs: [...currentItemData.itemRefs, itemRef],
+    ...oldItemData,
+    itemRefs: [...oldItemData.itemRefs, itemRef],
   };
   await db.collection("users").doc(uid).set(newItemData);
 };

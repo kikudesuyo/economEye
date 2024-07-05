@@ -7,8 +7,8 @@ import Main from "@/components/Main";
 import Input from "@/components/Input";
 import { validateSignup } from "@/auth/authHandling";
 import { PATHS } from "@/utils/constant";
-import signupLogo from "@/assets/imgs/signup.svg";
-import padlock from "@/assets/imgs/padlock.svg";
+import signupLogo from "@/assets/imgs/logo/signup.svg";
+import padlock from "@/assets/imgs/logo/padlock.svg";
 
 const Signup = () => {
   const [email, setEmail] = useState<string>("");

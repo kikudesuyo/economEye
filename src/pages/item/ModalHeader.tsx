@@ -1,11 +1,10 @@
 import { useState } from "react";
 
 import { DbDocumentManager } from "@/firebase/firestore/dbManage";
-import { ref, getDownloadURL } from "firebase/storage";
-import { storage } from "@/firebase/init";
 import Input from "@/components/Input";
 import Button from "@/components/Button";
 import { UserItemData } from "@/utils/types/items";
+import red from "@/assets/imgs/tags/red.svg";
 
 type Props = {
   item: UserItemData;
@@ -14,14 +13,6 @@ type Props = {
 const ModalHeader = ({ item }: Props) => {
   const [itemName, setItemName] = useState<string>(item.itemName);
   const [canEdit, setCanEdit] = useState<boolean>(false);
-  const [img, setImg] = useState<string>("");
-  const storageRef = ref(
-    storage,
-    "gs://economeye-d5146.appspot.com/tags/red.svg"
-  );
-  getDownloadURL(storageRef).then((url) => {
-    setImg(url);
-  });
   const updateItemName = async () => {
     const updater = new DbDocumentManager(item.itemRef);
     await updater.updateSpecificFields({ itemName: itemName });
@@ -32,7 +23,7 @@ const ModalHeader = ({ item }: Props) => {
       <img src={item.imageId} className="size-28 " alt="itemImage" />
       <div className="flex flex-col gap-2">
         <div className="flex items-center justify-end gap-1">
-          <img className="size-6" src={img} alt="" />
+          <img className="size-6" src={red} alt="" />
           <p>飲み物</p>
         </div>
         <div className="flex">

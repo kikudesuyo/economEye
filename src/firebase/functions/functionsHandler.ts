@@ -1,14 +1,14 @@
 import { FirebaseError } from "firebase/app";
 import { httpsCallable } from "firebase/functions";
 import { functions } from "@/firebase/init";
-import { ItemParams } from "@/utils/types/items";
+import { ItemSearchParams } from "@/utils/types/items";
 import {
   isValidName,
   isValidJanCode,
 } from "@/firebase/functions/itemValidation";
-import { RegistrationValidator } from "@/firebase/firestore/checkRegistration";
+import { RegistrationValidator } from "@/firebase/firestore/checkItemRegistration";
 
-export const addNewItem = async (params: ItemParams) => {
+export const addNewItem = async (params: ItemSearchParams) => {
   if (!isValidJanCode(params.janCode)) {
     alert("JANコードが不正です。\n13桁の数字を入力してください。");
     throw new Error("JANコードが不正です。");

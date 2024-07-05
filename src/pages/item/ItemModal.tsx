@@ -1,11 +1,11 @@
 import {
   getPriceArray,
   getPriceValueOnDate,
-} from "@/firebase/firestore/dbFetcher";
+} from "@/pages/item/priceDataFormatter";
 import ModalHeader from "@/pages/item/ModalHeader";
 import DiffFromAverage from "@/pages/item/DiffFromAverage";
 import Button from "@/components/Button";
-import { formattedAverage } from "@/calculation/calcValue";
+import { formatAverage } from "@/pages/item/calcValue";
 import PriceTransition from "@/chart/PriceTransition";
 import { UserItemData } from "@/utils/types/items";
 import { today } from "@/utils/timeUtils";
@@ -20,7 +20,7 @@ const ItemModal = ({ item, onClose }: ItemDetailProps) => {
     return null;
   }
   const todayPrice = getPriceValueOnDate(item, today());
-  const averagePrice = formattedAverage(getPriceArray(item));
+  const averagePrice = formatAverage(getPriceArray(item));
 
   return (
     <div className="flex flex-col justify-between gap-4 bg-white">
