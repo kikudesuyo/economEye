@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { fetchUserItems } from "@/firebase/firestore/item";
 import ItemModal from "@/pages/item/ItemModal";
 import ItemCard from "@/pages/item/ItemCard";
+import AddItemButton from "@/pages/item/AddItemButton";
 import Button from "@/components/Button";
 import Main from "@/components/Main";
 import { UserItemData } from "@/utils/types/items";
@@ -67,6 +68,7 @@ const ItemList = () => {
               key={index}
             />
           ))}
+        <AddItemButton />
       </div>
       <Button
         label="トップページに戻る"
