@@ -13,7 +13,7 @@ const AddItemButton = () => {
     >
       <div className="flex flex-col items-center gap-1">
         <img width="50" height="50" src={plus} />
-        <p className="max-w-full truncate font-bold">商品追加</p>
+        <p className="max-w-full truncate font-bold">商品登録</p>
       </div>
     </div>
   );
