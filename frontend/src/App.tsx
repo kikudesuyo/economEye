@@ -14,7 +14,7 @@ import RegisterItem from "@/pages/RegisterItem";
 import ItemList from "@/pages/ItemList";
 
 import ScrollToTop from "@/utils/ScrollTop";
-import { PATHS } from "@/utils/constant";
+import { PATHS } from "@/utils/Paths";
 
 function App() {
   return (

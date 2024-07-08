@@ -9,7 +9,7 @@ import AddItemButton from "@/pages/item/AddItemButton";
 import Button from "@/components/Button";
 import Main from "@/components/Main";
 import { UserItemData } from "@/utils/types/items";
-import { PATHS } from "@/utils/constant";
+import { PATHS } from "@/utils/Paths";
 
 const ItemList = () => {
   const [ItemData, setItemData] = useState<UserItemData[] | null>(null);

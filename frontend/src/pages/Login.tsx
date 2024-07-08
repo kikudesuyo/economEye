@@ -7,7 +7,7 @@ import Main from "@/components/Main";
 import Input from "@/components/Input";
 // import { validateLogin, validateAnonymousLogin } from "@/auth/authHandling";
 import { validateLogin } from "@/auth/authHandling";
-import { PATHS } from "@/utils/constant";
+import { PATHS } from "@/utils/Paths";
 import loginLogo from "@/assets/imgs/logo/login.svg";
 import padlock from "@/assets/imgs/logo/padlock.svg";
 

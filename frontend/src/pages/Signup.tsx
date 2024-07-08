@@ -6,7 +6,7 @@ import Button from "@/components/Button";
 import Main from "@/components/Main";
 import Input from "@/components/Input";
 import { validateSignup } from "@/auth/authHandling";
-import { PATHS } from "@/utils/constant";
+import { PATHS } from "@/utils/Paths";
 import signupLogo from "@/assets/imgs/logo/signup.svg";
 import padlock from "@/assets/imgs/logo/padlock.svg";
 

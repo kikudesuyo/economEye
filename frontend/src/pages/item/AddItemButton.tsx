@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { PATHS } from "@/utils/constant";
+import { PATHS } from "@/utils/Paths";
 import plus from "@/assets/imgs/logo/plus.svg";
 
 const AddItemButton = () => {
