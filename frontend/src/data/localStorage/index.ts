@@ -1,16 +1,23 @@
 import { ItemData } from "@/utils/types/items";
 
-export const saveLocalStrage = (key: string, value: ItemData[]) => {
-  const itemData = JSON.stringify(value);
-  const storage = localStorage;
-  storage.setItem(key, itemData);
-};
+class LocalStorageService {
+  private storage: Storage;
 
-export const getLocalStrage = (key: string) => {
-  const storage = localStorage;
-  const itemData = storage.getItem(key);
-  if (itemData === null) {
-    return [];
+  constructor() {
+    this.storage = localStorage;
   }
-  return JSON.parse(itemData);
-};
+
+  public saveToLocalStrage(key: string, value: ItemData[]) {
+    const itemData = JSON.stringify(value);
+    this.storage.setItem(key, itemData);
+  }
+  public getFromLocalStrage(key: string) {
+    const itemData = this.storage.getItem(key);
+    if (itemData === null) {
+      return [];
+    }
+    return JSON.parse(itemData);
+  }
+}
+
+export default LocalStorageService;
