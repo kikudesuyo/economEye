@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { useAuth } from "@/contexts/useAuth";
-import { displayPriceDiffMessage } from "@/pages/item/displayPriceMessage";
+import { displayPriceDiffMessage } from "@/pages/item/priceDiffMessage";
 import { fetchUserItemData } from "@/firebase/firestore/item";
 
 import { getGuestItemData } from "@/data/localStorage/GuestData";

@@ -2,7 +2,7 @@ import {
   getPriceValueOnDate,
   getPriceArray,
 } from "@/pages/item/priceDataFormatter";
-import { displayPriceDiffMessage } from "@/pages/item/displayPriceMessage";
+import { displayPriceDiffMessage } from "@/pages/item/priceDiffMessage";
 import Button from "@/components/Button";
 import { today } from "@/utils/timeUtils";
 import { UserItemData } from "@/utils/types/items";

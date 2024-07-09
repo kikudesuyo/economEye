@@ -3,7 +3,7 @@ import {
   getPriceValueOnDate,
 } from "@/pages/item/priceDataFormatter";
 import ModalHeader from "@/pages/item/ModalHeader";
-import { displayPriceDiffMessage } from "@/pages/item/displayPriceMessage";
+import { displayPriceDiffMessage } from "@/pages/item/priceDiffMessage";
 import Button from "@/components/Button";
 import { formatAverage } from "@/pages/item/calcValue";
 import PriceTransition from "@/chart/PriceTransition";
