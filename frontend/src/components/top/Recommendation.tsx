@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { useAuth } from "@/contexts/useAuth";
-import DiffFromAverage from "@/pages/item/DiffFromAverage";
+import { displayPriceDiffMessage } from "@/pages/item/displayPriceMessage";
 import { fetchUserItemData } from "@/firebase/firestore/item";
 
 import { getGuestItemData } from "@/data/localStorage/GuestData";
@@ -68,10 +68,12 @@ const Recommendation = () => {
           return (
             <div key={index} className="flex justify-center gap-8">
               <p>{item.itemName}</p>
-              <DiffFromAverage
-                prices={getPriceArray(item)}
-                price={getPriceValueOnDate(item, today())}
-              />
+              <p>
+                {displayPriceDiffMessage({
+                  prices: getPriceArray(item),
+                  price: getPriceValueOnDate(item, today()),
+                })}
+              </p>
             </div>
           );
         })}

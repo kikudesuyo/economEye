@@ -3,7 +3,7 @@ import {
   getPriceValueOnDate,
 } from "@/pages/item/priceDataFormatter";
 import ModalHeader from "@/pages/item/ModalHeader";
-import DiffFromAverage from "@/pages/item/DiffFromAverage";
+import { displayPriceDiffMessage } from "@/pages/item/displayPriceMessage";
 import Button from "@/components/Button";
 import { formatAverage } from "@/pages/item/calcValue";
 import PriceTransition from "@/chart/PriceTransition";
@@ -37,11 +37,12 @@ const ItemModal = ({ item, onClose }: ItemDetailProps) => {
               <p className="text-4xl">{averagePrice}円</p>
             </div>
           </div>
-          <DiffFromAverage
-            style="text-3xl"
-            prices={getPriceArray(item)}
-            price={todayPrice}
-          />
+          <div className="text-3xl">
+            {displayPriceDiffMessage({
+              prices: getPriceArray(item),
+              price: todayPrice,
+            })}
+          </div>
         </div>
         <PriceTransition item={item} />
       </div>
