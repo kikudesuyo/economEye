@@ -68,7 +68,7 @@ const Login = () => {
           await handleLogin();
         }}
       />
-      {/* <div className="mx-auto flex w-3/5 flex-col items-center justify-center gap-8">
+      <div className="mx-auto flex w-3/5 flex-col items-center justify-center gap-8">
         <div className="flex w-full items-center">
           <span className="grow border-t-4 "></span>
           <span className="relative px-2 text-xl">または</span>
@@ -78,13 +78,14 @@ const Login = () => {
           <span
             className="cursor-pointer text-xl text-gray-500 underline"
             onClick={async () => {
-              await handleAnonymousLogin();
+              navigate(PATHS.TOP);
+              // await handleAnonymousLogin();
             }}
           >
             ゲストとしてログイン
           </span>
         </button>
-      </div> */}
+      </div>
     </Main>
   );
 };

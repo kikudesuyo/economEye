@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 
+import { useAuth } from "@/contexts/useAuth";
 import DiffFromAverage from "@/pages/item/DiffFromAverage";
 import { fetchUserItems } from "@/firebase/firestore/item";
+
+import { getGuestData } from "@/data/localStorage/GuestData";
 import {
   getPriceArray,
   getPriceValueOnDate,
@@ -11,17 +14,23 @@ import { UserItemData } from "@/utils/types/items";
 import { today } from "@/utils/timeUtils";
 
 const Recommendation = () => {
+  const { isAuthenticated } = useAuth();
   const [ItemData, setItemData] = useState<UserItemData[]>([]);
   useEffect(() => {
     (async () => {
       try {
-        const data = await fetchUserItems();
-        setItemData(data);
+        let itemData: UserItemData[] = [];
+        if (isAuthenticated) {
+          itemData = await fetchUserItems();
+        } else {
+          itemData = getGuestData();
+        }
+        setItemData(itemData);
       } catch (error) {
         console.log(error);
       }
     })();
-  }, []);
+  }, [isAuthenticated]);
 
   const isExistUserItem = () => {
     return ItemData.length > 0;
