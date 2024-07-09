@@ -3,7 +3,7 @@ import { afternoonTea } from "@/data/sample/afternoonTea";
 import { pyuregumi } from "@/data/sample/pyuregumi";
 import { smartPhone } from "@/data/sample/smartPhone";
 
-export const getGuestData = () => {
+export const getGuestItemData = () => {
   const localStorageService = new LocalStorageService();
   let guestData = localStorageService.getFromLocalStrage("guestItems");
   // ローカルストレージにデータがない場合はサンプルデータをセット

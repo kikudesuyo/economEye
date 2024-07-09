@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 
 import { useAuth } from "@/contexts/useAuth";
 import DiffFromAverage from "@/pages/item/DiffFromAverage";
-import { fetchUserItems } from "@/firebase/firestore/item";
+import { fetchUserItemData } from "@/firebase/firestore/item";
 
-import { getGuestData } from "@/data/localStorage/GuestData";
+import { getGuestItemData } from "@/data/localStorage/GuestData";
 import {
   getPriceArray,
   getPriceValueOnDate,
@@ -21,9 +21,9 @@ const Recommendation = () => {
       try {
         let itemData: UserItemData[] = [];
         if (isAuthenticated) {
-          itemData = await fetchUserItems();
+          itemData = await fetchUserItemData();
         } else {
-          itemData = getGuestData();
+          itemData = getGuestItemData();
         }
         setItemData(itemData);
       } catch (error) {

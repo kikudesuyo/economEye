@@ -15,7 +15,7 @@ export const fetchUserItemRefs = async () => {
   }
 };
 
-export const fetchUserItems = async (): Promise<UserItemData[]> => {
+export const fetchUserItemData = async (): Promise<UserItemData[]> => {
   try {
     const userItemRefs = await fetchUserItemRefs();
     const userItems = await Promise.all(
