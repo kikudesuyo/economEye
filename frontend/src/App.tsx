@@ -11,7 +11,8 @@ import Home from "@/pages/Home";
 import Login from "@/pages/Login";
 import Signup from "@/pages/Signup";
 import RegisterItem from "@/pages/RegisterItem";
-import ItemList from "@/pages/ItemList";
+import GuestItemList from "@/pages/GuestItemList";
+import AuthUserItemList from "@/pages/AuthUserItemList";
 
 import ScrollToTop from "@/utils/ScrollTop";
 import { PATHS } from "@/utils/Paths";
@@ -29,7 +30,10 @@ function App() {
             <Route path={PATHS.LOGIN} element={<Login />} />
             <Route path={PATHS.TOP} element={<Top />} />
             <Route path={PATHS.REGISTER_ITEM} element={<RegisterItem />} />
-            <Route path={PATHS.ITEM_LIST} element={<ItemList />} />
+            {/* <Route path={PATHS.ITEM_LIST} element={<ItemList />} />
+             */}
+            <Route path={"guest"} element={<GuestItemList />} />
+            <Route path={"authUser"} element={<AuthUserItemList />} />
           </Routes>
           <Footer />
         </Router>

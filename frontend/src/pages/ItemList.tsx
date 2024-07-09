@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import Modal from "react-modal";
 import { useNavigate } from "react-router-dom";
 
-import { fetchUserItems } from "@/firebase/firestore/item";
 import ItemModal from "@/pages/item/ItemModal";
 import ItemCard from "@/pages/item/ItemCard";
 import AddItemButton from "@/pages/item/AddItemButton";
@@ -11,7 +10,11 @@ import Main from "@/components/Main";
 import { UserItemData } from "@/utils/types/items";
 import { PATHS } from "@/utils/Paths";
 
-const ItemList = () => {
+interface ItemListProps {
+  fetchData: () => Promise<UserItemData[]>;
+}
+
+const ItemList: React.FC<ItemListProps> = ({ fetchData }) => {
   const [ItemData, setItemData] = useState<UserItemData[] | null>(null);
   const [IsOpen, setIsOpen] = useState<boolean>(false);
   const [SelectedItem, setSelectedItem] = useState<UserItemData | null>(null);
@@ -22,13 +25,13 @@ const ItemList = () => {
   useEffect(() => {
     (async () => {
       try {
-        const data = await fetchUserItems();
+        const data = await fetchData();
         setItemData(data);
       } catch (error) {
         console.log(error);
       }
     })();
-  }, []);
+  }, [fetchData]);
 
   useEffect(() => {
     const handleScroll = () => {
