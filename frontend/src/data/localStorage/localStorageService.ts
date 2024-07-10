@@ -1,6 +1,6 @@
 import { ItemData } from "@/utils/types/items";
 
-class LocalStorageService {
+export class LocalStorageService {
   private storage: Storage;
 
   constructor() {
@@ -19,5 +19,3 @@ class LocalStorageService {
     return JSON.parse(itemData);
   }
 }
-
-export default LocalStorageService;

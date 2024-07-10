@@ -1,4 +1,4 @@
-import LocalStorageService from "@/data/localStorage/localStorageService";
+import { LocalStorageService } from "@/data/localStorage/localStorageService";
 import { fetchUserItemData } from "@/firebase/firestore/item";
 
 export const getAuthUserItemData = async () => {
