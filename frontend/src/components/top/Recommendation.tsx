@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 import { useAuth } from "@/contexts/useAuth";
 import { displayPriceDiffMessage } from "@/pages/item/priceDiffMessage";
 
-import { getAuthUserItemData } from "@/data/localStorage/authUserItemData";
-import { getGuestItemData } from "@/data/localStorage/guestItemData";
+import { getAuthUserItemData } from "@/data/localStorage/item/authUserItemData";
+import { getGuestItemData } from "@/data/localStorage/item/guestItemData";
 
 import {
   getPriceArray,

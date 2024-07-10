@@ -11,8 +11,8 @@ import Main from "@/components/Main";
 import { UserItemData } from "@/utils/types/items";
 import { PATHS } from "@/utils/Paths";
 
-import { getAuthUserItemData } from "@/data/localStorage/authUserItemData";
-import { getGuestItemData } from "@/data/localStorage/guestItemData";
+import { getAuthUserItemData } from "@/data/localStorage/item/authUserItemData";
+import { getGuestItemData } from "@/data/localStorage/item/guestItemData";
 
 const ItemList = () => {
   const { isAuthenticated } = useAuth();
