@@ -4,7 +4,7 @@ import { useAuth } from "@/contexts/useAuth";
 import { displayPriceDiffMessage } from "@/pages/item/priceDiffMessage";
 import { fetchUserItemData } from "@/firebase/firestore/item";
 
-import { getGuestItemData } from "@/data/localStorage/GuestData";
+import { getGuestItemData } from "@/data/localStorage/guestItemData";
 import {
   getPriceArray,
   getPriceValueOnDate,

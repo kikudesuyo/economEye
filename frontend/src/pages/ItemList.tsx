@@ -12,7 +12,7 @@ import { UserItemData } from "@/utils/types/items";
 import { PATHS } from "@/utils/Paths";
 
 import { fetchUserItemData } from "@/firebase/firestore/item";
-import { getGuestItemData } from "@/data/localStorage/GuestData";
+import { getGuestItemData } from "@/data/localStorage/guestItemData";
 
 const ItemList = () => {
   const { isAuthenticated } = useAuth();
