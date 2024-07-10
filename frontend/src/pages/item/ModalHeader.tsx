@@ -24,7 +24,7 @@ const ModalHeader = ({ item }: Props) => {
       <div className="flex flex-col gap-2">
         <div className="flex items-center justify-end gap-1">
           <img className="size-6" src={red} alt="" />
-          <p>飲み物</p>
+          <p>タグ</p>
         </div>
         <div className="flex">
           {canEdit ? (
