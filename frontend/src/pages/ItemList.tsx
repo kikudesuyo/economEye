@@ -11,7 +11,7 @@ import Main from "@/components/Main";
 import { UserItemData } from "@/utils/types/items";
 import { PATHS } from "@/utils/Paths";
 
-import { fetchUserItemData } from "@/firebase/firestore/item";
+import { getAuthUserItemData } from "@/data/localStorage/authUserItemData";
 import { getGuestItemData } from "@/data/localStorage/guestItemData";
 
 const ItemList = () => {
@@ -28,7 +28,7 @@ const ItemList = () => {
       try {
         let itemData: UserItemData[] = [];
         if (isAuthenticated) {
-          itemData = await fetchUserItemData();
+          itemData = await getAuthUserItemData();
         } else {
           itemData = getGuestItemData();
         }
