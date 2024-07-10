@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 import { useAuth } from "@/contexts/useAuth";
 import Button from "@/components/Button";
-import { PATHS } from "@/utils/constant";
+import { PATHS } from "@/utils/Paths";
 
 const Header = () => {
   const { isAuthenticated, logout } = useAuth();

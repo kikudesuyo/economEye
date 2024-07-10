@@ -4,7 +4,7 @@ import Recommendation from "@/components/top/Recommendation";
 import Main from "@/components/Main";
 import Notice from "@/components/top/Notice";
 import Button from "@/components/Button";
-import { PATHS } from "@/utils/constant";
+import { PATHS } from "@/utils/Paths";
 
 const Top = () => {
   const navigate = useNavigate();

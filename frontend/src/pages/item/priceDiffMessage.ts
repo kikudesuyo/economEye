@@ -10,17 +10,15 @@ type Props = {
   price: ItemPriceValue;
 };
 
-const DiffFromAverage = ({ style = "", prices, price }: Props) => {
+export const displayPriceDiffMessage = ({ prices, price }: Props) => {
   const average = formatAverage(prices);
   const diff = calcDeviationFromAverage(average, price);
   if (diff === null) {
-    return <p className={`${style}`}>データがありません</p>;
+    return "データがありません";
   } else if (diff > 0) {
-    return <p className={`${style}`}>普段より{diff}円高い</p>;
+    return `普段より${diff}円高い`;
   } else if (diff < 0) {
-    return <p className={`${style}`}>普段より{Math.abs(diff)}円安い</p>;
+    return `普段より${Math.abs(diff)}円安い`;
   }
-  return <p className={`${style}`}>±0円</p>;
+  return "±0円";
 };
-
-export default DiffFromAverage;

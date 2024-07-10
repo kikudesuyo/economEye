@@ -2,7 +2,7 @@ import {
   getPriceValueOnDate,
   getPriceArray,
 } from "@/pages/item/priceDataFormatter";
-import DiffFromAverage from "@/pages/item/DiffFromAverage";
+import { displayPriceDiffMessage } from "@/pages/item/priceDiffMessage";
 import Button from "@/components/Button";
 import { today } from "@/utils/timeUtils";
 import { UserItemData } from "@/utils/types/items";
@@ -24,11 +24,12 @@ const ItemCard = ({ item, openModal }: Props) => {
         <p className="max-w-full truncate">
           {getPriceValueOnDate(item, today())}円
         </p>
-        <DiffFromAverage
-          prices={getPriceArray(item)}
-          price={getPriceValueOnDate(item, today())}
-          style="text-sm"
-        />
+        <div className="text-sm">
+          {displayPriceDiffMessage({
+            prices: getPriceArray(item),
+            price: getPriceValueOnDate(item, today()),
+          })}
+        </div>
       </div>
       <Button label="開く" func={() => {}} style="w-3/5 py-1" />
     </div>

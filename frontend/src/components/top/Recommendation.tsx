@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 
-import DiffFromAverage from "@/pages/item/DiffFromAverage";
-import { fetchUserItems } from "@/firebase/firestore/item";
+import { useAuth } from "@/contexts/useAuth";
+import { displayPriceDiffMessage } from "@/pages/item/priceDiffMessage";
+
+import { getAuthUserItemData } from "@/data/localStorage/item/authUserItemData";
+import { getGuestItemData } from "@/data/localStorage/item/guestItemData";
+
 import {
   getPriceArray,
   getPriceValueOnDate,
@@ -11,17 +15,23 @@ import { UserItemData } from "@/utils/types/items";
 import { today } from "@/utils/timeUtils";
 
 const Recommendation = () => {
+  const { isAuthenticated } = useAuth();
   const [ItemData, setItemData] = useState<UserItemData[]>([]);
   useEffect(() => {
     (async () => {
       try {
-        const data = await fetchUserItems();
-        setItemData(data);
+        let itemData: UserItemData[] = [];
+        if (isAuthenticated) {
+          itemData = await getAuthUserItemData();
+        } else {
+          itemData = getGuestItemData();
+        }
+        setItemData(itemData);
       } catch (error) {
         console.log(error);
       }
     })();
-  }, []);
+  }, [isAuthenticated]);
 
   const isExistUserItem = () => {
     return ItemData.length > 0;
@@ -42,7 +52,7 @@ const Recommendation = () => {
   return (
     <div>
       <h2 className="text-2xl font-bold">おすすめ</h2>
-      <div className="flex flex-col gap-4 rounded-md border-2 border-gray-300 bg-neutral-100 p-5 shadow-md">
+      <div className="flex flex-col gap-4 rounded-sm border-2 border-gray-300 p-5 shadow-md">
         {!isExistUserItem() && (
           <div className="flex flex-col items-center">
             <p>商品が登録されていません。</p>
@@ -59,10 +69,12 @@ const Recommendation = () => {
           return (
             <div key={index} className="flex justify-center gap-8">
               <p>{item.itemName}</p>
-              <DiffFromAverage
-                prices={getPriceArray(item)}
-                price={getPriceValueOnDate(item, today())}
-              />
+              <p>
+                {displayPriceDiffMessage({
+                  prices: getPriceArray(item),
+                  price: getPriceValueOnDate(item, today()),
+                })}
+              </p>
             </div>
           );
         })}

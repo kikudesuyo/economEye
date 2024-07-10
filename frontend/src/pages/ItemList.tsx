@@ -2,16 +2,20 @@ import { useEffect, useState } from "react";
 import Modal from "react-modal";
 import { useNavigate } from "react-router-dom";
 
-import { fetchUserItems } from "@/firebase/firestore/item";
+import { useAuth } from "@/contexts/useAuth";
 import ItemModal from "@/pages/item/ItemModal";
 import ItemCard from "@/pages/item/ItemCard";
 import AddItemButton from "@/pages/item/AddItemButton";
 import Button from "@/components/Button";
 import Main from "@/components/Main";
 import { UserItemData } from "@/utils/types/items";
-import { PATHS } from "@/utils/constant";
+import { PATHS } from "@/utils/Paths";
+
+import { getAuthUserItemData } from "@/data/localStorage/item/authUserItemData";
+import { getGuestItemData } from "@/data/localStorage/item/guestItemData";
 
 const ItemList = () => {
+  const { isAuthenticated } = useAuth();
   const [ItemData, setItemData] = useState<UserItemData[] | null>(null);
   const [IsOpen, setIsOpen] = useState<boolean>(false);
   const [SelectedItem, setSelectedItem] = useState<UserItemData | null>(null);
@@ -22,13 +26,18 @@ const ItemList = () => {
   useEffect(() => {
     (async () => {
       try {
-        const data = await fetchUserItems();
-        setItemData(data);
+        let itemData: UserItemData[] = [];
+        if (isAuthenticated) {
+          itemData = await getAuthUserItemData();
+        } else {
+          itemData = getGuestItemData();
+        }
+        setItemData(itemData);
       } catch (error) {
         console.log(error);
       }
     })();
-  }, []);
+  }, [isAuthenticated]);
 
   useEffect(() => {
     const handleScroll = () => {

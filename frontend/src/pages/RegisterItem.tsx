@@ -5,7 +5,7 @@ import { addNewItem } from "@/firebase/functions/functionsHandler";
 import Button from "@/components/Button";
 import Main from "@/components/Main";
 import Input from "@/components/Input";
-import { PATHS } from "@/utils/constant";
+import { PATHS } from "@/utils/Paths";
 
 const RegisterItem = () => {
   const [janCode, setJanCode] = useState<string>("");
