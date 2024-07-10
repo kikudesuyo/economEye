@@ -12,8 +12,8 @@ import loginLogo from "@/assets/imgs/logo/login.svg";
 import padlock from "@/assets/imgs/logo/padlock.svg";
 
 const Login = () => {
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+  const [email, setEmail] = useState<string>("hogehoge@gmail.com");
+  const [password, setPassword] = useState<string>("hogehoge");
   const { login } = useAuth();
   const navigate = useNavigate();
   const handleLogin = async () => {
