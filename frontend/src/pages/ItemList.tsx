@@ -26,12 +26,9 @@ const ItemList = () => {
   useEffect(() => {
     (async () => {
       try {
-        let itemData: UserItemData[] = [];
-        if (isAuthenticated) {
-          itemData = await getAuthUserItemData();
-        } else {
-          itemData = getGuestItemData();
-        }
+        const itemData = isAuthenticated
+          ? await getAuthUserItemData()
+          : getGuestItemData();
         setItemData(itemData);
       } catch (error) {
         console.log(error);
