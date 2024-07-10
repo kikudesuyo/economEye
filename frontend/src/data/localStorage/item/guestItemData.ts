@@ -1,4 +1,4 @@
-import { ItemData } from "@/utils/types/items";
+import { UserItemData } from "@/utils/types/items";
 import { LocalStorageService } from "@/data/localStorage/localStorageService";
 import { afternoonTea } from "@/data/sample/afternoonTea";
 import { pyuregumi } from "@/data/sample/pyuregumi";
@@ -10,7 +10,10 @@ export const getGuestItemData = () => {
   // ローカルストレージにデータがない場合はサンプルデータをセット
   if (guestData.length === 0) {
     guestData = [pyuregumi, afternoonTea, smartPhone];
-    localStorageService.saveToLocalStorage<ItemData[]>("guestItems", guestData);
+    localStorageService.saveToLocalStorage<UserItemData[]>(
+      "guestItems",
+      guestData
+    );
   }
   return guestData;
 };
