@@ -5,11 +5,11 @@ import { smartPhone } from "@/data/sample/smartPhone";
 
 export const getGuestItemData = () => {
   const localStorageService = new LocalStorageService();
-  let guestData = localStorageService.getFromLocalStrage("guestItems");
+  let guestData = localStorageService.getFromLocalStorage("guestItems");
   // ローカルストレージにデータがない場合はサンプルデータをセット
   if (guestData.length === 0) {
     guestData = [pyuregumi, afternoonTea, smartPhone];
-    localStorageService.saveToLocalStrage("guestItems", guestData);
+    localStorageService.saveToLocalStorage("guestItems", guestData);
   }
   return guestData;
 };

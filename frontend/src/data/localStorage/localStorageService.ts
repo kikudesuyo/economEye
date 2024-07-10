@@ -7,11 +7,11 @@ export class LocalStorageService {
     this.storage = localStorage;
   }
 
-  public saveToLocalStrage(key: string, value: ItemData[]) {
+  public saveToLocalStorage(key: string, value: ItemData[]) {
     const itemData = JSON.stringify(value);
     this.storage.setItem(key, itemData);
   }
-  public getFromLocalStrage(key: string) {
+  public getFromLocalStorage(key: string) {
     const itemData = this.storage.getItem(key);
     if (itemData === null) {
       return [];
