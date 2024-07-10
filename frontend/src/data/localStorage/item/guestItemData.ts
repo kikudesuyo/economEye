@@ -1,4 +1,4 @@
-import LocalStorageService from "@/data/localStorage";
+import LocalStorageService from "@/data/localStorage/localStorageService";
 import { afternoonTea } from "@/data/sample/afternoonTea";
 import { pyuregumi } from "@/data/sample/pyuregumi";
 import { smartPhone } from "@/data/sample/smartPhone";
