@@ -4,7 +4,7 @@ import "@/assets/styles/destyle.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
-import { AuthProvider } from "@/contexts/AuthContext";
+import { AuthProvider } from "@/contexts/AuthProvider";
 
 import Top from "@/pages/Top";
 import Home from "@/pages/Home";
