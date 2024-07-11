@@ -2,6 +2,7 @@ import { createContext, useState, ReactNode, useEffect, useMemo } from "react";
 
 import firebase from "firebase/auth";
 import { Auth } from "@/auth/auth";
+
 interface AuthContextProps {
   isAuthenticated: boolean;
   login: (email: string, password: string) => Promise<void>;

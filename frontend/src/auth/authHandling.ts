@@ -41,11 +41,3 @@ export const validateSignup = async (
     throw new Error("signup failed");
   }
 };
-
-export const validateAnonymousLogin = async () => {
-  const auth = new Auth();
-  await auth.anonymousLogin().catch(() => {
-    alert("匿名ログインに失敗しました。もう一度お試しください。");
-    throw new Error("anonymous login failed");
-  });
-};

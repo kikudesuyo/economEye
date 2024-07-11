@@ -37,11 +37,6 @@ export class Auth {
     await signOut(this.auth);
     return Promise.resolve();
   }
-  //匿名認証
-  // async anonymousLogin() {
-  //   await signInAnonymously(this.auth);
-  //   return Promise.resolve();
-  // }
 }
 
 export const isValidEmail = (email: string) => {
