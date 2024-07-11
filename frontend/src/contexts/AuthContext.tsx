@@ -1,5 +1,4 @@
 import { createContext, useState, ReactNode, useEffect, useMemo } from "react";
-
 import firebase from "firebase/auth";
 import { Auth } from "@/auth/auth";
 
@@ -33,7 +32,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         setUser(null);
       }
     });
-
     return () => unsubscribe();
   }, [auth]);
 
