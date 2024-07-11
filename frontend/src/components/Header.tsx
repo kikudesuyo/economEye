@@ -9,7 +9,7 @@ const Header = () => {
   const navigate = useNavigate();
 
   return (
-    <header className="sticky top-0 flex justify-between border-b-2 border-slate-300 bg-white p-3 shadow-md">
+    <header className="sticky top-0 flex h-16 justify-between border-b-2 border-slate-300 bg-white p-3 shadow-md">
       <Link
         to={isAuthenticated ? PATHS.TOP : PATHS.HOME}
         className="flex flex-col justify-center text-xl font-bold"
