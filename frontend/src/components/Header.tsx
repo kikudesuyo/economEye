@@ -5,8 +5,9 @@ import Button from "@/components/Button";
 import { PATHS } from "@/utils/Paths";
 
 const Header = () => {
-  const { isAuthenticated, logout } = useAuth();
+  const { isAuthenticated, logout, loading } = useAuth();
   const navigate = useNavigate();
+
   return (
     <header className="sticky top-0 flex justify-between border-b-2 border-slate-300 bg-white p-3 shadow-md">
       <Link
@@ -15,8 +16,11 @@ const Header = () => {
       >
         economEye👀
       </Link>
+
       <div className="flex gap-2">
-        {isAuthenticated ? (
+        {loading ? (
+          <></>
+        ) : isAuthenticated ? (
           <Button
             label="ログアウト"
             func={() => {
