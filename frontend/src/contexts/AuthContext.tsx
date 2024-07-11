@@ -9,13 +9,13 @@ interface AuthContextProps {
   user: firebase.User | null;
 }
 
-export const AuthContext = createContext<AuthContextProps | undefined>(
-  undefined
-);
-
 interface AuthProviderProps {
   children: ReactNode;
 }
+
+export const AuthContext = createContext<AuthContextProps | undefined>(
+  undefined
+);
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const firebaseAuth = useMemo(() => new FirebaseAuth(), []);

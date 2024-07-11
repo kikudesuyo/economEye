@@ -16,9 +16,9 @@ import { getGuestItemData } from "@/data/localStorage/item/guestItemData";
 
 const ItemList = () => {
   const { isAuthenticated } = useAuth();
-  const [ItemData, setItemData] = useState<UserItemData[] | null>(null);
+  const [ItemData, setItemData] = useState<UserItemData[]>([]);
   const [IsOpen, setIsOpen] = useState<boolean>(false);
-  const [SelectedItem, setSelectedItem] = useState<UserItemData | null>(null);
+  const [SelectedItem, setSelectedItem] = useState<UserItemData>();
   const navigate = useNavigate();
 
   Modal.setAppElement("#root");
