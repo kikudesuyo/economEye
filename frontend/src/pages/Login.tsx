@@ -17,7 +17,7 @@ const Login = () => {
   const navigate = useNavigate();
   const handleLogin = async () => {
     await validateLogin(email, password);
-    login();
+    login(email, password);
     navigate(PATHS.TOP);
   };
   return (
