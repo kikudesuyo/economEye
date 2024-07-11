@@ -1,6 +1,6 @@
 import { createContext, useState, ReactNode, useEffect, useMemo } from "react";
 import firebase from "firebase/auth";
-import { Auth } from "@/auth/auth";
+import { FirebaseAuth } from "@/auth/auth";
 
 interface AuthContextProps {
   isAuthenticated: boolean;
@@ -18,12 +18,12 @@ interface AuthProviderProps {
 }
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-  const auth = useMemo(() => new Auth(), []);
+  const firebaseAuth = useMemo(() => new FirebaseAuth(), []);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState<firebase.User | null>(null);
 
   useEffect(() => {
-    const unsubscribe = auth.auth.onAuthStateChanged((user) => {
+    const unsubscribe = firebaseAuth.auth.onAuthStateChanged((user) => {
       if (user) {
         setIsAuthenticated(true);
         setUser(user);
@@ -33,14 +33,14 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       }
     });
     return () => unsubscribe();
-  }, [auth]);
+  }, [firebaseAuth]);
 
   const login = async (email: string, password: string) => {
-    await auth.login(email, password);
+    await firebaseAuth.login(email, password);
   };
 
   const logout = async () => {
-    await auth.logout();
+    await firebaseAuth.logout();
   };
 
   return (
