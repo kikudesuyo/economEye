@@ -15,26 +15,28 @@ import { getAuthUserItemData } from "@/data/localStorage/item/authUserItemData";
 import { getGuestItemData } from "@/data/localStorage/item/guestItemData";
 
 const ItemList = () => {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, loading } = useAuth();
   const [ItemData, setItemData] = useState<UserItemData[]>([]);
   const [IsOpen, setIsOpen] = useState<boolean>(false);
-  const [SelectedItem, setSelectedItem] = useState<UserItemData>();
+  const [SelectedItem, setSelectedItem] = useState<UserItemData | null>(null);
   const navigate = useNavigate();
 
   Modal.setAppElement("#root");
 
   useEffect(() => {
-    (async () => {
-      try {
-        const itemData = isAuthenticated
-          ? await getAuthUserItemData()
-          : getGuestItemData();
-        setItemData(itemData);
-      } catch (error) {
-        console.log(error);
-      }
-    })();
-  }, [isAuthenticated]);
+    if (!loading) {
+      (async () => {
+        try {
+          const itemData = isAuthenticated
+            ? await getAuthUserItemData()
+            : getGuestItemData();
+          setItemData(itemData);
+        } catch (error) {
+          console.log(error);
+        }
+      })();
+    }
+  }, [isAuthenticated, loading]);
 
   useEffect(() => {
     const handleScroll = () => {
