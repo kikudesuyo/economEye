@@ -16,3 +16,8 @@ export const getAuthUserItemData = async () => {
   }
   return authUserItemData;
 };
+
+export const removeAuthUserItemData = () => {
+  const localStorageService = new LocalStorageService();
+  localStorageService.removeFromLocalStorage("authUserItemData");
+};

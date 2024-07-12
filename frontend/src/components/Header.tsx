@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/useAuth";
 import Button from "@/components/Button";
 import { PATHS } from "@/utils/Paths";
+import { removeAuthUserItemData } from "@/data/localStorage/item/authUserItemData";
 
 const Header = () => {
   const { isAuthenticated, logout, loading } = useAuth();
@@ -23,8 +24,9 @@ const Header = () => {
         ) : isAuthenticated ? (
           <Button
             label="ログアウト"
-            func={() => {
-              logout();
+            func={async () => {
+              await logout();
+              removeAuthUserItemData();
               navigate(PATHS.HOME);
             }}
           />
