@@ -5,7 +5,6 @@ import { useAuth } from "@/contexts/useAuth";
 import Button from "@/components/Button";
 import Main from "@/components/Main";
 import Input from "@/components/Input";
-// import { validateLogin, validateAnonymousLogin } from "@/auth/authHandling";
 import { validateLogin } from "@/auth/authHandling";
 import { PATHS } from "@/utils/Paths";
 import loginLogo from "@/assets/imgs/logo/login.svg";
@@ -18,14 +17,9 @@ const Login = () => {
   const navigate = useNavigate();
   const handleLogin = async () => {
     await validateLogin(email, password);
-    login();
+    login(email, password);
     navigate(PATHS.TOP);
   };
-  // const handleAnonymousLogin = async () => {
-  //   await validateAnonymousLogin();
-  //   login();
-  //   navigate(PATHS.TOP);
-  // };
   return (
     <Main style="gap-4 md:gap-8 mt-8">
       <div className="flex flex-row items-center justify-center gap-4">
@@ -79,7 +73,6 @@ const Login = () => {
             className="cursor-pointer text-xl text-gray-500 underline"
             onClick={async () => {
               navigate(PATHS.TOP);
-              // await handleAnonymousLogin();
             }}
           >
             ゲストとしてログイン

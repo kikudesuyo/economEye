@@ -1,6 +1,6 @@
 import { LocalStorageService } from "@/data/localStorage/localStorageService";
 import { fetchUserItemData } from "@/firebase/firestore/item";
-import { ItemData } from "@/utils/types/items";
+import { UserItemData } from "@/utils/types/items";
 
 export const getAuthUserItemData = async () => {
   const localStorageService = new LocalStorageService();
@@ -9,10 +9,15 @@ export const getAuthUserItemData = async () => {
   // ローカルストレージにデータがない場合はサンプルデータをセット
   if (authUserItemData.length === 0) {
     authUserItemData = await fetchUserItemData();
-    localStorageService.saveToLocalStorage<ItemData[]>(
+    localStorageService.saveToLocalStorage<UserItemData[]>(
       "authUserItemData",
       authUserItemData
     );
   }
   return authUserItemData;
+};
+
+export const removeAuthUserItemData = () => {
+  const localStorageService = new LocalStorageService();
+  localStorageService.removeFromLocalStorage("authUserItemData");
 };

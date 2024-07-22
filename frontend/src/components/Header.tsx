@@ -3,24 +3,30 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/useAuth";
 import Button from "@/components/Button";
 import { PATHS } from "@/utils/Paths";
+import { removeAuthUserItemData } from "@/data/localStorage/item/authUserItemData";
 
 const Header = () => {
-  const { isAuthenticated, logout } = useAuth();
+  const { isAuthenticated, logout, loading } = useAuth();
   const navigate = useNavigate();
+
   return (
-    <header className="sticky top-0 flex justify-between border-b-2 border-slate-300 bg-white p-3 shadow-md">
+    <header className="sticky top-0 flex h-16 justify-between border-b-2 border-slate-300 bg-white p-3 shadow-md">
       <Link
         to={isAuthenticated ? PATHS.TOP : PATHS.HOME}
         className="flex flex-col justify-center text-xl font-bold"
       >
         economEye👀
       </Link>
+
       <div className="flex gap-2">
-        {isAuthenticated ? (
+        {loading ? (
+          <></>
+        ) : isAuthenticated ? (
           <Button
             label="ログアウト"
-            func={() => {
-              logout();
+            func={async () => {
+              await logout();
+              removeAuthUserItemData();
               navigate(PATHS.HOME);
             }}
           />

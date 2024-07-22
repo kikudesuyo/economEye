@@ -1,5 +1,3 @@
-import { ItemData } from "@/utils/types/items";
-
 export class LocalStorageService {
   private storage: Storage;
 
@@ -11,11 +9,14 @@ export class LocalStorageService {
     const itemData = JSON.stringify(value);
     this.storage.setItem(key, itemData);
   }
-  public getFromLocalStorage(key: string): ItemData[] {
+  public getFromLocalStorage(key: string) {
     const itemData = this.storage.getItem(key);
     if (itemData === null) {
       return [];
     }
     return JSON.parse(itemData);
+  }
+  public removeFromLocalStorage(key: string) {
+    this.storage.removeItem(key);
   }
 }

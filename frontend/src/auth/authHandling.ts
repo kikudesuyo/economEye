@@ -1,4 +1,4 @@
-import { isValidEmail, isValidPassword, Auth } from "@/auth/auth";
+import { isValidEmail, isValidPassword, FirebaseAuth } from "@/auth/auth";
 
 export const validateLogin = async (email: string, password: string) => {
   if (!isValidEmail(email)) {
@@ -9,7 +9,7 @@ export const validateLogin = async (email: string, password: string) => {
     alert("パスワードは6文字以上で入力してください。");
     throw new Error("invalid password");
   }
-  const auth = new Auth();
+  const auth = new FirebaseAuth();
   await auth.login(email, password).catch(() => {
     alert("ログインに失敗しました。もう一度お試しください。");
     throw new Error("login failed");
@@ -34,18 +34,10 @@ export const validateSignup = async (
     throw new Error("password does not match");
   }
   try {
-    const auth = new Auth();
+    const auth = new FirebaseAuth();
     await auth.signup(email, password);
   } catch (error) {
     alert("サインアップに失敗しました。もう一度お試しください。");
     throw new Error("signup failed");
   }
-};
-
-export const validateAnonymousLogin = async () => {
-  const auth = new Auth();
-  await auth.anonymousLogin().catch(() => {
-    alert("匿名ログインに失敗しました。もう一度お試しください。");
-    throw new Error("anonymous login failed");
-  });
 };

@@ -18,7 +18,7 @@ const Signup = () => {
   const navigate = useNavigate();
   const handleSignup = async () => {
     await validateSignup(email, password, confirmPassword);
-    login();
+    login(email, password);
     navigate(PATHS.TOP);
   };
   return (

@@ -15,23 +15,22 @@ import { UserItemData } from "@/utils/types/items";
 import { today } from "@/utils/timeUtils";
 
 const Recommendation = () => {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, loading } = useAuth();
   const [ItemData, setItemData] = useState<UserItemData[]>([]);
   useEffect(() => {
-    (async () => {
-      try {
-        let itemData: UserItemData[] = [];
-        if (isAuthenticated) {
-          itemData = await getAuthUserItemData();
-        } else {
-          itemData = getGuestItemData();
+    if (!loading) {
+      (async () => {
+        try {
+          const itemData = isAuthenticated
+            ? await getAuthUserItemData()
+            : getGuestItemData();
+          setItemData(itemData);
+        } catch (error) {
+          console.log(error);
         }
-        setItemData(itemData);
-      } catch (error) {
-        console.log(error);
-      }
-    })();
-  }, [isAuthenticated]);
+      })();
+    }
+  }, [isAuthenticated, loading]);
 
   const isExistUserItem = () => {
     return ItemData.length > 0;
@@ -48,6 +47,14 @@ const Recommendation = () => {
     });
     return recommendedItems;
   };
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center text-2xl font-bold">
+        <p>Loading...</p>
+      </div>
+    );
+  }
 
   return (
     <div>

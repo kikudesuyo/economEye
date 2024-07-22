@@ -29,14 +29,12 @@ export class RegistrationValidator {
   }
 
   async checkItemDuplicated() {
-    if ((await this.itemRefs).length === 0) {
+    const itemRefs = await this.itemRefs;
+    if (itemRefs.length === 0) {
       return;
     }
     const itemsRef = collection(db, "items");
-    const itemQuery = query(
-      itemsRef,
-      where("__name__", "in", await this.itemRefs)
-    );
+    const itemQuery = query(itemsRef, where("__name__", "in", itemRefs));
     const itemSnapshot = await getDocs(itemQuery);
     const userItems = itemSnapshot.docs.map((doc) => doc.data());
     if (this.isItemDuplicated(userItems)) {
