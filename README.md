@@ -1,30 +1,67 @@
-# React + TypeScript + Vite
+# economEye - 商品の価格推移を捉える Web アプリケーション
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[English](#english) | [日本語](#日本語)
 
-Currently, two official plugins are available:
+## English
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+economEye is a web application that tracks the price trends of products over time.
 
-## Expanding the ESLint configuration
+### Features
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- Product Registration: Add the products you want to track
+- Price Trend Monitoring: Check the price trends of registered products
 
-- Configure the top-level `parserOptions` property like this:
+### Tech Stack
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+- React + TypeScript + Vite
+- Tailwind CSS
+- Firebase (App Hosting, Authentication, Firestore Database, Functions)
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+### Installation and Setup
+
+1. Clone the repository:
+   `git clone https://github.com/kikudesuyo/economEye.git`
+
+2. Navigate to the project directory:
+   `cd economEye`
+
+3. Install dependencies:
+   `npm install`
+
+### How to Use
+
+1. Create an account or log in
+2. Register products
+3. Check the price trends and make informed purchasing decisions!
+
+## 日本語
+
+economEye は、商品の価格推移を捉える Web アプリケーションです。
+
+### 機能
+
+- 商品登録機能: 欲しい商品を登録できます
+- 価格推移確認: 登録した商品の価格推移を確認できます
+
+### 技術スタック
+
+- React + TypeScript + Vite
+- Tailwind CSS
+- Firebase (App Hosting, Authentication, Firestore Database, Functions)
+
+### インストールと設定
+
+1. リポジトリをクローン:
+   `git clone https://github.com/kikudesuyo/economEye.git`
+
+2. プロジェクトディレクトリに移動:
+   `cd economEye`
+
+3. 依存関係をインストール:
+   `npm install`
+
+### 使用方法
+
+1. アカウントを作成またはログイン
+2. 商品を登録
+3. 価格推移を確認して商品を購入!
